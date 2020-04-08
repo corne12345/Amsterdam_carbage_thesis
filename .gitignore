@@ -9,3 +9,5 @@ Data/Loopafstanden/afstand_glas.csv
 Data/Loopafstanden/afstand_papier.csv
 Data/Loopafstanden/afstand_plastic.csv
 Data/Loopafstanden/afstand_textiel.csv
+Data/containers.csv
+Data/Loopafstanden/afstand_rest.csv
