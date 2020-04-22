@@ -1,6 +1,27 @@
 import geopandas as gpd
 from sqlalchemy import create_engine
+import pandas as pd
+import requests
 
+
+# Connect to Postgres database
+# source: https://blog.panoply.io/connecting-jupyter-notebook-with-postgresql-for-python-data-analysis
+
+# Postgres username, password, and database name
+POSTGRES_ADDRESS = '10.243.25.5'
+POSTGRES_PORT = '5432'
+POSTGRES_USERNAME = 'heijne029'
+# POSTGRES_PASSWORD = getpass(prompt='Password: ')
+POSTGRES_PASSWORD = 'WelkomCorne!'
+POSTGRES_DBNAME = 'analyse_ruimte'
+
+# A long string that contains the necessary Postgres login information
+postgres_str = ('postgresql://{username}:{password}@{ipaddress}:{port}/{dbname}'
+                .format(username=POSTGRES_USERNAME,
+                        password=POSTGRES_PASSWORD,
+                        ipaddress=POSTGRES_ADDRESS,
+                        port=POSTGRES_PORT,
+                        dbname=POSTGRES_DBNAME))
 
 
 
@@ -33,6 +54,16 @@ def get_dataframe(q):
 
 
 def load_api_data(prnt=False):
+    """
+    This function loads in information on the current composition of container
+    clusters in Amsterdam. It uses the API from data.amsterdam.nl (available at
+    'https://api.data.amsterdam.nl/vsd/afvalclusters'). It returns the coordinates,
+    amount and volume of different fractions and the address of the clusters. As
+    a check, it is determined whether or not the cluster is currently active.
+    Returns:
+    - df containing coordinates, dict-like amount and volume per fraction and
+    address.
+    """
     x_coordinates = []
     y_coordinates = []
     aantal = []
@@ -41,8 +72,8 @@ def load_api_data(prnt=False):
 
     link = 'https://api.data.amsterdam.nl/vsd/afvalclusters'
 
-    while link != None:
-        if prnt:
+    while link != None: #This is the case on the last page of the API
+        if prnt: # Can be used for some kind of monitoring of progres
             print(link)
         response = requests.get(link)
         output = response.json()
@@ -54,12 +85,13 @@ def load_api_data(prnt=False):
                 volumes.append(result['cluster_fractie_volume'])
                 adresses.append(result['bag_adres_openbare_ruimte_naam'])
         try:
-            link = output['_links']['next']['href']
+            link = output['_links']['next']['href'] #Retrieve link for next page
         except:
-            link = None
+            link = None #True for last page of API
 
     df_clusters = pd.DataFrame([x_coordinates, y_coordinates, aantal, volumes, adresses]).T
     df_clusters = df_clusters.rename(columns={0: 'cluster_x', 1:'cluster_y', 2:'aantal_per_fractie', 3:'volume_per_fractie', 4: 'street_name'})
+    # Transform coordinates of clusters to ints, as this helps easing join
     df_clusters['cluster_x'] = df_clusters['cluster_x'].astype('float').round(0).astype('int')
     df_clusters['cluster_y'] = df_clusters['cluster_y'].astype('float').round(0).astype('int')
     return df_clusters

@@ -46,7 +46,7 @@ def calculate_weighted_distance(good_result):
     return score
 
 
-def calculate_penalties(good_result, aansluitingen=aansluitingen):
+def calculate_penalties(good_result, aansluitingen):
     """
     This function calculates all the penalties associated with the candidate
     solution. It does this by calculating the number of times all constraints
@@ -88,3 +88,36 @@ def calculate_penalties(good_result, aansluitingen=aansluitingen):
     total_penalties = sum([penalty1_sum, penalty2_sum, penalty3_sum, penalty4_sum, penalty5_sum,\
                            penalty6_sum, penalty7_sum, penalty8_sum, penalty9_sum, penalty10_sum])
     return total_penalties
+
+
+def containers_per_cluster(cluster_list):
+    """
+    This function does a modified version of one-hot encoding. It takes as input
+    a list with the amount of containers per fraction (as a column in the dataframe)
+    and returns the amount of the containers per fraction in the cluster. This
+    function is to be used as an 'apply' function on an dataframe
+    Input:
+    - list containing cluster info [Glas: 3, Rest: 5]
+    Returns:
+    - 6 integers (amount of containers per fraction and a total)
+    """
+    rest = 0
+    plastic = 0
+    papier = 0
+    glas = 0
+    textiel = 0
+    try:
+        for i in cluster_list:
+            if i.startswith("Rest:"):
+                rest = int((i.split(':')[1]))
+            if i.startswith("Plastic:"):
+                plastic = int((i.split(':')[1]))
+            if i.startswith("Papier:"):
+                papier = int((i.split(':')[1]))
+            if i.startswith("Glas:"):
+                glas = int((i.split(':')[1]))
+            if i.startswith("Textiel:"):
+                textiel = int(i.split(':')[1])
+    except:
+        pass
+    return rest, plastic, papier, glas, textiel, sum([rest, plastic, papier, glas, textiel])
