@@ -115,3 +115,15 @@ def get_db_afvalcluster_info():
     db_df['type'] = db_df['woning'].apply(lambda x: x[2])
     db_df = db_df.drop('woning', axis=1)
     return db_df
+
+
+def get_distance_matrix():
+    """
+    Function to get the distance matrix. It returns the distance matrix sorted
+    by distance in ascending order to make it suitable for further use.
+    """
+    df_afstandn2 = get_dataframe("""SELECT *
+                                FROM proj_afval_netwerk.afv_poi_afstand
+                                WHERE afstand < 1000
+                                """)
+    return df_afstandn2
