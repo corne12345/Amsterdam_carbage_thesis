@@ -12,7 +12,7 @@ POSTGRES_ADDRESS = '10.243.25.5'
 POSTGRES_PORT = '5432'
 POSTGRES_USERNAME = 'heijne029'
 # POSTGRES_PASSWORD = getpass(prompt='Password: ')
-POSTGRES_PASSWORD = 'WelkomCorne!'
+POSTGRES_PASSWORD = input()
 POSTGRES_DBNAME = 'analyse_ruimte'
 
 # A long string that contains the necessary Postgres login information
