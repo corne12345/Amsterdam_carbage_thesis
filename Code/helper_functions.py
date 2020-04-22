@@ -138,6 +138,7 @@ def join_api_db(db_df, api_df):
     """
     db_clusters = db_df[db_df['type'] == 'afval_cluster']
     joined = db_clusters.set_index(['cluster_x', 'cluster_y']).join(api_df.set_index(['cluster_x', 'cluster_y']), how='outer').reset_index()
+    joined = joined.dropna()
 
     df_clusters_open = joined[joined['s1_afv_rel_nodes_poi'].isna()].reset_index()
     db_clusters_open = joined[joined['aantal_per_fractie'].isna()].reset_index()
@@ -145,7 +146,7 @@ def join_api_db(db_df, api_df):
     joined_try_2 = fix_remaining_into_frame(db_clusters_open, df_clusters_open)
     joined = joined.append([joined_try_2], ignore_index=True)
 
-    return joined.dropna()
+    return joined.drop('index', axis=1)
 
 
 def fix_remaining_options(i, db_clusters_open, df_clusters_open, margin=10):
