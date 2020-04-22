@@ -12,7 +12,7 @@ POSTGRES_ADDRESS = '10.243.25.5'
 POSTGRES_PORT = '5432'
 POSTGRES_USERNAME = 'heijne029'
 # POSTGRES_PASSWORD = getpass(prompt='Password: ')
-POSTGRES_PASSWORD = 'WelkomCorne!'
+POSTGRES_PASSWORD = input()
 POSTGRES_DBNAME = 'analyse_ruimte'
 
 # A long string that contains the necessary Postgres login information
@@ -95,3 +95,23 @@ def load_api_data(prnt=False):
     df_clusters['cluster_x'] = df_clusters['cluster_x'].astype('float').round(0).astype('int')
     df_clusters['cluster_y'] = df_clusters['cluster_y'].astype('float').round(0).astype('int')
     return df_clusters
+
+
+def get_db_afvalcluster_info():
+    """
+    Function that modifies loads in data on the garbage clusters from the Postgres
+    database and modifies the resulting dataframe in a way that makes it usable
+    for future analysis
+    Returns:
+    - pandas DataFrame containing all information from the database and also the
+    added coordinates for the clusters and the type of POI
+    """
+    db_df = get_dataframe("""SELECT *
+                             FROM proj_afval_netwerk.afv_rel_nodes_poi
+                             """)
+    db_df['woning'] = db_df['bk_afv_rel_nodes_poi'].str.split('~')
+    db_df['cluster_x'] = db_df['woning'].apply(lambda x: x[0]).astype('float').round(0).astype('int')
+    db_df['cluster_y'] = db_df['woning'].apply(lambda x: x[1]).astype('float').round(0).astype('int')
+    db_df['type'] = db_df['woning'].apply(lambda x: x[2])
+    db_df = db_df.drop('woning', axis=1)
+    return db_df

@@ -3,7 +3,9 @@ import pandas as pd
 import random
 import copy
 import geopandas as gpd
+
 import shapely
+from shapely.geometry import Polygon, Point
 
 
 def adress_in_service_area(x, y, polygon_list = None):
@@ -121,3 +123,84 @@ def containers_per_cluster(cluster_list):
     except:
         pass
     return rest, plastic, papier, glas, textiel, sum([rest, plastic, papier, glas, textiel])
+
+
+def join_api_db(db_df, api_df):
+    """
+    This function join the dataframes on garbage clusters from the API and the
+    Postgres DB together to form a dataframe that has all the necessary information
+    regarding identification, but also on the configuration of that cluster.
+    Input:
+    - db_df: dataframe from the database. Needs 'type' column and coordinates
+    - api_df: dataframe from the API. needs coordinates.
+    Returns:
+    - joined: joined dataframe with all information
+    """
+    db_clusters = db_df[db_df['type'] == 'afval_cluster']
+    joined = db_clusters.set_index(['cluster_x', 'cluster_y']).join(api_df.set_index(['cluster_x', 'cluster_y']), how='outer').reset_index()
+
+    df_clusters_open = joined[joined['s1_afv_rel_nodes_poi'].isna()].reset_index()
+    db_clusters_open = joined[joined['aantal_per_fractie'].isna()].reset_index()
+
+    joined_try_2 = fix_remaining_into_frame(db_clusters_open, df_clusters_open)
+    joined = joined.append([joined_try_2], ignore_index=True)
+
+    return joined.dropna()
+
+
+def fix_remaining_options(i, db_clusters_open, df_clusters_open, margin=10):
+    """
+    Function tries to match unmatches cluster entries from the database with a
+    suitable option not matched in the API. This is done by increasing the margins
+    for coordinates. This can be done in increasing margins. This is a subfunction
+    in fix_remaining_into_frame.
+    Inputs:
+    - i: index of options to test(from fix_remaining_into_frame)
+    - db_clusters_open: clusters from database not matched in dataframe
+    - df_clusters_open: clusters from API not matched in dataframe
+    - margin: distance margin in meters to match on (default = 10)
+    Returns:
+    - aantal_per_fractie: dict-like information on amount of containers
+    - volume_per_fractie: dict-like information on volume of fractions
+    - street_name: street_name of the cluster
+    """
+    test_option = db_clusters_open.iloc[i]
+    x = float(test_option['cluster_x'])
+    y = float(test_option['cluster_y'])
+    #     print(x,y)
+    square = Polygon([(x-margin, y-margin), (x-margin, y+margin), (x+margin, y+margin), (x+margin, y-margin)])
+    df_clusters_open['point'] = df_clusters_open.apply(lambda row: Point(row['cluster_x'], row['cluster_y']),axis=1)
+    df_clusters_open['fit'] = df_clusters_open['point'].apply(lambda point: point.within(square))
+    try:
+        to_return = df_clusters[df_clusters['fit']].iloc[0]
+        return to_return['aantal_per_fractie'], to_return['volume_per_fractie'], to_return['street_name']
+    except:
+        return None, None, None
+
+def fix_remaining_into_frame(db_clusters_open, df_clusters_open, margin=10):
+    """
+    This function assembles all cluster information that is not joined between
+    database and API. It tries this matching again by taking some margins in the
+    coordinates, to hopefully get a match.
+    Inputs:
+    - db_clusters_open: dataframe of database results not matched
+    - df_clusters_open: dataframe of API results not matched
+    - margin: margin to scan for in meters (default = 10)
+    Returns:
+    - dataframe of matches clusters from database filled with additional information
+    from API
+    """
+    apf_list = []
+    vpf_list = []
+    str_list = []
+
+    for i in range(db_clusters_open.shape[0]):
+        tmp = fix_remaining_options(i, db_clusters_open, df_clusters_open, margin=margin)
+        apf_list.append(tmp[0])
+        vpf_list.append(tmp[1])
+        str_list.append(tmp[2])
+
+    db_clusters_open['aantal_per_fractie'] = apf_list
+    db_clusters_open['volume_per_fractie'] = vpf_list
+    db_clusters_open['street_name'] = str_list
+    return db_clusters_open
