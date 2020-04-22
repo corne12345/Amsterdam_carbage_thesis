@@ -120,10 +120,46 @@ def get_db_afvalcluster_info():
 def get_distance_matrix():
     """
     Function to get the distance matrix. It returns the distance matrix sorted
-    by distance in ascending order to make it suitable for further use.
+    by distance in ascending order tos make it suitable for further use.
     """
     df_afstandn2 = get_dataframe("""SELECT *
                                 FROM proj_afval_netwerk.afv_poi_afstand
                                 WHERE afstand < 1000
                                 """)
     return df_afstandn2
+
+
+def create_all_households(cluster_join):
+    """
+    Function that creates a dataframe containing all households as rows
+    """
+    all_households1 = cluster_join[['naar_s1_afv_nodes', 'bk_afv_rel_nodes_poi']].drop_duplicates()
+    all_households1['woning'] = all_households1['bk_afv_rel_nodes_poi'].str.split('~')
+    all_households1['woning_x'] = all_households1['woning'].apply(lambda x: x[0])
+    all_households1['woning_y'] = all_households1['woning'].apply(lambda x: x[1])
+    all_households1['uses_container'] = all_households1.apply(lambda row: adress_in_service_area(row['woning_x'], row['woning_y'], polygons), axis=1)
+    all_households1 = all_households1.drop('bk_afv_rel_nodes_poi', axis=1)
+    return all_households1
+
+def create_aanlsuitingen(good_result, total_join):
+    """
+    Function that returns dataframe aansluitingen that calculates amount of
+    households per cluster and the percentage of overflow
+    """
+    aansluitingen = pd.DataFrame(good_result['poi_rest'].value_counts()).\
+                join(pd.DataFrame(good_result['poi_papier'].value_counts()), how='outer').\
+                join(pd.DataFrame(good_result['poi_plastic'].value_counts()), how='outer').\
+                join(pd.DataFrame(good_result['poi_glas'].value_counts()), how='outer').\
+                join(pd.DataFrame(good_result['poi_textiel'].value_counts()), how='outer')
+
+    tmp_for_join = total_join[['van_s1_afv_nodes', 'rest', 'papier', 'plastic', \
+    'glas', 'textiel', 'totaal']].drop_duplicates().set_index('van_s1_afv_nodes')
+    aansluitingen = aansluitingen.join(tmp_for_join, how='left')
+
+    aansluitingen['rest_perc'] = aansluitingen['poi_rest'] / aansluitingen['rest']
+    aansluitingen['plastic_perc'] = aansluitingen['poi_plastic'] / aansluitingen['plastic'] / 2
+    aansluitingen['papier_perc'] = aansluitingen['poi_papier'] / aansluitingen['papier'] / 2
+    aansluitingen['glas_perc'] = aansluitingen['poi_glas'] / aansluitingen['glas'] / 2
+    aansluitingen['textiel_perc'] = aansluitingen['poi_textiel'] / aansluitingen['textiel'] / 7.5
+
+    return aansluitingen

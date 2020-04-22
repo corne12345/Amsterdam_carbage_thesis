@@ -92,6 +92,31 @@ def calculate_penalties(good_result, aansluitingen):
     return total_penalties
 
 
+def calculate_simple_penalties(good_result, aansluitingen):
+    """
+    Simplified version of penalty function that gives total amount of penalties
+    """
+    penalty1 = good_result[good_result['rest_afstand'] > 100].shape[0]
+    penalty2 = good_result[good_result['plastic_afstand'] > 150].shape[0]
+    penalty3 = good_result[good_result['papier_afstand'] > 150].shape[0]
+    penalty4 = good_result[good_result['glas_afstand'] > 150].shape[0]
+    penalty5 = good_result[good_result['textiel_afstand'] > 300].shape[0]
+
+    temp = (aansluitingen['poi_rest'] - aansluitingen['rest'] * 100)
+    penalty6 = temp[temp > 0].sum()
+    temp = (aansluitingen['poi_plastic'] - aansluitingen['plastic'] * 200)
+    penalty7 = temp[temp > 0].sum()
+    temp = (aansluitingen['poi_papier'] - aansluitingen['papier'] * 200)
+    penalty8 = temp[temp > 0].sum()
+    temp = (aansluitingen['poi_glas'] - aansluitingen['glas'] * 200)
+    penalty9 = temp[temp > 0].sum()
+    temp = (aansluitingen['poi_textiel'] - aansluitingen['textiel'] * 750)
+    penalty10 = temp[temp > 0].sum()
+
+    print(penalty1, penalty2, penalty3, penalty4, penalty5, penalty6, penalty7, penalty8, penalty9, penalty10)
+    return penalty1+penalty2+penalty3+penalty4+penalty5+penalty6+penalty7+penalty8+penalty9+penalty10
+
+
 def containers_per_cluster(cluster_list):
     """
     This function does a modified version of one-hot encoding. It takes as input
@@ -205,3 +230,47 @@ def fix_remaining_into_frame(db_clusters_open, df_clusters_open, margin=10):
     db_clusters_open['volume_per_fractie'] = vpf_list
     db_clusters_open['street_name'] = str_list
     return db_clusters_open
+
+
+def add_shortest_distances_to_all_households(all_households, cluster_distance_matrix):
+    """
+    Function that searches for shortest distance per household and per fraction
+    and adds this information to the all_households dataframe
+    """
+    shortest_rest = cluster_distance_matrix[cluster_distance_matrix['rest'] > 0].\
+            groupby('naar_s1_afv_nodes').first()[['van_s1_afv_nodes', 'afstand']].\
+            rename(columns={'van_s1_afv_nodes': 'poi_rest', 'afstand': 'rest_afstand'})
+    shortest_plastic = cluster_distance_matrix[cluster_distance_matrix['plastic'] > 0].\
+            groupby('naar_s1_afv_nodes').first()[['van_s1_afv_nodes', 'afstand']].\
+            rename(columns={'van_s1_afv_nodes': 'poi_plastic', 'afstand': 'plastic_afstand'})
+    shortest_papier = cluster_distance_matrix[cluster_distance_matrix['papier'] > 0].\
+            groupby('naar_s1_afv_nodes').first()[['van_s1_afv_nodes', 'afstand']].\
+            rename(columns={'van_s1_afv_nodes': 'poi_papier', 'afstand': 'papier_afstand'})
+    shortest_glas = cluster_distance_matrix[cluster_distance_matrix['glas'] > 0].\
+            groupby('naar_s1_afv_nodes').first()[['van_s1_afv_nodes', 'afstand']].\
+            rename(columns={'van_s1_afv_nodes': 'poi_glas', 'afstand': 'glas_afstand'})
+    shortest_textiel = cluster_distance_matrix[cluster_distance_matrix['textiel'] > 0].\
+            groupby('naar_s1_afv_nodes').first()[['van_s1_afv_nodes', 'afstand']].\
+            rename(columns={'van_s1_afv_nodes': 'poi_textiel', 'afstand': 'textiel_afstand'})
+
+    all_households = all_households.set_index('naar_s1_afv_nodes').\
+            join([shortest_rest, shortest_plastic, shortest_papier, shortest_glas, \
+                  shortest_textiel], how='left')
+    return all_households
+
+
+def total_pipeline():
+    polygons_list = load_geodata_containers()
+    api_df = load_api_data(prnt=False)
+    rel_poi_df = get_db_afvalcluster_info()
+    joined = join_api_db(rel_poi_df, api_df)
+    joined['rest'], joined['plastic'], joined['papier'], joined['glas'], joined['textiel'], joined['totaal'] = zip(*joined['aantal_per_fractie'].apply(lambda x: containers_per_cluster(x)))
+    df_afstandn2 = get_distance_matrix()
+    joined_cluster_distance = joined.set_index('s1_afv_nodes').join(df_afstandn2.set_index('van_s1_afv_nodes')).reset_index().rename(columns={'index': 'van_s1_afv_nodes'})
+    all_households=create_all_households(joined_cluster_distance)
+    good_result = all_households1[all_households1['uses_container']]
+    good_result_rich = add_shortest_distance_to_all_households(all_households, joined_cluster_distance)
+    aansluitingen = create_aansluitingen(good_result, joined_cluster_distance)
+    avg_distance = calculate_weighted_distance(good_result)
+    penalties = calculate_enalties(good_result, aansluitingen)
+    return joined_cluster_distance, joined, all_households, aansluitingen
