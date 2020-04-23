@@ -258,4 +258,4 @@ def total_pipeline():
     aansluitingen = create_aansluitingen(good_result_rich, joined_cluster_distance)
     avg_distance = calculate_weighted_distance(good_result_rich)
     penalties = calculate_penalties(good_result_rich, aansluitingen)
-    return joined_cluster_distance, joined, all_households, aansluitingen
+    return joined_cluster_distance, joined, all_households, aansluitingen, good_results_rich
