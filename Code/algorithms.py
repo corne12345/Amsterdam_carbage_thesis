@@ -1,3 +1,6 @@
+import random
+import pandas as pd 
+
 def random_shuffling_clusters(cluster_join):
     """
     Function that makes a random shuffling. It takes as input a dataframe containing

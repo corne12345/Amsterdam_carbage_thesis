@@ -247,6 +247,13 @@ def add_shortest_distances_to_all_households(all_households, cluster_distance_ma
     return all_households
 
 def initial_loading():
+    """
+    This function is the consecutive call of a few functions. This is used to
+    make an initial environment before the algorithms are applied. It returns the
+    variables all_households, rel_poi_df, joined and df_afstandn2. These can be
+    formed independent of the configuration of the containers. After that a
+    choice needs to be made regarding algorithms.
+    """
     api_df = load_api_data(prnt=False)
     print('API data loaded')
     rel_poi_df = get_db_afvalcluster_info()
@@ -263,6 +270,14 @@ def initial_loading():
     return all_households, rel_poi_df, joined, df_afstandn2
 
 def analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2, clean=True):
+    """
+    This function is the repeated calling of different functions. It is the third
+    element of the data pipeline. The first step is initial_loading(), the second
+    part is the proposed use of algorithms to modify the configuration of the
+    garbage clusters and this part is a series of functions to use this
+    modification to calculate the score associated with it. Returns not only score
+    but also other dataframes for future use in the pipeline.
+    """
     joined_cluster_distance = joined.set_index('s1_afv_nodes').join(df_afstandn2.set_index('van_s1_afv_nodes')).reset_index().rename(columns={'index': 'van_s1_afv_nodes'})
     print('joined distance matrix with garbage cluster data')
     good_result_rich = add_shortest_distances_to_all_households(all_households, joined_cluster_distance)
