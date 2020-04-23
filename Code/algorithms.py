@@ -1,5 +1,6 @@
 import random
-import pandas as pd 
+import copy
+import pandas as pd
 
 def random_shuffling_clusters(cluster_join):
     """
@@ -31,3 +32,81 @@ def random_shuffling_clusters(cluster_join):
     cluster_join1 = cluster_join1.set_index('s1_afv_nodes')
     return cluster_join1.join(df_new_apply, how='left').reset_index()\
             .rename(columns={'index': 's1_afv_nodes'}).fillna(0)
+
+def best_of_random(num_iterations, joined, all_households, rel_poi_df, df_afstandn2):
+    """
+    Create multiple random candidate solutions and return the best one of these
+    Num_iterations decides the amount of iterations. The best option is always
+    returned and can also be the standard solution that is also included in this
+    options. The best of random can subsequently used as input for some kind of
+    iterative optimization process(hillclimber for example).
+    """
+    joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties = analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2, clean=True)
+
+    for i in range(num_iterations):
+        joined2 = random_shuffling_clusters(joined)
+        joined_cluster_distance2, good_result_rich2, aansluitingen2, avg_distance2, penalties2 = analyze_candidate_solution(joined2, all_households, rel_poi_df, df_afstandn2, clean=True)
+        if penalties2 < penalties:
+            joined = joined2
+            joined_cluster_distance = joined_cluster_distance2
+            good_result_rich = good_result_rich2
+            aansluitingen = aansluitingen2
+            avg_distance = avg_distance2
+            penalties = penalties2
+
+    print('***************************************')
+    print(avg_distance, penalties)
+    return joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties
+
+
+def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2, mod_max = 5, parameter='score', complicated=True):
+    """
+    Function to perform repeated hillclimber. This can be added as a building block
+    directly to the standard solution, but also after for example a random algorithm.
+    The results are to be seen.
+    """
+    joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties = analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2, clean=True)
+    hillclimber_dict = {}
+    hillclimber_dict[0] = [avg_distance, penalties, avg_distance+penalties]
+
+    if parameter == 'score':
+        best = avg_distance + penalties
+    if parameter == 'penalties':
+        best = penalties
+
+    r = copy.deepcopy(joined)
+    for i in range(1, num_iterations+1):
+        fractions = ['rest', 'plastic', 'papier', 'glas', 'textiel']
+        no_modifications = random.randint(1, mod_max)
+#         print(no_modifications)
+        for j in range(no_modifications):
+            valid = False
+            while not valid:
+                location_a = random.randint(0, r.shape[0]-1)
+                fraction_a = random.choice(fractions)
+                location_b = random.randint(0, r.shape[0]-1)
+                fraction_b = random.choice(fractions)
+
+                if r.at[location_a, fraction_b] > 0 and r.at[location_b, fraction_a] > 0\
+                                                    and fraction_a != fraction_b:
+                    r.at[location_a, fraction_a] = int(r.at[location_a, fraction_a]) + 1
+                    r.at[location_a, fraction_b] = int(r.at[location_a, fraction_b]) - 1
+                    r.at[location_b, fraction_a] = int(r.at[location_a, fraction_b]) - 1
+                    r.at[location_b, fraction_b] = int(r.at[location_a, fraction_b]) + 1
+                    valid = True
+
+        joined_cluster_distance2, good_result_rich2, aansluitingen2, avg_distance2, penalties2 = analyze_candidate_solution(joined2, all_households, rel_poi_df, df_afstandn2, clean=True)
+        hillclimber_dict[i] = [avg_distance2, penalties, best, no_modifications]
+        if parameter == 'score':
+            print(avg_distance2+penalties2, best)
+            if avg_distance2+penalties2 < best:
+                best = avg_distance2+penalties2
+            else:
+                r = copy.deepcopy(joined)
+        if parameter == 'penalties':
+            print(penalties2, best)
+            if penalties < best:
+                best = penalties
+            else:
+                r = copy.deepcopy(joined)
+    return hillclimber_dict, r
