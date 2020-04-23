@@ -6,7 +6,9 @@ import geopandas as gpd
 
 import shapely
 from shapely.geometry import Polygon, Point
+
 from loading_data import *
+from algorithms import *
 
 
 def calculate_weighted_distance(good_result):
@@ -244,18 +246,41 @@ def add_shortest_distances_to_all_households(all_households, cluster_distance_ma
                   shortest_textiel], how='left')
     return all_households
 
-
-def total_pipeline():
+def initial_loading():
     api_df = load_api_data(prnt=False)
+    print('API data loaded')
     rel_poi_df = get_db_afvalcluster_info()
+    print('DB relation POIs loaded')
     all_households= create_all_households(rel_poi_df).rename(columns={'s1_afv_nodes': 'naar_s1_afv_nodes'})
+    print('Table all households created')
     all_households.to_csv('households_in_area.csv')
     joined = join_api_db(rel_poi_df, api_df)
+    print('API and DB joined')
     joined['rest'], joined['plastic'], joined['papier'], joined['glas'], joined['textiel'], joined['totaal'] = zip(*joined['aantal_per_fractie'].apply(lambda x: containers_per_cluster(x)))
+    print('containers per cluster determined')
     df_afstandn2 = get_distance_matrix()
+    print('distance matrix loaded')
+    return all_households, rel_poi_df, joined, df_afstandn2
+
+def analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2):
     joined_cluster_distance = joined.set_index('s1_afv_nodes').join(df_afstandn2.set_index('van_s1_afv_nodes')).reset_index().rename(columns={'index': 'van_s1_afv_nodes'})
+    print('joined distance matrix with garbage cluster data')
     good_result_rich = add_shortest_distances_to_all_households(all_households, joined_cluster_distance)
+    print('found shortest distance per fraction for all POIs')
     aansluitingen = create_aansluitingen(good_result_rich, joined_cluster_distance)
+    print('created connections per cluster')
     avg_distance = calculate_weighted_distance(good_result_rich)
     penalties = calculate_penalties(good_result_rich, aansluitingen)
-    return joined_cluster_distance, joined, all_households, aansluitingen, good_results_rich, avg_distance, penalties
+    print(avg_distance, penalties)
+    return joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties
+
+def total_pipeline(random = False):
+    all_households, rel_poi_df, joined, df_afstandn2 = initial_loading()
+
+    if random:
+        joined = random_shuffling_clusters(joined)
+
+    joined_cluster_distance, good_result_rich, aansluitingen, avg_distance,\
+    penalties = analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstanden2)
+
+    return joined_cluster_distance, joined, all_households, aansluitingen, good_result_rich, avg_distance, penalties
