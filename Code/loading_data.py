@@ -2,6 +2,7 @@ import geopandas as gpd
 from sqlalchemy import create_engine
 import pandas as pd
 import requests
+from helper_functions import *
 
 
 # Connect to Postgres database
@@ -113,6 +114,7 @@ def get_db_afvalcluster_info():
     db_df['cluster_x'] = db_df['woning'].apply(lambda x: x[0]).astype('float').round(0).astype('int')
     db_df['cluster_y'] = db_df['woning'].apply(lambda x: x[1]).astype('float').round(0).astype('int')
     db_df['type'] = db_df['woning'].apply(lambda x: x[2])
+    db_df['uses_container'] = db_df.apply(lambda row: address_in_service_area(row['cluster_x'], row['cluster_y']), axis=1)
     db_df = db_df.drop('woning', axis=1)
     return db_df
 
@@ -129,17 +131,14 @@ def get_distance_matrix():
     return df_afstandn2
 
 
-def create_all_households(cluster_join):
+def create_all_households(rel_poi):
     """
     Function that creates a dataframe containing all households as rows
     """
-    all_households1 = cluster_join[['naar_s1_afv_nodes', 'bk_afv_rel_nodes_poi']].drop_duplicates()
-    all_households1['woning'] = all_households1['bk_afv_rel_nodes_poi'].str.split('~')
-    all_households1['woning_x'] = all_households1['woning'].apply(lambda x: x[0])
-    all_households1['woning_y'] = all_households1['woning'].apply(lambda x: x[1])
-    all_households1['uses_container'] = all_households1.apply(lambda row: adress_in_service_area(row['woning_x'], row['woning_y'], polygons), axis=1)
-    all_households1 = all_households1.drop('bk_afv_rel_nodes_poi', axis=1)
-    return all_households1
+    all_households = rel_poi_df[rel_poi_df['type']!='afval_cluster']
+    all_households = all_households[['s1_afv_nodes', 'cluster_x', 'cluster_y']]
+    all_households['uses_container'] = all_households.apply(lambda row: address_in_service_area(row['cluster_x'], row['cluster_y']), axis=1)
+    return all_households
 
 def create_aanlsuitingen(good_result, total_join):
     """
@@ -163,3 +162,21 @@ def create_aanlsuitingen(good_result, total_join):
     aansluitingen['textiel_perc'] = aansluitingen['poi_textiel'] / aansluitingen['textiel'] / 7.5
 
     return aansluitingen
+
+def address_in_service_area(x, y, polygon_list = None):
+    """
+    function to see whether a certain household is within the service area of rest.
+    The test criterion is a shapefile containing all places in the city of
+    Amsterdam
+    Input is x and y coordinates of a house and a list of polygons of service area.
+    If polygon_list is not given, it is created within the function. This makes
+    the function more dynamic, but providing polygon_list increases speed.
+    Returns boolean
+    """
+    if polygon_list == None:
+        polygon_list = load_geodata_containers()
+    point = shapely.geometry.Point(float(x),float(y))
+    for polygon in polygon_list:
+        if polygon.contains(point):
+            return True
+    return False
