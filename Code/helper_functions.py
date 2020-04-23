@@ -221,6 +221,8 @@ def add_shortest_distances_to_all_households(all_households, cluster_distance_ma
     Function that searches for shortest distance per household and per fraction
     and adds this information to the all_households dataframe
     """
+    cluster_distance_matrix = cluster_distance_matrix.sort_values(by='afstand')
+
     shortest_rest = cluster_distance_matrix[cluster_distance_matrix['rest'] > 0].\
             groupby('naar_s1_afv_nodes').first()[['van_s1_afv_nodes', 'afstand']].\
             rename(columns={'van_s1_afv_nodes': 'poi_rest', 'afstand': 'rest_afstand'})
@@ -244,17 +246,16 @@ def add_shortest_distances_to_all_households(all_households, cluster_distance_ma
 
 
 def total_pipeline():
-    polygons_list = load_geodata_containers()
     api_df = load_api_data(prnt=False)
     rel_poi_df = get_db_afvalcluster_info()
+    all_households= create_all_households(rel_poi_df).rename(columns={'s1_afv_nodes': 'naar_s1_afv_nodes'})
+    all_households.to_csv('households_in_area.csv')
     joined = join_api_db(rel_poi_df, api_df)
     joined['rest'], joined['plastic'], joined['papier'], joined['glas'], joined['textiel'], joined['totaal'] = zip(*joined['aantal_per_fractie'].apply(lambda x: containers_per_cluster(x)))
     df_afstandn2 = get_distance_matrix()
     joined_cluster_distance = joined.set_index('s1_afv_nodes').join(df_afstandn2.set_index('van_s1_afv_nodes')).reset_index().rename(columns={'index': 'van_s1_afv_nodes'})
-    all_households=create_all_households(joined_cluster_distance)
-    good_result = all_households1[all_households1['uses_container']]
-    good_result_rich = add_shortest_distance_to_all_households(all_households, joined_cluster_distance)
-    aansluitingen = create_aansluitingen(good_result, joined_cluster_distance)
-    avg_distance = calculate_weighted_distance(good_result)
-    penalties = calculate_enalties(good_result, aansluitingen)
+    good_result_rich = add_shortest_distances_to_all_households(all_households, joined_cluster_distance)
+    aansluitingen = create_aansluitingen(good_result_rich, joined_cluster_distance)
+    avg_distance = calculate_weighted_distance(good_result_rich)
+    penalties = calculate_penalties(good_result_rich, aansluitingen)
     return joined_cluster_distance, joined, all_households, aansluitingen

@@ -107,6 +107,7 @@ def get_db_afvalcluster_info():
     - pandas DataFrame containing all information from the database and also the
     added coordinates for the clusters and the type of POI
     """
+    polygon_list = load_geodata_containers()
     db_df = get_dataframe("""SELECT *
                              FROM proj_afval_netwerk.afv_rel_nodes_poi
                              """)
@@ -114,7 +115,8 @@ def get_db_afvalcluster_info():
     db_df['cluster_x'] = db_df['woning'].apply(lambda x: x[0]).astype('float').round(0).astype('int')
     db_df['cluster_y'] = db_df['woning'].apply(lambda x: x[1]).astype('float').round(0).astype('int')
     db_df['type'] = db_df['woning'].apply(lambda x: x[2])
-    db_df['uses_container'] = db_df.apply(lambda row: address_in_service_area(row['cluster_x'], row['cluster_y']), axis=1)
+    print('a')
+    db_df['uses_container'] = db_df.apply(lambda row: address_in_service_area(row['cluster_x'], row['cluster_y'], polygon_list = polygon_list), axis=1)
     db_df = db_df.drop('woning', axis=1)
     return db_df
 
@@ -131,16 +133,18 @@ def get_distance_matrix():
     return df_afstandn2
 
 
-def create_all_households(rel_poi):
+def create_all_households(rel_poi_df):
     """
     Function that creates a dataframe containing all households as rows
     """
+    polygon_list = load_geodata_containers()
     all_households = rel_poi_df[rel_poi_df['type']!='afval_cluster']
     all_households = all_households[['s1_afv_nodes', 'cluster_x', 'cluster_y']]
-    all_households['uses_container'] = all_households.apply(lambda row: address_in_service_area(row['cluster_x'], row['cluster_y']), axis=1)
+    print('b')
+    all_households['uses_container'] = all_households.apply(lambda row: address_in_service_area(row['cluster_x'], row['cluster_y'], polygon_list=polygon_list), axis=1)
     return all_households
 
-def create_aanlsuitingen(good_result, total_join):
+def create_aansluitingen(good_result, total_join):
     """
     Function that returns dataframe aansluitingen that calculates amount of
     households per cluster and the percentage of overflow
