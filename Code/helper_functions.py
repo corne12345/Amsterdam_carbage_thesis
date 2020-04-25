@@ -218,16 +218,21 @@ def fix_remaining_into_frame(db_clusters_open, df_clusters_open, margin=10):
     return db_clusters_open
 
 
-def add_shortest_distances_to_all_households(all_households, cluster_distance_matrix):
+def add_shortest_distances_to_all_households(all_households, cluster_distance_matrix, count=False):
     """
     Function that searches for shortest distance per household and per fraction
     and adds this information to the all_households dataframe
     """
     cluster_distance_matrix = cluster_distance_matrix.sort_values(by='afstand')
 
-    shortest_rest = cluster_distance_matrix[cluster_distance_matrix['rest'] > 0].\
-            groupby('naar_s1_afv_nodes').first()[['van_s1_afv_nodes', 'afstand']].\
+    if count:
+            shortest_rest = cluster_distance_matrix[cluster_distance_matrix['rest'] > 0].\
+            groupby('naar_s1_afv_nodes').first()[['count','van_s1_afv_nodes', 'afstand']].\
             rename(columns={'van_s1_afv_nodes': 'poi_rest', 'afstand': 'rest_afstand'})
+    else:
+        shortest_rest = cluster_distance_matrix[cluster_distance_matrix['rest'] > 0].\
+                groupby('naar_s1_afv_nodes').first()[['van_s1_afv_nodes', 'afstand']].\
+                rename(columns={'van_s1_afv_nodes': 'poi_rest', 'afstand': 'rest_afstand'})
     shortest_plastic = cluster_distance_matrix[cluster_distance_matrix['plastic'] > 0].\
             groupby('naar_s1_afv_nodes').first()[['van_s1_afv_nodes', 'afstand']].\
             rename(columns={'van_s1_afv_nodes': 'poi_plastic', 'afstand': 'plastic_afstand'})
@@ -283,7 +288,7 @@ def analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2,
     """
     joined_cluster_distance = joined.set_index('s1_afv_nodes').join(df_afstandn2.set_index('van_s1_afv_nodes')).reset_index().rename(columns={'index': 'van_s1_afv_nodes'})
     # print('joined distance matrix with garbage cluster data')
-    good_result_rich = add_shortest_distances_to_all_households(all_households, joined_cluster_distance)
+    good_result_rich = add_shortest_distances_to_all_households(all_households, joined_cluster_distance, use_count)
     if clean:
         good_result_rich = good_result_rich[good_result_rich['uses_container']]
     # print('found shortest distance per fraction for all POIs')

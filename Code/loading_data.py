@@ -145,16 +145,26 @@ def create_all_households(rel_poi_df):
     all_households['uses_container'] = all_households.apply(lambda row: address_in_service_area(row['cluster_x'], row['cluster_y'], polygon_list=polygon_list), axis=1)
     return all_households
 
-def create_aansluitingen(good_result, total_join):
+def create_aansluitingen(good_result, total_join, use_count=False):
     """
     Function that returns dataframe aansluitingen that calculates amount of
     households per cluster and the percentage of overflow
     """
-    aansluitingen = pd.DataFrame(good_result['poi_rest'].value_counts()).\
+    if not use_count:
+        aansluitingen = pd.DataFrame(good_result['poi_rest'].value_counts()).\
                 join(pd.DataFrame(good_result['poi_papier'].value_counts()), how='outer').\
                 join(pd.DataFrame(good_result['poi_plastic'].value_counts()), how='outer').\
                 join(pd.DataFrame(good_result['poi_glas'].value_counts()), how='outer').\
                 join(pd.DataFrame(good_result['poi_textiel'].value_counts()), how='outer')
+
+    else:
+        rest = pd.DataFrame(good_result.groupby('poi_rest')['count'].sum()).rename(columns={'count':'poi_rest'})
+        plastic = pd.DataFrame(good_result.groupby('poi_plastic')['count'].sum()).rename(columns={'count':'poi_plastic'})
+        papier = pd.DataFrame(good_result.groupby('poi_papier')['count'].sum()).rename(columns={'count':'poi_papier'})
+        glas = pd.DataFrame(good_result.groupby('poi_glas')['count'].sum()).rename(columns={'count':'poi_glas'})
+        textiel = pd.DataFrame(good_result.groupby('poi_textiel')['count'].sum()).rename(columns={'count':'poi_textiel'})
+        aansluitingen = rest.join([plastic, papier, glas, textiel], how='outer')
+
 
     tmp_for_join = total_join[['van_s1_afv_nodes', 'rest', 'papier', 'plastic', \
     'glas', 'textiel', 'totaal']].drop_duplicates().set_index('van_s1_afv_nodes')
@@ -168,6 +178,7 @@ def create_aansluitingen(good_result, total_join):
 
     return aansluitingen
 
+    
 def address_in_service_area(x, y, polygon_list = None):
     """
     function to see whether a certain household is within the service area of rest.
