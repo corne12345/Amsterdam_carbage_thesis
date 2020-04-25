@@ -48,7 +48,7 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df, df_afstan
 
     for i in range(num_iterations):
         joined2 = random_shuffling_clusters(joined)
-        joined_cluster_distance2, good_result_rich2, aansluitingen2, avg_distance2, penalties2 = analyze_candidate_solution(joined2, all_households, rel_poi_df, df_afstandn2, clean=True)
+        joined_cluster_distance2, good_result_rich2, aansluitingen2, avg_distance2, penalties2 = analyze_candidate_solution(joined2, all_households, rel_poi_df, df_afstandn2, clean=clean, use_count = use_count)
         if penalties2 < penalties:
             joined = joined2
             joined_cluster_distance = joined_cluster_distance2
@@ -62,13 +62,13 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df, df_afstan
     return joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties
 
 
-def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2, mod_max = 5, parameter='score', complicated=True):
+def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2, mod_max = 5, parameter='score', complicated=True, clean=True, use_count=False):
     """
     Function to perform repeated hillclimber. This can be added as a building block
     directly to the standard solution, but also after for example a random algorithm.
     The results are to be seen.
     """
-    joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties = analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2, clean=True)
+    joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties = analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2, clean=clean, use_count=use_count)
     hillclimber_dict = {}
     hillclimber_dict[0] = [avg_distance, penalties, avg_distance+penalties]
 
@@ -98,7 +98,7 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2
                     r.at[location_b, fraction_b] = int(r.at[location_a, fraction_b]) + 1
                     valid = True
 
-        joined_cluster_distance2, good_result_rich2, aansluitingen2, avg_distance2, penalties2 = analyze_candidate_solution(joined2, all_households, rel_poi_df, df_afstandn2, clean=True)
+        joined_cluster_distance2, good_result_rich2, aansluitingen2, avg_distance2, penalties2 = analyze_candidate_solution(joined2, all_households, rel_poi_df, df_afstandn2, clean=clean, use_count=use_count)
         hillclimber_dict[i] = [avg_distance2, penalties, best, no_modifications]
         if parameter == 'score':
             print(avg_distance2+penalties2, best)

@@ -3,6 +3,7 @@ from sqlalchemy import create_engine
 import pandas as pd
 import requests
 from helper_functions import *
+from algorithms import *
 
 
 # Connect to Postgres database
