@@ -11,7 +11,7 @@ from loading_data import *
 from algorithms import *
 
 
-def calculate_weighted_distance(good_result):
+def calculate_weighted_distance(good_resultk, use_count=False):
     """
     Function to calculated the weighted average walking distance as part of the
     score function. It calculates the mean difference per fraction and employs
@@ -308,10 +308,10 @@ def analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2,
     if clean:
         good_result_rich = good_result_rich[good_result_rich['uses_container']]
     # print('found shortest distance per fraction for all POIs')
-    aansluitingen = create_aansluitingen(good_result_rich, joined_cluster_distance, use_count)
+    aansluitingen = create_aansluitingen(good_result_rich, joined_cluster_distance, use_count=use_count)
     # print('created connections per cluster')
-    avg_distance = calculate_weighted_distance(good_result_rich)
-    penalties = calculate_penalties(good_result_rich, aansluitingen)
+    avg_distance = calculate_weighted_distance(good_result_rich, use_count=use_count)
+    penalties = calculate_penalties(good_result_rich, aansluitingen, use_count=use_count)
     print(avg_distance, penalties)
     return joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties
 

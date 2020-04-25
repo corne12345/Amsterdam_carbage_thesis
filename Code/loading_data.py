@@ -160,8 +160,7 @@ def create_aansluitingen(good_result, total_join, use_count=False):
     else:
         rest = pd.DataFrame(good_result.groupby('poi_rest')['count'].sum()).rename(columns={'count':'poi_rest'})
         plastic = pd.DataFrame(good_result.groupby('poi_plastic')['count'].sum()).rename(columns={'count':'poi_plastic'})
-        papier = pd.DataFrame(good_result.groupby('poi_papi
-        er')['count'].sum()).rename(columns={'count':'poi_papier'})
+        papier = pd.DataFrame(good_result.groupby('poi_papier')['count'].sum()).rename(columns={'count':'poi_papier'})
         glas = pd.DataFrame(good_result.groupby('poi_glas')['count'].sum()).rename(columns={'count':'poi_glas'})
         textiel = pd.DataFrame(good_result.groupby('poi_textiel')['count'].sum()).rename(columns={'count':'poi_textiel'})
         aansluitingen = rest.join([plastic, papier, glas, textiel], how='outer')

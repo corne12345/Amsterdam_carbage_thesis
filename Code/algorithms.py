@@ -2,6 +2,9 @@ import random
 import copy
 import pandas as pd
 
+from helper_functions import *
+from loading_data import *
+
 def random_shuffling_clusters(cluster_join):
     """
     Function that makes a random shuffling. It takes as input a dataframe containing
@@ -33,7 +36,7 @@ def random_shuffling_clusters(cluster_join):
     return cluster_join1.join(df_new_apply, how='left').reset_index()\
             .rename(columns={'index': 's1_afv_nodes'}).fillna(0)
 
-def best_of_random(num_iterations, joined, all_households, rel_poi_df, df_afstandn2):
+def best_of_random(num_iterations, joined, all_households, rel_poi_df, df_afstandn2, clean=True, use_count=False):
     """
     Create multiple random candidate solutions and return the best one of these
     Num_iterations decides the amount of iterations. The best option is always
@@ -41,7 +44,7 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df, df_afstan
     options. The best of random can subsequently used as input for some kind of
     iterative optimization process(hillclimber for example).
     """
-    joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties = analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2, clean=True)
+    joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties = analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2, clean=clean, use_count=use_count)
 
     for i in range(num_iterations):
         joined2 = random_shuffling_clusters(joined)
