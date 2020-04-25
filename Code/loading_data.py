@@ -115,6 +115,7 @@ def get_db_afvalcluster_info():
     db_df['cluster_x'] = db_df['woning'].apply(lambda x: x[0]).astype('float').round(0).astype('int')
     db_df['cluster_y'] = db_df['woning'].apply(lambda x: x[1]).astype('float').round(0).astype('int')
     db_df['type'] = db_df['woning'].apply(lambda x: x[2])
+    db_df['bag'] = db_df['woning'].apply(lambda x: x[3])
     print('a')
     db_df['uses_container'] = db_df.apply(lambda row: address_in_service_area(row['cluster_x'], row['cluster_y'], polygon_list = polygon_list), axis=1)
     db_df = db_df.drop('woning', axis=1)
@@ -184,3 +185,44 @@ def address_in_service_area(x, y, polygon_list = None):
         if polygon.contains(point):
             return True
     return False
+
+
+def distance_matrix_with_counts():
+    """
+    Function that tries to match table with addresses per poi with
+    information and subsequently with distance matrix to give back
+    a distance matrix with the amount of households per addres poi.
+    """
+
+    dfob= get_dataframe("""
+                    SELECT bk_votpand_cluster, COUNT(*)
+                    FROM proj_afval_netwerk.rel_votpand_cluster_verblijfsobject
+                    GROUP BY bk_votpand_cluster
+                    """)
+
+    dfob['split'] = dfob['bk_votpand_cluster'].str.split('~')
+    dfob['bag'] = dfob['split'].apply(lambda x: x[0]).astype('int64')
+    dfob['x'] = dfob['split'].apply(lambda x: x[1]).astype('float').round().astype('int')
+    dfob['y'] = dfob['split'].apply(lambda x: x[2]).astype('float').round().astype('int')
+    dfob = dfob.drop(['split'], axis=1)
+
+    df_afstandn2 = get_dataframe("""
+                                SELECT *
+                                FROM proj_afval_netwerk.afv_rel_nodes_poi
+                                """)
+
+    df_afstandn2['split'] = df_afstandn2['bk_afv_rel_nodes_poi'].str.split('~')
+    df_afstandn2['x'] = df_afstandn2['split'].apply(lambda x: x[0]).astype('float').round().astype('int')
+    df_afstandn2['y'] = df_afstandn2['split'].apply(lambda x: x[1]).astype('float').round().astype('int')
+    df_afstandn2['type'] = df_afstandn2['split'].apply(lambda x: x[2])
+    verblijfsobjecten = df_afstandn2[df_afstandn2['type'] != 'afval_cluster']
+    verblijfsobjecten['bag'] = verblijfsobjecten['split'].apply(lambda x: x[3]).astype('int64')
+
+    temp = dfob.set_index(['bag', 'x', 'y']).join(verblijfsobjecten.set_index(['bag', 'x', 'y']), how='outer').reset_index()
+    df_afstandn = get_distance_matrix()
+    joined= temp.set_index('s1_afv_nodes').join(df_afstandn.set_index('naar_s1_afv_nodes'), how='outer')
+    joined = joined.reset_index()[['van_s1_afv_nodes', 'index', 'afstand', 'count']].\
+             rename(columns={'index':'naar_s1_afv_nodes'}).sort_values(by='afstand').\
+             reset_index().drop(['index'],axis=1).dropna()
+
+    return joined

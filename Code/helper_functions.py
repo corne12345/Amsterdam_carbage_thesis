@@ -246,7 +246,7 @@ def add_shortest_distances_to_all_households(all_households, cluster_distance_ma
                   shortest_textiel], how='left')
     return all_households
 
-def initial_loading():
+def initial_loading(use_count=False):
     """
     This function is the consecutive call of a few functions. This is used to
     make an initial environment before the algorithms are applied. It returns the
@@ -265,11 +265,14 @@ def initial_loading():
     print('API and DB joined')
     joined['rest'], joined['plastic'], joined['papier'], joined['glas'], joined['textiel'], joined['totaal'] = zip(*joined['aantal_per_fractie'].apply(lambda x: containers_per_cluster(x)))
     print('containers per cluster determined')
-    df_afstandn2 = get_distance_matrix()
+    if use_count:
+        df_afstandn2 = distance_matrix_with_counts()
+    else:
+        df_afstandn2 = get_distance_matrix()
     print('distance matrix loaded')
     return all_households, rel_poi_df, joined, df_afstandn2
 
-def analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2, clean=True):
+def analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2, clean=True, use_count=False):
     """
     This function is the repeated calling of different functions. It is the third
     element of the data pipeline. The first step is initial_loading(), the second
@@ -279,13 +282,13 @@ def analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2,
     but also other dataframes for future use in the pipeline.
     """
     joined_cluster_distance = joined.set_index('s1_afv_nodes').join(df_afstandn2.set_index('van_s1_afv_nodes')).reset_index().rename(columns={'index': 'van_s1_afv_nodes'})
-    print('joined distance matrix with garbage cluster data')
+    # print('joined distance matrix with garbage cluster data')
     good_result_rich = add_shortest_distances_to_all_households(all_households, joined_cluster_distance)
     if clean:
         good_result_rich = good_result_rich[good_result_rich['uses_container']]
-    print('found shortest distance per fraction for all POIs')
-    aansluitingen = create_aansluitingen(good_result_rich, joined_cluster_distance)
-    print('created connections per cluster')
+    # print('found shortest distance per fraction for all POIs')
+    aansluitingen = create_aansluitingen(good_result_rich, joined_cluster_distance, use_count)
+    # print('created connections per cluster')
     avg_distance = calculate_weighted_distance(good_result_rich)
     penalties = calculate_penalties(good_result_rich, aansluitingen)
     print(avg_distance, penalties)
