@@ -403,6 +403,7 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df, df_afstan
 
 
 
+
 def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2, mod_max = 5, parameter='score', complicated=True, clean=True, use_count=False):
     """
     Function to perform repeated hillclimber. This can be added as a building block
@@ -410,13 +411,14 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2
     The results are to be seen.
     """
     joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties = analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2, clean=clean, use_count=use_count)
-    hillclimber_dict = {}
-    hillclimber_dict[0] = [avg_distance, penalties, avg_distance+penalties]
 
     if parameter == 'score':
         best = avg_distance + penalties
     if parameter == 'penalties':
         best = penalties
+
+    hillclimber_dict = {}
+    hillclimber_dict[0] = [avg_distance, penalties, best]
 
     r = copy.deepcopy(joined)
     for i in range(1, num_iterations+1):
@@ -440,7 +442,7 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2
                     valid = True
 
         joined_cluster_distance2, good_result_rich2, aansluitingen2, avg_distance2, penalties2 = analyze_candidate_solution(r, all_households, rel_poi_df, df_afstandn2, clean=clean, use_count=use_count)
-        hillclimber_dict[i] = [avg_distance2, penalties, best, no_modifications]
+        hillclimber_dict[i] = [avg_distance2, penalties2, best, no_modifications]
         if parameter == 'score':
             print(avg_distance2+penalties2, best)
             if avg_distance2+penalties2 < best:
@@ -454,9 +456,10 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2
             else:
                 r = copy.deepcopy(joined)
 
-    hill_df = pd.DataFrame.from_dict(hill_dict, orient='index')
-    hill_df = hill_df.rename(columns={0:'avg_distance', 1:'penalties', 2:'total_score', 3:'amount of modifications'})
+    hill_df = pd.DataFrame.from_dict(hillclimber_dict, orient='index')
+    hill_df = hill_df.rename(columns={0:'avg_distance', 1:'penalties', 2:'best', 3:'amount of modifications'})
     today = str(pd.datetime.now().date()) + '-' + str(pd.datetime.now().hour)
     hill_df.to_csv('hillclimber' + today + '.csv')
+    r.to_csv('hillclimber_best_config' + today + '.csv')
 
     return hill_df, r
