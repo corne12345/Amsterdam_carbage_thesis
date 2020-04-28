@@ -404,7 +404,8 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df, df_afstan
 
 
 
-def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2, mod_max = 5, parameter='score', complicated=True, clean=True, use_count=False):
+
+def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2, mod_max = 5, parameter='score', complicated=True, clean=True, use_count=False, save=True):
     """
     Function to perform repeated hillclimber. This can be added as a building block
     directly to the standard solution, but also after for example a random algorithm.
@@ -458,8 +459,10 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2
 
     hill_df = pd.DataFrame.from_dict(hillclimber_dict, orient='index')
     hill_df = hill_df.rename(columns={0:'avg_distance', 1:'penalties', 2:'best', 3:'amount of modifications'})
-    today = str(pd.datetime.now().date()) + '-' + str(pd.datetime.now().hour)
-    hill_df.to_csv('hillclimber' + today + '.csv')
-    r.to_csv('hillclimber_best_config' + today + '.csv')
+
+    if save:
+        today = str(pd.datetime.now().date()) + '-' + str(pd.datetime.now().hour)
+        hill_df.to_csv('hillclimber' + today + '.csv')
+        r.to_csv('hillclimber_best_config' + today + '.csv')
 
     return hill_df, r
