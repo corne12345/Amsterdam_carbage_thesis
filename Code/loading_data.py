@@ -27,12 +27,14 @@ postgres_str = ('postgresql://{username}:{password}@{ipaddress}:{port}/{dbname}'
 
 
 
-def load_geodata_containers():
+def load_geodata_containers(subsectie=None):
     """
     This function loads in all polygons representing areas in the city of Amsterdam
     where general waste needs to be brought to a container. This is different
     from the alternative where general waste is collected from the sidewalk. This
     is needed to filter the address POI's to relevant POI's for optimization.
+    Subsectie is optional parameter to filter on specific stadsdelen. This can be used
+    for partial optimization.
 
     Returns:
     - List of polygons making up the area of centralized garbage collection
@@ -40,6 +42,8 @@ def load_geodata_containers():
 
     source = gpd.read_file('../data/Inzameling_huisvuil_100220.shp')
     source = source[source['aanbiedwij'] == 'Breng uw restafval  naar een container voor restafval.']
+    if subsectie:
+        source = source[source['sdcode'] == subsectie]
     return list(source.geometry)
 
 
