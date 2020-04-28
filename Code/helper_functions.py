@@ -268,7 +268,7 @@ def add_shortest_distances_to_all_households(all_households, cluster_distance_ma
                   shortest_textiel], how='left')
     return all_households
 
-def initial_loading(use_count=False):
+def initial_loading(use_count=False, subsectie=None):
     """
     This function is the consecutive call of a few functions. This is used to
     make an initial environment before the algorithms are applied. It returns the
@@ -276,11 +276,11 @@ def initial_loading(use_count=False):
     formed independent of the configuration of the containers. After that a
     choice needs to be made regarding algorithms.
     """
-    api_df = load_api_data(prnt=False)
+    api_df = load_api_data(subsectie=subsectie)
     print('API data loaded')
     rel_poi_df = get_db_afvalcluster_info()
     print('DB relation POIs loaded')
-    all_households= create_all_households(rel_poi_df).rename(columns={'s1_afv_nodes': 'naar_s1_afv_nodes'})
+    all_households= create_all_households(rel_poi_df, subsectie=subsectie).rename(columns={'s1_afv_nodes': 'naar_s1_afv_nodes'})
     print('Table all households created')
     all_households.to_csv('households_in_area.csv')
     joined = join_api_db(rel_poi_df, api_df)

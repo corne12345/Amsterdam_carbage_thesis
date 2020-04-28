@@ -59,7 +59,7 @@ def get_dataframe(q):
     return pd.read_sql_query(query,cnx)
 
 
-def load_api_data(prnt=False):
+def load_api_data(prnt=False, subsectie=None):
     """
     This function loads in information on the current composition of container
     clusters in Amsterdam. It uses the API from data.amsterdam.nl (available at
@@ -104,6 +104,9 @@ def load_api_data(prnt=False):
     df_clusters['cluster_y'] = df_clusters['cluster_y'].astype('float').round(0).astype('int')
     df_clusters['wijk'] = df_clusters['buurt'].str[:3]
     df_clusters['stadsdeel'] = df_clusters['buurt'].str[0]
+
+    if subsectie:
+        df_clusters = df_clusters[df_clusters['stadsdeel'] == subsectie]
     return df_clusters
 
 
@@ -125,8 +128,7 @@ def get_db_afvalcluster_info():
     db_df['cluster_y'] = db_df['woning'].apply(lambda x: x[1]).astype('float').round(0).astype('int')
     db_df['type'] = db_df['woning'].apply(lambda x: x[2])
     db_df['bag'] = db_df['woning'].apply(lambda x: x[3])
-    print('a')
-    db_df['uses_container'] = db_df.apply(lambda row: address_in_service_area(row['cluster_x'], row['cluster_y'], polygon_list = polygon_list), axis=1)
+    # db_df['uses_container'] = db_df.apply(lambda row: address_in_service_area(row['cluster_x'], row['cluster_y'], polygon_list = polygon_list), axis=1)
     db_df = db_df.drop('woning', axis=1)
     return db_df
 
@@ -143,14 +145,13 @@ def get_distance_matrix():
     return df_afstandn2
 
 
-def create_all_households(rel_poi_df):
+def create_all_households(rel_poi_df, subsectie=None):
     """
     Function that creates a dataframe containing all households as rows
     """
-    polygon_list = load_geodata_containers()
+    polygon_list = load_geodata_containers(subsectie = subsectie)
     all_households = rel_poi_df[rel_poi_df['type']!='afval_cluster']
     all_households = all_households[['s1_afv_nodes', 'cluster_x', 'cluster_y']]
-    print('b')
     all_households['uses_container'] = all_households.apply(lambda row: address_in_service_area(row['cluster_x'], row['cluster_y'], polygon_list=polygon_list), axis=1)
     return all_households
 
@@ -187,8 +188,7 @@ def create_aansluitingen(good_result, total_join, use_count=False):
 
     return aansluitingen
 
-    x
-def address_in_service_area(x, y, polygon_list = None):
+def address_in_service_area(x, y, polygon_list = None, subsectie=None):
     """
     function to see whether a certain household is within the service area of rest.
     The test criterion is a shapefile containing all places in the city of
@@ -199,7 +199,7 @@ def address_in_service_area(x, y, polygon_list = None):
     Returns boolean
     """
     if polygon_list == None:
-        polygon_list = load_geodata_containers()
+        polygon_list = load_geodata_containers(subsectie=subsectie)
     point = shapely.geometry.Point(float(x),float(y))
     for polygon in polygon_list:
         if polygon.contains(point):
