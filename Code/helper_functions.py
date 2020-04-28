@@ -421,6 +421,7 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2
 
     r = copy.deepcopy(joined)
     for i in range(1, num_iterations+1):
+        last = copy.deepcopy(r)
         fractions = ['rest', 'plastic', 'papier', 'glas', 'textiel']
         no_modifications = random.randint(1, mod_max)
 #         print(no_modifications)
@@ -447,13 +448,13 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2
             if avg_distance2+penalties2 < best:
                 best = avg_distance2+penalties2
             else:
-                r = copy.deepcopy(joined)
+                r = copy.deepcopy(last) # Undo modification
         if parameter == 'penalties':
             print(penalties2, best)
             if penalties2 < best:
                 best = penalties2
             else:
-                r = copy.deepcopy(joined)
+                r = copy.deepcopy(last) # Undo modification
 
     hill_df = pd.DataFrame.from_dict(hillclimber_dict, orient='index')
     hill_df = hill_df.rename(columns={0:'avg_distance', 1:'penalties', 2:'best', 3:'amount of modifications'})
@@ -474,9 +475,9 @@ def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2,\
     as the hillclimber is prompted, making it more userfriendly. The optional
     saving of the results helps to make more iterations.
     """
-    i = int(input("How many random iterations?"))
-    j = int(input("How many iterations hillclimber"))
-    to_save = bool(input("Do you want the results saved(True/False)?"))
+    i = int(input("How many random iterations? "))
+    j = int(input("How many iterations hillclimber? "))
+    to_save = bool(input("Do you want the results saved(True/False)?" ))
 
     joined, joined_cluster_distance, good_result_rich, aansluitingen, \
         avg_distance, penalties = best_of_random(i, joined,all_households, \
