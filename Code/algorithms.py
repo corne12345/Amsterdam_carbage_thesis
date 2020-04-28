@@ -45,6 +45,7 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df, df_afstan
     iterative optimization process(hillclimber for example).
     """
     joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties = analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2, clean=clean, use_count=use_count)
+    best = 0
 
     for i in range(num_iterations):
         joined2 = random_shuffling_clusters(joined)
@@ -56,16 +57,13 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df, df_afstan
             aansluitingen = aansluitingen2
             avg_distance = avg_distance2
             penalties = penalties2
+            best = i
 
     print('***************************************')
-    print(avg_distance, penalties)
+    print(avg_distance, penalties, best)
     return joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties
 
 
-
-
-
-d
 def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2, mod_max = 5, parameter='score', complicated=True, clean=True, use_count=False, save=True):
     """
     Function to perform repeated hillclimber. This can be added as a building block
