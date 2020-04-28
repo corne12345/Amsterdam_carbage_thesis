@@ -466,3 +466,26 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2
         r.to_csv('hillclimber_best_config' + today + '.csv')
 
     return hill_df, r
+
+def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2,\
+                        clean=True, use_count=False, parameter = 'penalties'):
+    """
+    Method that combines both random and hillclimber to start with the current
+    solution, performs a few random candidates and performs hillclimber on the
+    best of these solutions. The amount of iterations of both the random as well
+    as the hillclimber is prompted, making it more userfriendly. The optional
+    saving of the results helps to make more iterations.
+    """
+    i = int(input("How many random iterations?"))
+    j = int(input("How many iterations hillclimber"))
+    to_save = bool(input("Do you want the results saved(True/False)?"))
+
+    joined, joined_cluster_distance, good_result_rich, aansluitingen, \
+        avg_distance, penalties = best_of_random(i, joined,all_households, \
+        rel_poi_df, df_afstandn2, clean=clean, use_count=clean)
+
+    hill_df, best_solution = hillclimber(j, joined, all_households, \
+        rel_poi_df, df_afstandn2, clean=clean, use_count=use_count,\
+        parameter=parameter, save=to_save)
+    hill_df['best'].plot()
+    return hill_df, best_solution
