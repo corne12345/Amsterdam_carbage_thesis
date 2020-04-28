@@ -1,0 +1,1 @@
+This folder contains all kinds of data needed as input for other pieces of code. These data files are not particularly interesting, but are merely needed to make other pieces work. The output files that contain results can be found in the 'Results' folder
