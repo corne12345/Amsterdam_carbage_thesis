@@ -1,0 +1,1 @@
+All output files that are in the form of figures, images or other graphical output is stored here. These files will mostly be stored and the most important ones will be used in the final report where they will have elaborate explanations associated with it
