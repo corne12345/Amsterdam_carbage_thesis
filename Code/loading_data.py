@@ -71,6 +71,7 @@ def load_api_data(prnt=False):
     aantal = []
     volumes = []
     adresses = []
+    buurt = []
 
     link = 'https://api.data.amsterdam.nl/vsd/afvalclusters'
 
@@ -86,16 +87,19 @@ def load_api_data(prnt=False):
                 aantal.append(result['cluster_fractie_aantal'])
                 volumes.append(result['cluster_fractie_volume'])
                 adresses.append(result['bag_adres_openbare_ruimte_naam'])
+                buurt.append(result['gbd_buurt_code'])
         try:
             link = output['_links']['next']['href'] #Retrieve link for next page
         except:
             link = None #True for last page of API
 
-    df_clusters = pd.DataFrame([x_coordinates, y_coordinates, aantal, volumes, adresses]).T
-    df_clusters = df_clusters.rename(columns={0: 'cluster_x', 1:'cluster_y', 2:'aantal_per_fractie', 3:'volume_per_fractie', 4: 'street_name'})
+    df_clusters = pd.DataFrame([x_coordinates, y_coordinates, aantal, volumes, adresses, buurt]).T
+    df_clusters = df_clusters.rename(columns={0: 'cluster_x', 1:'cluster_y', 2:'aantal_per_fractie', 3:'volume_per_fractie', 4: 'street_name', 5:'buurt'})
     # Transform coordinates of clusters to ints, as this helps easing join
     df_clusters['cluster_x'] = df_clusters['cluster_x'].astype('float').round(0).astype('int')
     df_clusters['cluster_y'] = df_clusters['cluster_y'].astype('float').round(0).astype('int')
+    df_clusters['wijk'] = df_clusters['buurt'].str[:3]
+    df_clusters['stadsdeel'] = df_clusters['buurt'].str[0]
     return df_clusters
 
 
