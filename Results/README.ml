@@ -1,0 +1,1 @@
+All results in the form of data are stord in this folder. This is mostly dataframes on best_configurations after a certain algorithm or dataframes to keep track of the score in for example an hillclimber algorithm. All data is to be labeled according to the date created.
