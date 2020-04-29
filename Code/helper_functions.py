@@ -235,7 +235,7 @@ def fix_remaining_into_frame(db_clusters_open, df_clusters_open, margin=10):
     return db_clusters_open
 
 
-def add_shortest_distances_to_all_households(all_households, cluster_distance_matrix, count=False):
+def add_shortest_distances_to_all_households(all_households, cluster_distance_matrix, use_count=False):
     """
     Function that searches for shortest distance per household and per fraction
     and adds this information to the all_households dataframe
@@ -314,7 +314,7 @@ def analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2,
     avg_distance = calculate_weighted_distance(good_result_rich, use_count=use_count)
     penalties = calculate_penalties(good_result_rich, aansluitingen, use_count=use_count)
     print("Average distance is : " + str(avg_distance))
-    print("Penalites are: " + str(penalties))
+    print("Penalties are: " + str(penalties))
     return joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties
 
 def total_pipeline(random = False):
