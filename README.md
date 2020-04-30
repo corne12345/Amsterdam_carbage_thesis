@@ -4,6 +4,7 @@ _By Corné Heijnen 12230170_
 This repository is the code for the master thesis research project for the master Data Science in the year 2019-2020. The goal of this thesis is to optimize the configuration of the different fraction of underground garbage containers in the city of Amsterdam.
 
 ### Requirements
+All code is produced for running in Python 3.7. The additional needed packages can be installed by running:
 ```
 pip install -r requirements.txt
 ```
