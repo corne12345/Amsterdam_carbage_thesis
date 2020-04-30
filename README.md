@@ -15,6 +15,12 @@ Or using Conda
 conda install --file requirements.txt
 ```
 
+### Usage
+An example code can be run using the command:
+```
+python main.py
+```
+
 ### Structure
 All coding has been initially done in Jupyter Notebooks. All succesfull and reusable parts of these notebooks are encapsulated into codes and eventually added as Python-files (.py). These Python files in turn contain functions that can be loaded in into other Notebooks.
 - The Code folder contains all .py files that are used for reused functions. The final code will also be in here.
