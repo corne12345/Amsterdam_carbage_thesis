@@ -3,9 +3,6 @@ from sqlalchemy import create_engine
 import pandas as pd
 import requests
 import shapely
-# from helper_functions import *
-# from algorithms import *
-
 
 # Connect to Postgres database
 # source: https://blog.panoply.io/connecting-jupyter-notebook-with-postgresql-for-python-data-analysis
