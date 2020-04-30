@@ -277,7 +277,7 @@ def initial_loading(save_intermediate=False):
     """
 
     use_count = bool(input("Do you want to use addresses instead of clusters?"))
-    subsectie = str(input("What stadsdeel do you want to make as a subsection?"))
+    subsectie = str(input("What stadsdeel do you want to make as a subsection (optional parameter)?"))
     if subsectie not in ['T', 'M', 'N', 'A', 'K', 'E', 'F', 'B']:
         subsectie = None
 
