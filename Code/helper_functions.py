@@ -8,8 +8,9 @@ from datetime import date
 import shapely
 from shapely.geometry import Polygon, Point
 
-from loading_data import *
+# from loading_data import *
 # from algorithms import *
+from .loading_data import *
 
 
 def calculate_weighted_distance(good_result, use_count=False):
@@ -242,7 +243,7 @@ def add_shortest_distances_to_all_households(all_households, cluster_distance_ma
     """
     cluster_distance_matrix = cluster_distance_matrix.sort_values(by='afstand')
 
-    if count:
+    if use_count:
             shortest_rest = cluster_distance_matrix[cluster_distance_matrix['rest'] > 0].\
             groupby('naar_s1_afv_nodes').first()[['count','van_s1_afv_nodes', 'afstand']].\
             rename(columns={'van_s1_afv_nodes': 'poi_rest', 'afstand': 'rest_afstand'})
@@ -347,8 +348,8 @@ import random
 import copy
 import pandas as pd
 
-from helper_functions import *
-from loading_data import *
+# from helper_functions import *
+# from loading_data import *
 
 def random_shuffling_clusters(cluster_join):
     """

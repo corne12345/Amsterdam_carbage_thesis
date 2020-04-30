@@ -2,7 +2,8 @@ import geopandas as gpd
 from sqlalchemy import create_engine
 import pandas as pd
 import requests
-from helper_functions import *
+import shapely
+# from helper_functions import *
 # from algorithms import *
 
 
@@ -14,7 +15,7 @@ POSTGRES_ADDRESS = '10.243.25.5'
 POSTGRES_PORT = '5432'
 POSTGRES_USERNAME = 'heijne029'
 # POSTGRES_PASSWORD = getpass(prompt='Password: ')
-POSTGRES_PASSWORD = input()
+POSTGRES_PASSWORD = input("POSTGRES password?")
 POSTGRES_DBNAME = 'analyse_ruimte'
 
 # A long string that contains the necessary Postgres login information
@@ -40,7 +41,7 @@ def load_geodata_containers(subsectie=None):
     - List of polygons making up the area of centralized garbage collection
     """
 
-    source = gpd.read_file('../data/Inzameling_huisvuil_100220.shp')
+    source = gpd.read_file('data/Inzameling_huisvuil_100220.shp')
     source = source[source['aanbiedwij'] == 'Breng uw restafval  naar een container voor restafval.']
     if subsectie:
         source = source[source['sdcode'] == subsectie]
