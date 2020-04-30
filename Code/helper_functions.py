@@ -268,7 +268,7 @@ def add_shortest_distances_to_all_households(all_households, cluster_distance_ma
                   shortest_textiel], how='left')
     return all_households
 
-def initial_loading(use_count=False, subsectie=None):
+def initial_loading(save_intermediate=False):
     """
     This function is the consecutive call of a few functions. This is used to
     make an initial environment before the algorithms are applied. It returns the
@@ -276,13 +276,20 @@ def initial_loading(use_count=False, subsectie=None):
     formed independent of the configuration of the containers. After that a
     choice needs to be made regarding algorithms.
     """
+
+    use_count = bool(input("Do you want to use addresses instead of clusters?"))
+    subsectie = str(input("What stadsdeel do you want to make as a subsection?"))
+    if subsectie not in ['T', 'M', 'N', 'A', 'K', 'E', 'F', 'B']:
+        subsectie = None
+
     api_df = load_api_data(subsectie=subsectie)
     print('API data loaded')
     rel_poi_df = get_db_afvalcluster_info()
     print('DB relation POIs loaded')
     all_households= create_all_households(rel_poi_df, subsectie=subsectie).rename(columns={'s1_afv_nodes': 'naar_s1_afv_nodes'})
     print('Table all households created')
-    all_households.to_csv('households_in_area.csv')
+    if save_intermediate:
+        all_households.to_csv('households_in_area.csv')
     joined = join_api_db(rel_poi_df, api_df)
     print('API and DB joined')
     joined['rest'], joined['plastic'], joined['papier'], joined['glas'], joined['textiel'], joined['totaal'] = zip(*joined['aantal_per_fractie'].apply(lambda x: containers_per_cluster(x)))
@@ -466,18 +473,14 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2
 
     return hill_df, r
 
-def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2,\
-                        clean=True, use_count=False, parameter = 'penalties'):
-    """
-    Method that combines both random and hillclimber to start with the current
-    solution, performs a few random candidates and performs hillclimber on the
-    best of these solutions. The amount of iterations of both the random as well
-    as the hillclimber is prompted, making it more userfriendly. The optional
-    saving of the results helps to make more iterations.
-    """
-    i = int(input("How many random iterations? "))
-    j = int(input("How many iterations hillclimber? "))
-    to_save = bool(input("Do you want the results saved(True/False)?" ))
+def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2):
+    i = int(input("How many random iterations?"))
+    j = int(input("How many iterations hillclimber?"))
+    to_save = bool(input("Do you want the results saved(True/False)?"))
+    clean = bool(input("Do you want to only use a subset of data?"))
+    use_count = bool(input("Do you want to use addresses instead of clusters?"))
+    parameter = str(input("What parameter to optimize on (score/penalties)?"))
+
 
     joined, joined_cluster_distance, good_result_rich, aansluitingen, \
         avg_distance, penalties = best_of_random(i, joined,all_households, \
