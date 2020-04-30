@@ -60,7 +60,7 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df, df_afstan
 
     print('***************************************')
     print(avg_distance, penalties, best)
-    return joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties
+    return joined, joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties
 
 
 def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2, mod_max = 5, parameter='score', complicated=True, clean=True, use_count=False, save=True):
@@ -142,5 +142,6 @@ def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2):
     hill_df, best_solution = hillclimber(j, joined, all_households, \
         rel_poi_df, df_afstandn2, clean=clean, use_count=use_count,\
         parameter=parameter, save=to_save)
-    hill_df['best'].plot()
+    plt = hill_df['best'].plot(title='hillclimber')
+    plt.show()
     return hill_df, best_solution

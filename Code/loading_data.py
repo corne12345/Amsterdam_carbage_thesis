@@ -37,8 +37,10 @@ def load_geodata_containers(subsectie=None):
     Returns:
     - List of polygons making up the area of centralized garbage collection
     """
-
-    source = gpd.read_file('data/Inzameling_huisvuil_100220.shp')
+    try:
+        source = gpd.read_file('data/Inzameling_huisvuil_100220.shp')
+    except:
+        source = gpd.read_file('../data/Inzameling_huisvuil_100220.shp')
     source = source[source['aanbiedwij'] == 'Breng uw restafval  naar een container voor restafval.']
     if subsectie:
         source = source[source['sdcode'] == subsectie]
