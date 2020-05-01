@@ -131,73 +131,6 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2
 
     return hill_df, r
 
-def hillclimber2(num_iterations, joined, all_households, rel_poi_df, df_afstandn2, mod_max = 5, parameter='score', complicated=True, clean=True, use_count=False, save=True):
-    """
-    Function to perform repeated hillclimber. This can be added as a building block
-    directly to the standard solution, but also after for example a random algorithm.
-    The results are to be seen.
-    """
-    joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties = analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2, clean=clean, use_count=use_count)
-
-    if parameter == 'score':
-        best = avg_distance + penalties
-    if parameter == 'penalties':
-        best = penalties
-
-    hillclimber_dict = {}
-    hillclimber_dict[0] = [avg_distance, penalties, best]
-
-    r = copy.deepcopy(joined)
-    for i in range(1, num_iterations+1):
-        last = copy.deepcopy(r)
-        fractions = ['rest', 'plastic', 'papier', 'glas', 'textiel']
-        no_modifications = random.randint(1, mod_max)
-#         print(no_modifications)
-        for j in range(no_modifications):
-            valid = False
-            while not valid:
-                location_a = random.randint(0, r.shape[0]-1)
-                fraction_a = random.choice(fractions)
-                location_b = random.randint(0, r.shape[0]-1)
-                fraction_b = random.choice(fractions)
-
-                if int(r.at[location_a, fraction_b]) > 0 and int(r.at[location_b, fraction_a]) > 0\
-                                                    and fraction_a != fraction_b:
-                    print(r.at[location_a, fraction_a], r.at[location_a, fraction_b], r.at[location_b, fraction_a], r.at[location_b, fraction_b])
-                    r.at[location_a, fraction_a] = int(r.at[location_a, fraction_a]) + 1
-                    r.at[location_a, fraction_b] = int(r.at[location_a, fraction_b]) - 1
-                    r.at[location_b, fraction_a] = int(r.at[location_b, fraction_a]) - 1
-                    r.at[location_b, fraction_b] = int(r.at[location_b, fraction_b]) + 1
-                    valid = True
-                    print(r.at[location_a, fraction_a], r.at[location_a, fraction_b], r.at[location_b, fraction_a], r.at[location_b, fraction_b])
-                    print(location_a, fraction_a, location_b, fraction_b)
-
-
-        joined_cluster_distance2, good_result_rich2, aansluitingen2, avg_distance2, penalties2 = analyze_candidate_solution(r, all_households, rel_poi_df, df_afstandn2, clean=clean, use_count=use_count)
-        hillclimber_dict[i] = [avg_distance2, penalties2, best, no_modifications]
-        if parameter == 'score':
-            print(avg_distance2+penalties2, best)
-            if avg_distance2+penalties2 < best:
-                best = avg_distance2+penalties2
-            else:
-                r = copy.deepcopy(last) # Undo modification
-        if parameter == 'penalties':
-            print(penalties2, best)
-            if penalties2 < best:
-                best = penalties2
-            else:
-                r = copy.deepcopy(last) # Undo modification
-
-    hill_df = pd.DataFrame.from_dict(hillclimber_dict, orient='index')
-    hill_df = hill_df.rename(columns={0:'avg_distance', 1:'penalties', 2:'best', 3:'amount of modifications'})
-
-    if save:
-        today = str(pd.datetime.now().date()) + '-' + str(pd.datetime.now().hour)
-        hill_df.to_csv('hillclimber' + today + '.csv')
-        r.to_csv('hillclimber_best_config' + today + '.csv')
-
-    return hill_df, r
-
 def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2):
     i = int(input("How many random iterations?"))
     j = int(input("How many iterations hillclimber?"))
@@ -215,5 +148,4 @@ def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2):
         rel_poi_df, df_afstandn2, clean=clean, use_count=use_count,\
         parameter=parameter, save=to_save)
     plt = hill_df['best'].plot(title='hillclimber')
-    plt.show()
     return hill_df, best_solution
