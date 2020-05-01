@@ -63,13 +63,14 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df, df_afstan
     return joined, joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties
 
 
-def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2, mod_max = 5, parameter='score', complicated=True, clean=True, use_count=False, save=True, prnt=False):
+def hillclimber2(num_iterations, joined, all_households, rel_poi_df, df_afstandn2, mod_max = 5, parameter='score', complicated=True, clean=True, use_count=False, save=True, prnt=False):
     """
     Function to perform repeated hillclimber. This can be added as a building block
     directly to the standard solution, but also after for example a random algorithm.
     The results are to be seen.
     """
     joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties = analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2, clean=clean, use_count=use_count)
+    method = input("2-opt or Gaussian as method?")
 
     if parameter == 'score':
         best = avg_distance + penalties
@@ -79,32 +80,16 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2
     hillclimber_dict = {}
     hillclimber_dict[0] = [avg_distance, penalties, best]
 
+    fractions = ['rest', 'plastic', 'papier', 'glas', 'textiel']
     r = copy.deepcopy(joined)
     for i in range(1, num_iterations+1):
         last = copy.deepcopy(r)
-        fractions = ['rest', 'plastic', 'papier', 'glas', 'textiel']
-        no_modifications = random.randint(1, mod_max)
-#         print(no_modifications)
-        for j in range(no_modifications):
-            valid = False
-            while not valid:
-                location_a = random.randint(0, r.shape[0]-1)
-                fraction_a = random.choice(fractions)
-                location_b = random.randint(0, r.shape[0]-1)
-                fraction_b = random.choice(fractions)
 
-                if int(r.at[location_a, fraction_b]) > 0 and int(r.at[location_b, fraction_a]) > 0\
-                                                    and fraction_a != fraction_b:
-                    if prnt:
-                        print(r.at[location_a, fraction_a], r.at[location_a, fraction_b], r.at[location_b, fraction_a], r.at[location_b, fraction_b])
-                    r.at[location_a, fraction_a] = int(r.at[location_a, fraction_a]) + 1
-                    r.at[location_a, fraction_b] = int(r.at[location_a, fraction_b]) - 1
-                    r.at[location_b, fraction_a] = int(r.at[location_b, fraction_a]) - 1
-                    r.at[location_b, fraction_b] = int(r.at[location_b, fraction_b]) + 1
-                    if prnt:
-                        print(r.at[location_a, fraction_a], r.at[location_a, fraction_b], r.at[location_b, fraction_a], r.at[location_b, fraction_b])
+        if method == "2-opt":
+            r, no_modifications = hillclimber_2_opt(r)
 
-                    valid = True
+        elif method == "Gaussian":
+            r, no_modifications = hillclimber_variable_mutations(r)
 
         joined_cluster_distance2, good_result_rich2, aansluitingen2, avg_distance2, penalties2 = analyze_candidate_solution(r, all_households, rel_poi_df, df_afstandn2, clean=clean, use_count=use_count)
         hillclimber_dict[i] = [avg_distance2, penalties2, best, no_modifications]
@@ -131,6 +116,7 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2
 
     return hill_df, r
 
+
 def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2):
     i = int(input("How many random iterations?"))
     j = int(input("How many iterations hillclimber?"))
@@ -155,3 +141,66 @@ def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2):
         parameter=parameter, save=to_save)
     plt = hill_df['best'].plot(title='hillclimber')
     return hill_df, best_solution
+
+
+def hillclimber_2_opt(r):
+    no_modifications = random.randint(1, mod_max)
+    #         print(no_modifications)
+    for j in range(no_modifications):
+        valid = False
+        while not valid:
+            location_a = random.randint(0, r.shape[0]-1)
+            fraction_a = random.choice(fractions)
+            location_b = random.randint(0, r.shape[0]-1)
+            fraction_b = random.choice(fractions)
+
+            if int(r.at[location_a, fraction_b]) > 0 and int(r.at[location_b, fraction_a]) > 0\
+                                                and fraction_a != fraction_b:
+                if prnt:
+                    print(r.at[location_a, fraction_a], r.at[location_a, fraction_b], r.at[location_b, fraction_a], r.at[location_b, fraction_b])
+                r.at[location_a, fraction_a] = int(r.at[location_a, fraction_a]) + 1
+                r.at[location_a, fraction_b] = int(r.at[location_a, fraction_b]) - 1
+                r.at[location_b, fraction_a] = int(r.at[location_b, fraction_a]) - 1
+                r.at[location_b, fraction_b] = int(r.at[location_b, fraction_b]) + 1
+                if prnt:
+                    print(r.at[location_a, fraction_a], r.at[location_a, fraction_b], r.at[location_b, fraction_a], r.at[location_b, fraction_b])
+
+                valid = True
+    return r, no_modifications
+
+def hillclimber_variable_mutations(df, x=1.9):
+
+    df['p'] = np.random.normal(0, 1, size=df.shape[0])
+    df_to_change = df[df['p'] > x]
+    df = df[df['p'] < x]
+
+    rest = df_to_change['rest'].sum() * ['rest']
+    plastic = df_to_change['plastic'].sum() * ['plastic']
+    papier = df_to_change['papier'].sum() * ['papier']
+    glas = df_to_change['glas'].sum() * ['glas']
+    textiel = df_to_change['textiel'].sum() * ['textiel']
+    fracties = rest + plastic + papier + glas + textiel
+    random.shuffle(fracties)
+
+    df_to_change = df_to_change.drop(['rest', 'plastic', 'papier', 'glas', 'textiel'], axis=1)
+    print("Amount of clusters to change: " + str(df_to_change.shape[0]))
+
+    fractions_per_cluster = []
+    start_point = 0
+    for i in range(df_to_change.shape[0]):
+        length = df_to_change['totaal'].iloc[i]
+        fractions_per_cluster.append(fracties[start_point:start_point +length])
+        start_point += length
+    df_to_change['new_containers'] = fractions_per_cluster
+
+    df_to_change['rest'], df_to_change['plastic'], df_to_change['papier'], df_to_change['glas'], df_to_change['textiel'] = zip(*df_to_change['new_containers'].apply(lambda x: count(x)))
+
+    df = df.append(df_to_change)
+    df = df.drop(['p', 'new_containers'], axis=1)
+    return df
+
+def count(lst):
+    cnt = Counter()
+    for word in lst:
+        cnt[word] += 1
+    return cnt['rest'], cnt['plastic'], cnt['papier'], cnt['glas'], cnt['textiel']
