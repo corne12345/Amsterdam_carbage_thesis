@@ -134,9 +134,15 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2
 def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2):
     i = int(input("How many random iterations?"))
     j = int(input("How many iterations hillclimber?"))
-    to_save = bool(input("Do you want the results saved(True/False)?"))
+    to_save = input("Do you want the results saved(True/False)?")
+    if to_save == 'False':
+        to_save = False
     clean = bool(input("Do you want to only use a subset of data?"))
+    if clean == 'False':
+        clean = False
     use_count = bool(input("Do you want to use addresses instead of clusters?"))
+    if use_count == 'False':
+        use_count = False
     parameter = str(input("What parameter to optimize on (score/penalties)?"))
 
 
