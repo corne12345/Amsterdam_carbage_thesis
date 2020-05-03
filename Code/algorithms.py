@@ -1,6 +1,8 @@
 import random
 import copy
 import pandas as pd
+import numpy as np
+from collections import Counter
 
 from .helper_functions import analyze_candidate_solution
 
@@ -63,14 +65,15 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df, df_afstan
     return joined, joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties
 
 
-def hillclimber2(num_iterations, joined, all_households, rel_poi_df, df_afstandn2, mod_max = 5, parameter='score', complicated=True, clean=True, use_count=False, save=True, prnt=False):
+def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2, mod_max = 5, parameter='score', complicated=True, clean=True, use_count=False, save=True, prnt=False, method=False):
     """
     Function to perform repeated hillclimber. This can be added as a building block
     directly to the standard solution, but also after for example a random algorithm.
     The results are to be seen.
     """
     joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties = analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2, clean=clean, use_count=use_count)
-    method = input("2-opt or Gaussian as method?")
+    if method == False:
+        method = input("2-opt or Gaussian as method?")
 
     if parameter == 'score':
         best = avg_distance + penalties
@@ -80,13 +83,12 @@ def hillclimber2(num_iterations, joined, all_households, rel_poi_df, df_afstandn
     hillclimber_dict = {}
     hillclimber_dict[0] = [avg_distance, penalties, best]
 
-    fractions = ['rest', 'plastic', 'papier', 'glas', 'textiel']
     r = copy.deepcopy(joined)
     for i in range(1, num_iterations+1):
         last = copy.deepcopy(r)
 
         if method == "2-opt":
-            r, no_modifications = hillclimber_2_opt(r)
+            r, no_modifications = hillclimber_2_opt(r, mod_max, prnt=prnt)
 
         elif method == "Gaussian":
             r, no_modifications = hillclimber_variable_mutations(r)
@@ -130,6 +132,7 @@ def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2):
     if use_count == 'False':
         use_count = False
     parameter = str(input("What parameter to optimize on (score/penalties)?"))
+    method = str(input("What method hillclimber(2-opt or Gaussian)?"))
 
 
     joined, joined_cluster_distance, good_result_rich, aansluitingen, \
@@ -138,12 +141,13 @@ def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2):
 
     hill_df, best_solution = hillclimber(j, joined, all_households, \
         rel_poi_df, df_afstandn2, clean=clean, use_count=use_count,\
-        parameter=parameter, save=to_save)
+        parameter=parameter, save=to_save, method=method)
     plt = hill_df['best'].plot(title='hillclimber')
     return hill_df, best_solution
 
 
-def hillclimber_2_opt(r):
+def hillclimber_2_opt(r, mod_max, prnt):
+    fractions = ['rest', 'plastic', 'papier', 'glas', 'textiel']
     no_modifications = random.randint(1, mod_max)
     #         print(no_modifications)
     for j in range(no_modifications):
@@ -173,6 +177,7 @@ def hillclimber_variable_mutations(df, x=1.9):
     df['p'] = np.random.normal(0, 1, size=df.shape[0])
     df_to_change = df[df['p'] > x]
     df = df[df['p'] < x]
+    df =df.fillna(0)
 
     rest = df_to_change['rest'].sum() * ['rest']
     plastic = df_to_change['plastic'].sum() * ['plastic']
@@ -195,9 +200,11 @@ def hillclimber_variable_mutations(df, x=1.9):
 
     df_to_change['rest'], df_to_change['plastic'], df_to_change['papier'], df_to_change['glas'], df_to_change['textiel'] = zip(*df_to_change['new_containers'].apply(lambda x: count(x)))
 
-    df = df.append(df_to_change)
+    df = df.append(df_to_change, ignore_index=True)
     df = df.drop(['p', 'new_containers'], axis=1)
-    return df
+    print(df.shape[0])
+    return df, df_to_change.shape[0]
+
 
 def count(lst):
     cnt = Counter()
