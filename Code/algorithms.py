@@ -202,7 +202,6 @@ def hillclimber_variable_mutations(df, x=1.9):
 
     df = df.append(df_to_change, ignore_index=True)
     df = df.drop(['p', 'new_containers'], axis=1)
-    print(df.shape[0])
     return df, df_to_change.shape[0]
 
 

@@ -43,7 +43,7 @@ def load_geodata_containers(subsectie=None):
         source = gpd.read_file('../data/Inzameling_huisvuil_100220.shp')
     source = source[source['aanbiedwij'] == 'Breng uw restafval  naar een container voor restafval.']
     if subsectie:
-        source = source[source['sdcode'] == subsectie]
+        source = source[source['sdcode'].isin(list(subsectie))]
     return list(source.geometry)
 
 
@@ -106,7 +106,7 @@ def load_api_data(prnt=False, subsectie=None):
     df_clusters['stadsdeel'] = df_clusters['buurt'].str[0]
 
     if subsectie:
-        df_clusters = df_clusters[df_clusters['stadsdeel'] == subsectie]
+        df_clusters = df_clusters[df_clusters['stadsdeel'].isin(list(subsectie))]
     return df_clusters
 
 
