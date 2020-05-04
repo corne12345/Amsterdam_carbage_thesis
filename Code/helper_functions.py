@@ -1,13 +1,5 @@
-
 import pandas as pd
-import random
-import copy
-import geopandas as gpd
-from datetime import date
-
-import shapely
 from shapely.geometry import Polygon, Point
-
 from .loading_data import *
 
 
@@ -40,6 +32,8 @@ def calculate_weighted_distance(good_result, use_count=False, wr=0.35, wp=0.25,
 
 def calculate_penalties(good_result, aansluitingen, use_count=False):
     """
+    Calculate the amount of penalties based on described policies.
+
     This function calculates all the penalties associated with the candidate
     solution. It does this by calculating the number of times all constraints
     are violated and applies the weighing that is associated with all these
@@ -55,7 +49,6 @@ def calculate_penalties(good_result, aansluitingen, use_count=False):
     Output:
     The sum of all different penalties as a single float
     """
-
     penalty1 = good_result[good_result['rest_afstand'] > 100]
     penalty2 = good_result[good_result['plastic_afstand'] > 150]
     penalty3 = good_result[good_result['papier_afstand'] > 150]
@@ -94,7 +87,6 @@ def calculate_penalties(good_result, aansluitingen, use_count=False):
     total_penalties = sum([penalty1_sum, penalty2_sum, penalty3_sum, penalty4_sum, penalty5_sum,\
                            penalty6_sum, penalty7_sum, penalty8_sum, penalty9_sum, penalty10_sum])
     return total_penalties
-
 
 
 def calculate_simple_penalties(good_result, aansluitingen):

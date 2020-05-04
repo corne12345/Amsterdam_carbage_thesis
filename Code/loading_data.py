@@ -57,8 +57,8 @@ def get_dataframe(q):
     - dataframe of result of SQL query
     """
     cnx = create_engine(postgres_str)
-    query=q
-    return pd.read_sql_query(query,cnx)
+    query = q
+    return pd.read_sql_query(query, cnx)
 
 
 def load_api_data(prnt=False, subsectie=None):
