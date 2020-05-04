@@ -46,24 +46,34 @@ def random_shuffling_clusters(cluster_join):
 
     cluster_join1 = cluster_join1.set_index('s1_afv_nodes')
     return cluster_join1.join(df_new_apply, how='left').reset_index()\
-            .rename(columns={'index': 's1_afv_nodes'}).fillna(0)
+        .rename(columns={'index': 's1_afv_nodes'}).fillna(0)
 
 
 def best_of_random(num_iterations, joined, all_households, rel_poi_df,
                    df_afstandn2, clean=True, use_count=False):
     """
+    Perform multiple random creations and save best result.
+
     Create multiple random candidate solutions and return the best one of these
     Num_iterations decides the amount of iterations. The best option is always
-    returned and can also be the standard solution that is also included in this
+    returned and can also be the standard solution that is also included in the
     options. The best of random can subsequently used as input for some kind of
     iterative optimization process(hillclimber for example).
     """
-    joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties = analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2, clean=clean, use_count=use_count)
+    joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, \
+        penalties = analyze_candidate_solution(joined, all_households,
+                                               rel_poi_df, df_afstandn2,
+                                               clean=clean,
+                                               use_count=use_count)
     best = 0
 
     for i in range(num_iterations):
         joined2 = random_shuffling_clusters(joined)
-        joined_cluster_distance2, good_result_rich2, aansluitingen2, avg_distance2, penalties2 = analyze_candidate_solution(joined2, all_households, rel_poi_df, df_afstandn2, clean=clean, use_count = use_count)
+        joined_cluster_distance2, good_result_rich2, \
+            aansluitingen2, avg_distance2, penalties2 = \
+            analyze_candidate_solution(joined2, all_households, rel_poi_df,
+                                       df_afstandn2, clean=clean,
+                                       use_count=use_count)
         if penalties2 < penalties:
             joined = joined2
             joined_cluster_distance = joined_cluster_distance2
@@ -75,17 +85,26 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df,
 
     print('***************************************')
     print(avg_distance, penalties, best)
-    return joined, joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties
+    return joined, joined_cluster_distance, good_result_rich, aansluitingen, \
+        avg_distance, penalties
 
 
-def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2, mod_max = 5, parameter='score', complicated=True, clean=True, use_count=False, save=True, method=False):
+def hillclimber(num_iterations, joined, all_households, rel_poi_df,
+                df_afstandn2, mod_max=5, parameter='score', complicated=True,
+                clean=True, use_count=False, save=True, method=False):
     """
-    Function to perform repeated hillclimber. This can be added as a building block
-    directly to the standard solution, but also after for example a random algorithm.
-    The results are to be seen.
+    Perform repeated hillclimber to optimize candidate solution.
+
+    Function to perform repeated hillclimber. This can be added as a building
+    block directly to the standard solution, but also after for example a
+    random algorithm. The results are to be seen.
     """
-    joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties = analyze_candidate_solution(joined, all_households, rel_poi_df, df_afstandn2, clean=clean, use_count=use_count)
-    if method == False:
+    joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, \
+        penalties = analyze_candidate_solution(joined, all_households,
+                                               rel_poi_df, df_afstandn2,
+                                               clean=clean,
+                                               use_count=use_count)
+    if not method:
         method = input("2-opt or Gaussian as method?")
 
     if parameter == 'score':
@@ -106,20 +125,25 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2
         elif method == "Gaussian":
             r, no_modifications = hillclimber_variable_mutations(r)
 
-        joined_cluster_distance2, good_result_rich2, aansluitingen2, avg_distance2, penalties2 = analyze_candidate_solution(r, all_households, rel_poi_df, df_afstandn2, clean=clean, use_count=use_count)
-        hillclimber_dict[i] = [avg_distance2, penalties2, best, no_modifications]
+        joined_cluster_distance2, good_result_rich2,\
+            aansluitingen2, avg_distance2, penalties2 = \
+            analyze_candidate_solution(r, all_households, rel_poi_df,
+                                       df_afstandn2, clean=clean,
+                                       use_count=use_count)
+        hillclimber_dict[i] = [avg_distance2, penalties2, best,
+                               no_modifications]
         if parameter == 'score':
             print(avg_distance2+penalties2, best)
             if avg_distance2+penalties2 < best:
                 best = avg_distance2+penalties2
             else:
-                r = copy.deepcopy(last) # Undo modification
+                r = copy.deepcopy(last)  # Undo modification
         if parameter == 'penalties':
             print(penalties2, best)
             if penalties2 < best:
                 best = penalties2
             else:
-                r = copy.deepcopy(last) # Undo modification
+                r = copy.deepcopy(last)  # Undo modification
 
     hill_df = pd.DataFrame.from_dict(hillclimber_dict, orient='index')
     hill_df = hill_df.rename(columns={0: 'avg_distance', 1: 'penalties',
