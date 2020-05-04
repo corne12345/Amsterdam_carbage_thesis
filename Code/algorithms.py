@@ -29,6 +29,8 @@ def random_shuffling_clusters(cluster_join):
     df_new = pd.DataFrame([cluster_list, fractionlist]).T.rename(columns={0:'poi', 1:'fractie'})
     df_new['poi'] = df_new['poi'].astype('float').round(0).astype('int')
     df_new_apply = df_new.groupby('poi').fractie.value_counts().unstack()
+    df_new_apply[['rest', 'plastic', 'papier', 'glas', 'textiel']] = \
+    df_new_apply[['rest', 'plastic', 'papier', 'glas', 'textiel']].apply(pd.to_numeric, downcast='integer')
 
     cluster_join1 = cluster_join.drop(['rest', 'plastic', 'papier', 'glas', 'textiel'], axis=1)
     cluster_join1['s1_afv_nodes'] = cluster_join1['s1_afv_nodes'].astype('int')
