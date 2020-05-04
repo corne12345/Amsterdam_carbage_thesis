@@ -134,10 +134,9 @@ def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2):
     parameter = str(input("What parameter to optimize on (score/penalties)?"))
     method = str(input("What method hillclimber(2-opt or Gaussian)?"))
 
-
     joined, joined_cluster_distance, good_result_rich, aansluitingen, \
         avg_distance, penalties = best_of_random(i, joined,all_households, \
-        rel_poi_df, df_afstandn2, clean=clean, use_count=clean)
+        rel_poi_df, df_afstandn2, clean=clean, use_count=use_count)
 
     hill_df, best_solution = hillclimber(j, joined, all_households, \
         rel_poi_df, df_afstandn2, clean=clean, use_count=use_count,\
@@ -174,10 +173,10 @@ def hillclimber_2_opt(r, mod_max, prnt):
 
 def hillclimber_variable_mutations(df, x=1.9):
 
+    df =df.fillna(0)
     df['p'] = np.random.normal(0, 1, size=df.shape[0])
     df_to_change = df[df['p'] > x]
     df = df[df['p'] < x]
-    df =df.fillna(0)
 
     rest = df_to_change['rest'].sum() * ['rest']
     plastic = df_to_change['plastic'].sum() * ['plastic']
