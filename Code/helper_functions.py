@@ -11,8 +11,11 @@ from shapely.geometry import Polygon, Point
 from .loading_data import *
 
 
-def calculate_weighted_distance(good_result, use_count=False):
+def calculate_weighted_distance(good_result, use_count=False, wr=0.35, wp=0.25,
+                                wc=0.2, wg=0.15, wt=0.05):
     """
+    Calculate weighted distance of an input dataframe.
+
     Function to calculated the weighted average walking distance as part of the
     score function. It calculates the mean difference per fraction and employs
     the weights assigned to them to combine it into a single score.
@@ -30,9 +33,9 @@ def calculate_weighted_distance(good_result, use_count=False):
     plastic_mean = good_result['plastic_afstand'].mean()
     textiel_mean = good_result['textiel_afstand'].mean()
 #     print(rest_mean, papier_mean, glas_mean, plastic_mean, textiel_mean)
-    score = 0.35 * rest_mean + 0.25 * plastic_mean + 0.2 * papier_mean + 0.15 * glas_mean + 0.05 * textiel_mean
+    score = wr * rest_mean + wp * plastic_mean + wc * papier_mean + \
+        wg * glas_mean + wt * textiel_mean
     return score
-
 
 
 def calculate_penalties(good_result, aansluitingen, use_count=False):
@@ -45,8 +48,8 @@ def calculate_penalties(good_result, aansluitingen, use_count=False):
     Input:
     dataframe good_result containing per adress or adress poi the distance
     to the nearest container for all fractions.
-    dataframe aansluitingen containing for all clusters the amount of containers
-    per fraction, the amount of people using these containers and the percentage
+    dataframe connections containing for all clusters the amount of containers
+    per fraction, the amount of people using these containers and percentage
     of occupancy compared to the norm
 
     Output:

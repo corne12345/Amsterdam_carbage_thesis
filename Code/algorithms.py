@@ -6,40 +6,50 @@ from collections import Counter
 
 from .helper_functions import analyze_candidate_solution
 
+
 def random_shuffling_clusters(cluster_join):
     """
-    Function that makes a random shuffling. It takes as input a dataframe containing
-    information on both the API data as well as the DB information (as for the POIs).
-    Returns another configuration of the same information
+
+    Transform cluster in a random order.
+
+    It takes as input a dataframe
+    containing information on both the API data as well as the DB information
+    (as for the POIs). Returns another configuration of the same information.
     """
-    df = cluster_join.set_index('s1_afv_nodes')[['rest', 'plastic', 'papier', 'glas', 'textiel', 'totaal']]
+    df = cluster_join.set_index('s1_afv_nodes')[['rest', 'plastic', 'papier',
+                                                 'glas', 'textiel', 'totaal']]
     df = df[df['totaal'] < 80]
     df = df.fillna(0)
 
     fractionlist = df['rest'].astype('int').sum() * ['rest'] + df['plastic']\
-    .astype('int').sum() * ['plastic'] + df['papier'].astype('int').sum() * \
-    ['papier'] + df['glas'].astype('int').sum() * ['glas'] + df['textiel'].\
-    astype('int').sum() * ['textiel']
+        .astype('int').sum() * ['plastic'] + df['papier'].astype('int').sum() * \
+        ['papier'] + df['glas'].astype('int').sum() * ['glas'] + df['textiel'].\
+        astype('int').sum() * ['textiel']
     random.shuffle(fractionlist)
 
     cluster_list = list()
     for i in df.index:
         cluster_list.extend([str(i)] * df.loc[i].totaal.astype('int'))
 
-    df_new = pd.DataFrame([cluster_list, fractionlist]).T.rename(columns={0:'poi', 1:'fractie'})
+    df_new = pd.DataFrame([cluster_list, fractionlist])\
+        .T.rename(columns={0: 'poi', 1: 'fractie'})
     df_new['poi'] = df_new['poi'].astype('float').round(0).astype('int')
     df_new_apply = df_new.groupby('poi').fractie.value_counts().unstack()
     df_new_apply[['rest', 'plastic', 'papier', 'glas', 'textiel']] = \
-    df_new_apply[['rest', 'plastic', 'papier', 'glas', 'textiel']].apply(pd.to_numeric, downcast='integer')
+        df_new_apply[['rest', 'plastic', 'papier', 'glas',
+                      'textiel']].apply(pd.to_numeric, downcast='integer')
 
-    cluster_join1 = cluster_join.drop(['rest', 'plastic', 'papier', 'glas', 'textiel'], axis=1)
+    cluster_join1 = cluster_join.drop(['rest', 'plastic', 'papier', 'glas',
+                                       'textiel'], axis=1)
     cluster_join1['s1_afv_nodes'] = cluster_join1['s1_afv_nodes'].astype('int')
 
     cluster_join1 = cluster_join1.set_index('s1_afv_nodes')
     return cluster_join1.join(df_new_apply, how='left').reset_index()\
             .rename(columns={'index': 's1_afv_nodes'}).fillna(0)
 
-def best_of_random(num_iterations, joined, all_households, rel_poi_df, df_afstandn2, clean=True, use_count=False):
+
+def best_of_random(num_iterations, joined, all_households, rel_poi_df,
+                   df_afstandn2, clean=True, use_count=False):
     """
     Create multiple random candidate solutions and return the best one of these
     Num_iterations decides the amount of iterations. The best option is always
@@ -173,33 +183,43 @@ def hillclimber_2_opt(r, mod_max, prnt):
                 valid = True
     return r, no_modifications
 
-def hillclimber_variable_mutations(df, x=1.9):
 
-    df =df.fillna(0)
+def hillclimber_variable_mutations(df, x=1.9):
+    """
+    Hillclimb with variable mutation strategy.
+
+    This function uses Gaussian distribution to determine the amount of
+    clusters to randomly re-assign.
+    """
+    df = df.fillna(0)
     df['p'] = np.random.normal(0, 1, size=df.shape[0])
     df_to_change = df[df['p'] > x]
     df = df[df['p'] < x]
 
-    rest = df_to_change['rest'].sum() * ['rest']
-    plastic = df_to_change['plastic'].sum() * ['plastic']
-    papier = df_to_change['papier'].sum() * ['papier']
-    glas = df_to_change['glas'].sum() * ['glas']
-    textiel = df_to_change['textiel'].sum() * ['textiel']
+    print(df_to_change['rest'].sum())
+    rest = int(df_to_change['rest'].sum()) * ['rest']
+    plastic = int(df_to_change['plastic'].sum()) * ['plastic']
+    papier = int(df_to_change['papier'].sum()) * ['papier']
+    glas = int(df_to_change['glas'].sum()) * ['glas']
+    textiel = int(df_to_change['textiel'].sum()) * ['textiel']
     fracties = rest + plastic + papier + glas + textiel
     random.shuffle(fracties)
 
-    df_to_change = df_to_change.drop(['rest', 'plastic', 'papier', 'glas', 'textiel'], axis=1)
+    df_to_change = df_to_change.drop(['rest', 'plastic', 'papier',
+                                      'glas', 'textiel'], axis=1)
     print("Amount of clusters to change: " + str(df_to_change.shape[0]))
 
     fractions_per_cluster = []
-    start_point = 0
+    start_pnt = 0
     for i in range(df_to_change.shape[0]):
         length = df_to_change['totaal'].iloc[i]
-        fractions_per_cluster.append(fracties[start_point:start_point +length])
-        start_point += length
+        fractions_per_cluster.append(fracties[start_pnt:start_pnt + length])
+        start_pnt += length
     df_to_change['new_containers'] = fractions_per_cluster
 
-    df_to_change['rest'], df_to_change['plastic'], df_to_change['papier'], df_to_change['glas'], df_to_change['textiel'] = zip(*df_to_change['new_containers'].apply(lambda x: count(x)))
+    df_to_change['rest'], df_to_change['plastic'], df_to_change['papier'], \
+        df_to_change['glas'], df_to_change['textiel'] = \
+        zip(*df_to_change['new_containers'].apply(lambda x: count(x)))
 
     df = df.append(df_to_change, ignore_index=True)
     df = df.drop(['p', 'new_containers'], axis=1)
@@ -207,7 +227,15 @@ def hillclimber_variable_mutations(df, x=1.9):
 
 
 def count(lst):
+    """
+    Count occurence of fractions in list.
+
+    This function is part of an apply relation. It takese as input a list of
+    different fractions. It returns the occurence of all these fractions based
+    on a predefined format to be included as columns in a pandas dataframe.
+    """
     cnt = Counter()
     for word in lst:
         cnt[word] += 1
-    return cnt['rest'], cnt['plastic'], cnt['papier'], cnt['glas'], cnt['textiel']
+    return cnt['rest'], cnt['plastic'], cnt['papier'], cnt['glas'], \
+        cnt['textiel']

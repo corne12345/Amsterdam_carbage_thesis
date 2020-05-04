@@ -5,7 +5,8 @@ import requests
 import shapely
 
 # Connect to Postgres database
-# source: https://blog.panoply.io/connecting-jupyter-notebook-with-postgresql-for-python-data-analysis
+# source: https://blog.panoply.io/connecting-jupyter-notebook-with-postgresql-
+# for-python-data-analysis
 
 # Postgres username, password, and database name
 POSTGRES_ADDRESS = '10.243.25.5'
@@ -16,23 +17,24 @@ POSTGRES_PASSWORD = input("POSTGRES password?")
 POSTGRES_DBNAME = 'analyse_ruimte'
 
 # A long string that contains the necessary Postgres login information
-postgres_str = ('postgresql://{username}:{password}@{ipaddress}:{port}/{dbname}'
+postgres_str = ('postgresql://{username}:{password}@{ipaddress}:{port}/{db}'
                 .format(username=POSTGRES_USERNAME,
                         password=POSTGRES_PASSWORD,
                         ipaddress=POSTGRES_ADDRESS,
                         port=POSTGRES_PORT,
-                        dbname=POSTGRES_DBNAME))
-
+                        db=POSTGRES_DBNAME))
 
 
 def load_geodata_containers(subsectie=None):
     """
-    This function loads in all polygons representing areas in the city of Amsterdam
-    where general waste needs to be brought to a container. This is different
-    from the alternative where general waste is collected from the sidewalk. This
+    Load shapefile concerning types of garbage collection.
+
+    This function loads in all polygons representing areas in the city where
+    general waste needs to be brought to a container. This is different from
+    the alternative where general waste is collected from the sidewalk. This
     is needed to filter the address POI's to relevant POI's for optimization.
-    Subsectie is optional parameter to filter on specific stadsdelen. This can be used
-    for partial optimization.
+    Subsectie is optional parameter to filter on specific stadsdelen. This can
+    be used for partial optimization.
 
     Returns:
     - List of polygons making up the area of centralized garbage collection
