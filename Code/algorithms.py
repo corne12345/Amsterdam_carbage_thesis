@@ -3,6 +3,7 @@ import copy
 import pandas as pd
 import numpy as np
 from collections import Counter
+from datetime import datetime
 
 from .helper_functions import analyze_candidate_solution
 
@@ -77,7 +78,7 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df,
     return joined, joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, penalties
 
 
-def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2, mod_max = 5, parameter='score', complicated=True, clean=True, use_count=False, save=True, prnt=False, method=False):
+def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2, mod_max = 5, parameter='score', complicated=True, clean=True, use_count=False, save=True, method=False):
     """
     Function to perform repeated hillclimber. This can be added as a building block
     directly to the standard solution, but also after for example a random algorithm.
@@ -100,7 +101,7 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2
         last = copy.deepcopy(r)
 
         if method == "2-opt":
-            r, no_modifications = hillclimber_2_opt(r, mod_max, prnt=prnt)
+            r, no_modifications = hillclimber_2_opt(r, mod_max)
 
         elif method == "Gaussian":
             r, no_modifications = hillclimber_variable_mutations(r)
@@ -121,10 +122,11 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2
                 r = copy.deepcopy(last) # Undo modification
 
     hill_df = pd.DataFrame.from_dict(hillclimber_dict, orient='index')
-    hill_df = hill_df.rename(columns={0:'avg_distance', 1:'penalties', 2:'best', 3:'amount of modifications'})
+    hill_df = hill_df.rename(columns={0: 'avg_distance', 1: 'penalties',
+                                      2: 'best', 3: 'amount of modifications'})
 
     if save:
-        today = str(pd.datetime.now().date()) + '-' + str(pd.datetime.now().hour)
+        today = datetime.now().strftime("%Y%m%d-%H%M")
         hill_df.to_csv('hillclimber' + today + '.csv')
         r.to_csv('hillclimber_best_config' + today + '.csv')
 
@@ -132,6 +134,14 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df, df_afstandn2
 
 
 def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2):
+    """
+    Produce hillclimber optimization with a random optimal start.
+
+    This function starts out with a random optimization, after which a kind of
+    hillclimber optimization is performed. This optimized solution is then
+    returned and a plot of the hillclimber is shown. This plot shows the amount
+    of iteration on the x-axis and the score on the y-axis.
+    """
     i = int(input("How many random iterations?"))
     j = int(input("How many iterations hillclimber?"))
     to_save = input("Do you want the results saved(True/False)?")
@@ -140,24 +150,36 @@ def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2):
     clean = bool(input("Do you want to only use a subset of data?"))
     if clean == 'False':
         clean = False
-    use_count = bool(input("Do you want to use addresses instead of clusters?"))
+    use_count = bool(input("Do you want to use addresses over clusters?"))
     if use_count == 'False':
         use_count = False
     parameter = str(input("What parameter to optimize on (score/penalties)?"))
     method = str(input("What method hillclimber(2-opt or Gaussian)?"))
 
     joined, joined_cluster_distance, good_result_rich, aansluitingen, \
-        avg_distance, penalties = best_of_random(i, joined,all_households, \
-        rel_poi_df, df_afstandn2, clean=clean, use_count=use_count)
+        avg_distance, penalties = best_of_random(i, joined, all_households,
+                                                 rel_poi_df, df_afstandn2,
+                                                 clean=clean,
+                                                 use_count=use_count)
 
-    hill_df, best_solution = hillclimber(j, joined, all_households, \
-        rel_poi_df, df_afstandn2, clean=clean, use_count=use_count,\
-        parameter=parameter, save=to_save, method=method)
-    plt = hill_df['best'].plot(title='hillclimber')
-    return hill_df, best_solution
+    hill_df, best = hillclimber(j, joined, all_households, rel_poi_df,
+                                df_afstandn2, clean=clean, use_count=use_count,
+                                parameter=parameter, save=to_save,
+                                method=method)
+    hill_df['best'].plot(title='hillclimber')
+    return hill_df, best
 
 
-def hillclimber_2_opt(r, mod_max, prnt):
+def hillclimber_2_opt(r, mod_max):
+    """
+    Hillclimb using a 2-opt mutation strategy.
+
+    The function takes as input a dataframe and the amount of 2-opt changes to
+    be made before assessing validity. The function is looking for 2 containers
+    that hold different fractions. If so, the containers will be swapped. This
+    process is repeated unitl the mod_max is fulfilled. The modified dataframe
+    is returned for further review.
+    """
     fractions = ['rest', 'plastic', 'papier', 'glas', 'textiel']
     no_modifications = random.randint(1, mod_max)
     #         print(no_modifications)
@@ -169,16 +191,17 @@ def hillclimber_2_opt(r, mod_max, prnt):
             location_b = random.randint(0, r.shape[0]-1)
             fraction_b = random.choice(fractions)
 
-            if int(r.at[location_a, fraction_b]) > 0 and int(r.at[location_b, fraction_a]) > 0\
-                                                and fraction_a != fraction_b:
-                if prnt:
-                    print(r.at[location_a, fraction_a], r.at[location_a, fraction_b], r.at[location_b, fraction_a], r.at[location_b, fraction_b])
-                r.at[location_a, fraction_a] = int(r.at[location_a, fraction_a]) + 1
-                r.at[location_a, fraction_b] = int(r.at[location_a, fraction_b]) - 1
-                r.at[location_b, fraction_a] = int(r.at[location_b, fraction_a]) - 1
-                r.at[location_b, fraction_b] = int(r.at[location_b, fraction_b]) + 1
-                if prnt:
-                    print(r.at[location_a, fraction_a], r.at[location_a, fraction_b], r.at[location_b, fraction_a], r.at[location_b, fraction_b])
+            if int(r.at[location_a, fraction_b]) > 0 and \
+                    int(r.at[location_b, fraction_a]) > 0 and \
+                    fraction_a != fraction_b:
+                r.at[location_a, fraction_a] = \
+                    int(r.at[location_a, fraction_a]) + 1
+                r.at[location_a, fraction_b] = \
+                    int(r.at[location_a, fraction_b]) - 1
+                r.at[location_b, fraction_a] = \
+                    int(r.at[location_b, fraction_a]) - 1
+                r.at[location_b, fraction_b] = \
+                    int(r.at[location_b, fraction_b]) + 1
 
                 valid = True
     return r, no_modifications
@@ -189,7 +212,10 @@ def hillclimber_variable_mutations(df, x=1.9):
     Hillclimb with variable mutation strategy.
 
     This function uses Gaussian distribution to determine the amount of
-    clusters to randomly re-assign.
+    clusters to randomly re-assign. This can be modified by changing the
+    optional parameter x. Its default setting of 1.9 allows for a small change.
+    It returns a modified version of the input dataframe with some changes
+    according to the specified x.
     """
     df = df.fillna(0)
     df['p'] = np.random.normal(0, 1, size=df.shape[0])
