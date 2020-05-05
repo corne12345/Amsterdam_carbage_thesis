@@ -3,6 +3,7 @@ from sqlalchemy import create_engine
 import pandas as pd
 import requests
 import shapely
+import os
 
 # Connect to Postgres database
 # source: https://blog.panoply.io/connecting-jupyter-notebook-with-postgresql-
@@ -39,11 +40,12 @@ def load_geodata_containers(subsectie=None):
     Returns:
     - List of polygons making up the area of centralized garbage collection
     """
-    try:
+    if os.path.isfile("data/Inzameling_huisvuil_100220.shp"):
         source = gpd.read_file('data/Inzameling_huisvuil_100220.shp')
-    except:
+    elif os.path.isfile("../data/Inzameling_huisvuil_100220.shp"):
         source = gpd.read_file('../data/Inzameling_huisvuil_100220.shp')
-    source = source[source['aanbiedwij'] == 'Breng uw restafval  naar een container voor restafval.']
+    source = source[source['aanbiedwij'] ==
+                    'Breng uw restafval  naar een container voor restafval.']
     if subsectie:
         source = source[source['sdcode'].isin(list(subsectie))]
     return list(source.geometry)
@@ -51,7 +53,8 @@ def load_geodata_containers(subsectie=None):
 
 def get_dataframe(q):
     """
-    Function to make a request to Postgres database.
+    Make a request to Postgres database.
+
     General logging information needs to be submitted first
     Returns:
     - dataframe of result of SQL query
@@ -63,11 +66,14 @@ def get_dataframe(q):
 
 def load_api_data(prnt=False, subsectie=None):
     """
+    Retrieve information from the garbage container API.
+
     This function loads in information on the current composition of container
     clusters in Amsterdam. It uses the API from data.amsterdam.nl (available at
-    'https://api.data.amsterdam.nl/vsd/afvalclusters'). It returns the coordinates,
-    amount and volume of different fractions and the address of the clusters. As
-    a check, it is determined whether or not the cluster is currently active.
+    'https://api.data.amsterdam.nl/vsd/afvalclusters'). It returns the
+    coordinates, amount and volume of different fractions and the address of
+    the clusters. As a check, it is determined whether or not the cluster is
+    currently active.
     Returns:
     - df containing coordinates, dict-like amount and volume per fraction and
     address.
@@ -81,34 +87,43 @@ def load_api_data(prnt=False, subsectie=None):
 
     link = 'https://api.data.amsterdam.nl/vsd/afvalclusters'
 
-    while link != None: #This is the case on the last page of the API
-        if prnt: # Can be used for some kind of monitoring of progres
+    while link is not None:  # This is the case on the last page of the API
+        if prnt:  # Can be used for some kind of monitoring of progres
             print(link)
         response = requests.get(link)
         output = response.json()
         for result in output['results']:
-            if result['cluster_datum_einde_cluster'] == None: #Als het cluster nog actief is
-                x_coordinates.append(str(result['cluster_geometrie']['coordinates'][0]))
-                y_coordinates.append(str(result['cluster_geometrie']['coordinates'][1]))
+            # Als het cluster nog actief is
+            if result['cluster_datum_einde_cluster'] is None:
+                x_coordinates.append(str(result['cluster_geometrie']
+                                         ['coordinates'][0]))
+                y_coordinates.append(str(result['cluster_geometrie']
+                                         ['coordinates'][1]))
                 aantal.append(result['cluster_fractie_aantal'])
                 volumes.append(result['cluster_fractie_volume'])
                 adresses.append(result['bag_adres_openbare_ruimte_naam'])
                 buurt.append(result['gbd_buurt_code'])
-        try:
-            link = output['_links']['next']['href'] #Retrieve link for next page
-        except:
-            link = None #True for last page of API
 
-    df_clusters = pd.DataFrame([x_coordinates, y_coordinates, aantal, volumes, adresses, buurt]).T
-    df_clusters = df_clusters.rename(columns={0: 'cluster_x', 1:'cluster_y', 2:'aantal_per_fractie', 3:'volume_per_fractie', 4: 'street_name', 5:'buurt'})
+        link = output['_links']['next']['href']  # Link for next page
+
+    df_clusters = pd.DataFrame([x_coordinates, y_coordinates, aantal, volumes,
+                                adresses, buurt]).T
+    df_clusters = df_clusters.rename(columns={0: 'cluster_x', 1: 'cluster_y',
+                                              2: 'aantal_per_fractie',
+                                              3: 'volume_per_fractie',
+                                              4: 'street_name', 5: 'buurt'})
+
     # Transform coordinates of clusters to ints, as this helps easing join
-    df_clusters['cluster_x'] = df_clusters['cluster_x'].astype('float').round(0).astype('int')
-    df_clusters['cluster_y'] = df_clusters['cluster_y'].astype('float').round(0).astype('int')
+    df_clusters['cluster_x'] = df_clusters['cluster_x'].astype('float')\
+        .round(0).astype('int')
+    df_clusters['cluster_y'] = df_clusters['cluster_y'].astype('float')\
+        .round(0).astype('int')
     df_clusters['wijk'] = df_clusters['buurt'].str[:3]
     df_clusters['stadsdeel'] = df_clusters['buurt'].str[0]
 
     if subsectie:
-        df_clusters = df_clusters[df_clusters['stadsdeel'].isin(list(subsectie))]
+        df_clusters = df_clusters[df_clusters['stadsdeel']
+                                  .isin(list(subsectie))]
     return df_clusters
 
 
