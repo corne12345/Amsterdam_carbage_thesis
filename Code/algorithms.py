@@ -7,7 +7,8 @@ import numpy as np
 from collections import Counter
 from datetime import datetime
 
-from .helper_functions import analyze_candidate_solution
+from .helper_functions import analyze_candidate_solution, initial_loading
+from .loading_data import create_all_households
 
 
 def random_shuffling_clusters(cluster_join):
@@ -159,7 +160,10 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df,
     return hill_df, r
 
 
-def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2):
+def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2,
+                             i=100, j=5000, to_save=True, clean=True,
+                             use_count=True, parameter='penalties',
+                             method='Gaussian', prompt=True):
     """
     Produce hillclimber optimization with a random optimal start.
 
@@ -168,19 +172,20 @@ def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2):
     returned and a plot of the hillclimber is shown. This plot shows the amount
     of iteration on the x-axis and the score on the y-axis.
     """
-    i = int(input("How many random iterations?"))
-    j = int(input("How many iterations hillclimber?"))
-    to_save = input("Do you want the results saved(True/False)?")
-    if to_save == 'False':
-        to_save = False
-    clean = bool(input("Do you want to only use a subset of data?"))
-    if clean == 'False':
-        clean = False
-    use_count = bool(input("Do you want to use addresses over clusters?"))
-    if use_count == 'False':
-        use_count = False
-    parameter = str(input("What parameter to optimize on (score/penalties)?"))
-    method = str(input("What method hillclimber(2-opt or Gaussian)?"))
+    if prompt:
+        i = int(input("How many random iterations?"))
+        j = int(input("How many iterations hillclimber?"))
+        to_save = input("Do you want the results saved(True/False)?")
+        if to_save == 'False':
+            to_save = False
+        clean = bool(input("Do you want to only use a subset of data?"))
+        if clean == 'False':
+            clean = False
+        use_count = bool(input("Do you want to use addresses over clusters?"))
+        if use_count == 'False':
+            use_count = False
+        parameter = str(input("Optimize on (score/penalties)?"))
+        method = str(input("What method hillclimber(2-opt or Gaussian)?"))
 
     joined, joined_cluster_distance, good_result_rich, aansluitingen, \
         avg_distance, penalties = best_of_random(i, joined, all_households,
@@ -291,3 +296,72 @@ def count(lst):
         cnt[word] += 1
     return cnt['rest'], cnt['plastic'], cnt['papier'], cnt['glas'], \
         cnt['textiel']
+
+
+def clusterwise_optimization():
+    """
+    Perform clusterwise optimization without intermediate prompts.
+
+    This function starts with loading in all data and then continues by
+    performing optimization based on the input the user provides at the start
+    of the function. This starts with performing subcluster analysis on the
+    isolated stadsdelen in the city. This is followed by the remainder and
+    all concluded by returning the best possible solution and showing graphs
+    along the way and saving intermediate results.
+    """
+    i = int(input("How many random iterations?"))
+    j = int(input("How many iterations hillclimber?"))
+    to_save = input("Do you want the results saved(True/False)?")
+    if to_save == 'False':
+        to_save = False
+    clean = bool(input("Do you want to only use a subset of data?"))
+    if clean == 'False':
+        clean = False
+    use_count = bool(input("Do you want to use addresses over clusters?"))
+    if use_count == 'False':
+        use_count = False
+    parameter = str(input("Optimize on (score/penalties)?"))
+    method = str(input("What method hillclimber(2-opt or Gaussian)?"))
+
+    all_households, rel_poi_df, joined, df_afstandn2 = initial_loading()
+
+    # Optimization of Zuidoost, Noord and Nieuw-West
+    for i in ['T', 'N', 'F']:
+        joined_T = joined[joined['stadsdeel'] == i]
+        all_households_T = create_all_households(rel_poi_df, subsectie=i)
+        all_households_T = all_households_T.\
+            rename(columns={'s1_afv_nodes': 'naar_s1_afv_nodes'})
+        hillclimber_df_T, best_solution_T = \
+            random_start_hillclimber(joined_T, all_households_T, rel_poi_df,
+                                     df_afstandn2, i=i, j=j, to_save=to_save,
+                                     clean=clean, use_count=use_count,
+                                     parameter=parameter, method=method,
+                                     prompt=False)
+        joined = joined[joined['stadsdeel'] != i]
+        joined = joined.append(best_solution_T, ignore_index=True)
+        joined_cluster_distance, good_result_rich, aansluitingen, avg_distance,\
+            penalties = analyze_candidate_solution(joined, all_households,
+                                                   rel_poi_df, df_afstandn2,
+                                                   clean=True, use_count=True)
+        plt = hillclimber_df_T['best'].plot(title='hillclimber of ' + i)
+        plt.set_xlabel('Number of iterations')
+        plt.set_ylabel('Penalty score')
+        plt.figure.savefig('20200505_' + i + '.pdf')
+
+    # Optimization of Centrum
+    joined_C = joined[joined['stadsdeel'].isin(['M', 'A', 'K', 'E'])]
+    all_households_C = create_all_households(rel_poi_df,
+                                             subsectie=['M', 'A', 'K', 'E'])
+    all_households_C = all_households_C\
+        .rename(columns={'s1_afv_nodes': 'naar_s1_afv_nodes'})
+    hillclimber_df_C, best_solution_C = \
+        random_start_hillclimber(joined_C, all_households_C, rel_poi_df,
+                                 df_afstandn2)
+    joined = joined[joined['stadsdeel'].isin(['T', 'N', 'F'])]
+    joined = joined.append(best_solution_C, ignore_index=True)
+    joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, \
+        penalties = analyze_candidate_solution(joined, all_households,
+                                               rel_poi_df, df_afstandn2,
+                                               clean=True, use_count=True)
+
+    return joined
