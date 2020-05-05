@@ -1,3 +1,5 @@
+"""Code for different algorithms and optimization techniques."""
+
 import random
 import copy
 import pandas as pd
