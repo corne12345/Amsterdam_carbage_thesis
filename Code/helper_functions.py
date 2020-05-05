@@ -13,8 +13,9 @@ from .loading_data import create_aansluitingen, get_db_afvalcluster_info, \
     load_api_data
 
 
-def calculate_weighted_distance(good_result, use_count=False, wr=0.35, wp=0.25,
-                                wc=0.2, wg=0.15, wt=0.05):
+def calculate_weighted_distance(good_result, use_count=False, w_rest=0.35,
+                                w_plas=0.25, w_papi=0.2, w_glas=0.15,
+                                w_text=0.05):
     """
     Calculate weighted distance of an input dataframe.
 
@@ -35,8 +36,8 @@ def calculate_weighted_distance(good_result, use_count=False, wr=0.35, wp=0.25,
     plastic_mean = good_result['plastic_afstand'].mean()
     textiel_mean = good_result['textiel_afstand'].mean()
 #     print(rest_mean, papier_mean, glas_mean, plastic_mean, textiel_mean)
-    score = wr * rest_mean + wp * plastic_mean + wc * papier_mean + \
-        wg * glas_mean + wt * textiel_mean
+    score = w_rest * rest_mean + w_plas * plastic_mean + w_papi * papier_mean + \
+        w_glas * glas_mean + w_text * textiel_mean
     return score
 
 
