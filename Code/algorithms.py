@@ -326,9 +326,9 @@ def clusterwise_optimization():
     all_households, rel_poi_df, joined, df_afstandn2 = initial_loading()
 
     # Optimization of Zuidoost, Noord and Nieuw-West
-    for i in ['T', 'N', 'F']:
-        joined_T = joined[joined['stadsdeel'] == i]
-        all_households_T = create_all_households(rel_poi_df, subsectie=i)
+    for k in ['T', 'N', 'F']:
+        joined_T = joined[joined['stadsdeel'] == k]
+        all_households_T = create_all_households(rel_poi_df, subsectie=k)
         all_households_T = all_households_T.\
             rename(columns={'s1_afv_nodes': 'naar_s1_afv_nodes'})
         hillclimber_df_T, best_solution_T = \
@@ -337,16 +337,16 @@ def clusterwise_optimization():
                                      clean=clean, use_count=use_count,
                                      parameter=parameter, method=method,
                                      prompt=False)
-        joined = joined[joined['stadsdeel'] != i]
+        joined = joined[joined['stadsdeel'] != k]
         joined = joined.append(best_solution_T, ignore_index=True)
         joined_cluster_distance, good_result_rich, aansluitingen, avg_distance,\
             penalties = analyze_candidate_solution(joined, all_households,
                                                    rel_poi_df, df_afstandn2,
                                                    clean=True, use_count=True)
-        plt = hillclimber_df_T['best'].plot(title='hillclimber of ' + i)
+        plt = hillclimber_df_T['best'].plot(title='hillclimber of ' + k)
         plt.set_xlabel('Number of iterations')
         plt.set_ylabel('Penalty score')
-        plt.figure.savefig('20200505_' + i + '.pdf')
+        plt.figure.savefig('20200505_' + k + '.pdf')
 
     # Optimization of Centrum
     joined_C = joined[joined['stadsdeel'].isin(['M', 'A', 'K', 'E'])]
@@ -356,7 +356,10 @@ def clusterwise_optimization():
         .rename(columns={'s1_afv_nodes': 'naar_s1_afv_nodes'})
     hillclimber_df_C, best_solution_C = \
         random_start_hillclimber(joined_C, all_households_C, rel_poi_df,
-                                 df_afstandn2)
+                                 df_afstandn2, i=i, j=j, to_save=to_save,
+                                 clean=clean, use_count=use_count,
+                                 parameter=parameter, method=method,
+                                 prompt=False)
     joined = joined[joined['stadsdeel'].isin(['T', 'N', 'F'])]
     joined = joined.append(best_solution_C, ignore_index=True)
     joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, \
