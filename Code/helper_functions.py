@@ -43,7 +43,7 @@ def calculate_weighted_distance(good_result, use_count=False, w_rest=0.35,
 
 def calculate_penalties(good_result, aansluitingen, use_count=False,
                         w_rest=0.35, w_plas=0.25, w_papi=0.2, w_glas=0.15,
-                        w_text=0.05):
+                        w_text=0.05, return_all=False):
     """
     Calculate the amount of penalties based on described policies.
 
@@ -112,6 +112,10 @@ def calculate_penalties(good_result, aansluitingen, use_count=False,
                           penalty4_sum, penalty5_sum, penalty6_sum,
                           penalty7_sum, penalty8_sum, penalty9_sum,
                           penalty10_sum])
+    if return_all:
+        return penalty1_sum, penalty2_sum, penalty3_sum, penalty4_sum,
+        penalty5_sum, penalty6_sum, penalty7_sum, penalty8_sum,
+        penalty9_sum, penalty10_sum
     return total_penalties
 
 
@@ -373,7 +377,8 @@ def initial_loading(save_intermediate=False):
 
 
 def analyze_candidate_solution(joined, all_households, rel_poi_df,
-                               df_afstandn2, clean=True, use_count=False):
+                               df_afstandn2, clean=True, use_count=False,
+                               return_all=False):
     """
     Analyze the score and penalties of a provided solution.
 
@@ -403,7 +408,7 @@ def analyze_candidate_solution(joined, all_households, rel_poi_df,
     avg_distance = calculate_weighted_distance(good_result_rich,
                                                use_count=use_count)
     penalties = calculate_penalties(good_result_rich, aansluitingen,
-                                    use_count=use_count)
+                                    use_count=use_count, return_all=return_all)
 
     print("Average distance is : " + str(avg_distance))
     print("Penalties are: " + str(penalties))

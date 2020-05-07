@@ -1,5 +1,6 @@
 """Code for different algorithms and optimization techniques."""
 
+import math
 import random
 import copy
 import pandas as pd
@@ -53,7 +54,8 @@ def random_shuffling_clusters(cluster_join):
 
 
 def best_of_random(num_iterations, joined, all_households, rel_poi_df,
-                   df_afstandn2, clean=True, use_count=False):
+                   df_afstandn2, clean=True, use_count=False,
+                   return_all=False):
     """
     Perform multiple random creations and save best result.
 
@@ -67,7 +69,8 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df,
         penalties = analyze_candidate_solution(joined, all_households,
                                                rel_poi_df, df_afstandn2,
                                                clean=clean,
-                                               use_count=use_count)
+                                               use_count=use_count,
+                                               return_all=return_all)
     best = 0
 
     for i in range(num_iterations):
@@ -76,7 +79,8 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df,
             aansluitingen2, avg_distance2, penalties2 = \
             analyze_candidate_solution(joined2, all_households, rel_poi_df,
                                        df_afstandn2, clean=clean,
-                                       use_count=use_count)
+                                       use_count=use_count,
+                                       return_all=return_all)
         if penalties2 < penalties:
             joined = joined2
             joined_cluster_distance = joined_cluster_distance2
@@ -95,7 +99,7 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df,
 def hillclimber(num_iterations, joined, all_households, rel_poi_df,
                 df_afstandn2, mod_max=5, parameter='score', complicated=True,
                 clean=True, use_count=False, save=True, method=False,
-                start_x=1.6, x_gap=2, SA=False):
+                start_x=1.6, x_gap=2, SA=False, return_all=False):
     """
     Perform repeated hillclimber to optimize candidate solution.
 
@@ -107,7 +111,8 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df,
         penalties = analyze_candidate_solution(joined, all_households,
                                                rel_poi_df, df_afstandn2,
                                                clean=clean,
-                                               use_count=use_count)
+                                               use_count=use_count,
+                                               return_all=return_all)
     if not method:
         method = input("2-opt or Gaussian as method?")
 
@@ -137,7 +142,8 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df,
             aansluitingen2, avg_distance2, penalties2 = \
             analyze_candidate_solution(r, all_households, rel_poi_df,
                                        df_afstandn2, clean=clean,
-                                       use_count=use_count)
+                                       use_count=use_count,
+                                       return_all=return_all)
         hillclimber_dict[i] = [avg_distance2, penalties2, best,
                                no_modifications]
 
@@ -198,7 +204,7 @@ def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2,
         if use_count == 'False':
             use_count = False
         SA = input("Do you want to apply simulated annealing? (True/False)")
-        if SA = "False":
+        if SA == "False":
             SA = False
         else:
             SA = True
@@ -340,7 +346,7 @@ def clusterwise_optimization():
     if use_count == 'False':
         use_count = False
     SA = input("Do you want to apply simulated annealing? (True/False)")
-    if SA = "False":
+    if SA == "False":
         SA = False
     else:
         SA = True
