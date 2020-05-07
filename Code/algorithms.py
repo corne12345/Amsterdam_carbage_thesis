@@ -95,7 +95,7 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df,
 def hillclimber(num_iterations, joined, all_households, rel_poi_df,
                 df_afstandn2, mod_max=5, parameter='score', complicated=True,
                 clean=True, use_count=False, save=True, method=False,
-                start_x=1.6, x_gap=2):
+                start_x=1.6, x_gap=2, SA=False):
     """
     Perform repeated hillclimber to optimize candidate solution.
 
@@ -140,16 +140,24 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df,
                                        use_count=use_count)
         hillclimber_dict[i] = [avg_distance2, penalties2, best,
                                no_modifications]
+
         if parameter == 'score':
             print(avg_distance2+penalties2, best)
             if avg_distance2+penalties2 < best:
                 best = avg_distance2+penalties2
+            elif SA is True:
+                if simulated_annealing(avg_distance2+penalties2,
+                                       best, i) is True:
+                    best = avg_distance2+penalties2
             else:
                 r = copy.deepcopy(last)  # Undo modification
         if parameter == 'penalties':
             print(penalties2, best)
             if penalties2 < best:
                 best = penalties2
+            elif SA is True:
+                if simulated_annealing(penalties2, best, i) is True:
+                    best = penalties2
             else:
                 r = copy.deepcopy(last)  # Undo modification
 
@@ -189,6 +197,11 @@ def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2,
         use_count = bool(input("Do you want to use addresses over clusters?"))
         if use_count == 'False':
             use_count = False
+        SA = input("Do you want to apply simulated annealing? (True/False)")
+        if SA = "False":
+            SA = False
+        else:
+            SA = True
         parameter = str(input("Optimize on (score/penalties)?"))
         method = str(input("What method hillclimber(2-opt or Gaussian)?"))
 
@@ -201,7 +214,7 @@ def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2,
     hill_df, best = hillclimber(j, joined, all_households, rel_poi_df,
                                 df_afstandn2, clean=clean, use_count=use_count,
                                 parameter=parameter, save=to_save,
-                                method=method)
+                                method=method, SA=SA)
     hill_df['best'].plot(title='hillclimber')
     return hill_df, best
 
@@ -326,6 +339,11 @@ def clusterwise_optimization():
     use_count = bool(input("Do you want to use addresses over clusters?"))
     if use_count == 'False':
         use_count = False
+    SA = input("Do you want to apply simulated annealing? (True/False)")
+    if SA = "False":
+        SA = False
+    else:
+        SA = True
     parameter = str(input("Optimize on (score/penalties)?"))
     method = str(input("What method hillclimber(2-opt or Gaussian)?"))
 
@@ -374,3 +392,25 @@ def clusterwise_optimization():
                                                clean=True, use_count=True)
 
     return joined
+
+
+def simulated_annealing(score_new, score_old, i, t0=5, alpha=0.999):
+    """
+    Perform simulated annealing to see if worsened solution is still accepted.
+
+    This is a helper function of the already existing hillclimber function. It
+    is only called in the case a candidate solution is worse than the initial
+    solution. It checks with a predefined cooling schema whether or not this
+    solution can still be accepted or not. The goal of simulated annealing is
+    to allow for a more explorative character of an hillclimber. This hopefully
+    prevents getting stuck in local optima.
+    The default cooling schema is exponential and allows for worsening almost
+    exclusively in the first iterations.
+    """
+    t = t0 * alpha ** i
+    x = np.random.rand()
+    p = math.exp((score_new-score_old)/t)
+    if p > x:
+        return True
+    else:
+        return False
