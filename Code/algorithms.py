@@ -94,7 +94,8 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df,
 
 def hillclimber(num_iterations, joined, all_households, rel_poi_df,
                 df_afstandn2, mod_max=5, parameter='score', complicated=True,
-                clean=True, use_count=False, save=True, method=False):
+                clean=True, use_count=False, save=True, method=False,
+                start_x=1.6, x_gap=2):
     """
     Perform repeated hillclimber to optimize candidate solution.
 
@@ -124,6 +125,10 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df,
 
         if method == "2-opt":
             r, no_modifications = hillclimber_2_opt(r, mod_max)
+
+        if method == "dim Gaussian":
+            x = start_x + i * x_gap / num_iterations
+            r, no_modifications = hillclimber_variable_mutations(r, x=x)
 
         elif method == "Gaussian":
             r, no_modifications = hillclimber_variable_mutations(r)
@@ -251,9 +256,10 @@ def hillclimber_variable_mutations(df, x=1.9):
     df = df.fillna(0)
     df['p'] = np.random.normal(0, 1, size=df.shape[0])
     df_to_change = df[df['p'] > x]
+    if df_to_change.shape[0] < 2:  # Nothing happens in this case
+        return df, df_to_change.shape[0]
     df = df[df['p'] < x]
 
-    print(df_to_change['rest'].sum())
     rest = int(df_to_change['rest'].sum()) * ['rest']
     plastic = int(df_to_change['plastic'].sum()) * ['plastic']
     papier = int(df_to_change['papier'].sum()) * ['papier']
