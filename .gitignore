@@ -11,6 +11,7 @@ Data/Loopafstanden/afstand_plastic.csv
 Data/Loopafstanden/afstand_textiel.csv
 Data/containers.csv
 Data/Loopafstanden/afstand_rest.csv
+Data/postgres_db/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
