@@ -349,6 +349,9 @@ def initial_loading(save_intermediate=False):
                            + "of clusters?"))
     subsectie = str(input("What stadsdeel do you want to make as a subsection"
                           + "(optional parameter)?"))
+
+    cut_off = int(input("What is the maximum amount of containers in a " +
+                        "cluster that is considered to be useful?"))
     if subsectie not in ['T', 'M', 'N', 'A', 'K', 'E', 'F', 'B']:
         subsectie = None
 
@@ -368,6 +371,8 @@ def initial_loading(save_intermediate=False):
                                                   .apply(lambda x:
                                                   containers_per_cluster(x)))
     print('containers per cluster determined')
+
+    joined = joined[joined['totaal'] <= cut_off]
     if use_count:
         df_afstandn2 = distance_matrix_with_counts()
     else:

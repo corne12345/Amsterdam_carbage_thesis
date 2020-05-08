@@ -182,7 +182,7 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df,
 def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2,
                              i=100, j=5000, to_save=True, clean=True,
                              use_count=True, parameter='penalties',
-                             method='Gaussian', prompt=True):
+                             method='Gaussian', prompt=True, SA=False):
     """
     Produce hillclimber optimization with a random optimal start.
 
@@ -209,7 +209,7 @@ def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2,
         else:
             SA = True
         parameter = str(input("Optimize on (score/penalties)?"))
-        method = str(input("What method hillclimber(2-opt or Gaussian)?"))
+        method = str(input("What method (2-opt, dim Gaussian, Gaussian)?"))
 
     joined, joined_cluster_distance, good_result_rich, aansluitingen, \
         avg_distance, penalties = best_of_random(i, joined, all_households,
@@ -351,7 +351,7 @@ def clusterwise_optimization():
     else:
         SA = True
     parameter = str(input("Optimize on (score/penalties)?"))
-    method = str(input("What method hillclimber(2-opt or Gaussian)?"))
+    method = str(input("What method (2-opt, dim Gaussian, Gaussian)?"))
 
     all_households, rel_poi_df, joined, df_afstandn2 = initial_loading()
 
@@ -366,7 +366,7 @@ def clusterwise_optimization():
                                      df_afstandn2, i=i, j=j, to_save=to_save,
                                      clean=clean, use_count=use_count,
                                      parameter=parameter, method=method,
-                                     prompt=False)
+                                     prompt=False, SA=SA)
         joined = joined[joined['stadsdeel'] != k]
         joined = joined.append(best_solution_T, ignore_index=True)
         joined_cluster_distance, good_result_rich, aansluitingen, avg_distance,\
