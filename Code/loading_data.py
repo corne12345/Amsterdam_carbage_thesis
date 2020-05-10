@@ -263,7 +263,8 @@ def address_in_service_area(x, y, polygon_list=None, subsectie=None):
     return False
 
 
-def distance_matrix_with_counts():
+def distance_matrix_with_counts(get_data=True, inpt_dfob=None,
+                                inpt_poi=None, inpt_dis=None):
     """
     Retrieve distance matrix including the counts per address POI.
 
@@ -271,11 +272,23 @@ def distance_matrix_with_counts():
     information and subsequently with distance matrix to give back
     a distance matrix with the amount of households per addres poi.
     """
-    dfob = get_dataframe("""
-                    SELECT bk_votpand_cluster, COUNT(*)
-                    FROM proj_afval_netwerk.rel_votpand_cluster_verblijfsobject
-                    GROUP BY bk_votpand_cluster
-                    """)
+    if get_data:
+        dfob = get_dataframe("""
+                            SELECT bk_votpand_cluster, COUNT(*)
+                            FROM proj_afval_netwerk
+                                .rel_votpand_cluster_verblijfsobject
+                            GROUP BY bk_votpand_cluster
+                        """)
+        df_afstandn2 = get_dataframe("""
+                                    SELECT *
+                                    FROM proj_afval_netwerk.afv_rel_nodes_poi
+                                    """)
+        df_afstandn = get_distance_matrix()
+
+    if not get_data:
+        dfob = inpt_dfob
+        df_afstandn2 = inpt_poi
+        df_afstandn = inpt_dis
 
     dfob['split'] = dfob['bk_votpand_cluster'].str.split('~')
     dfob['bag'] = dfob['split'].apply(lambda x: x[0]).astype('int64')
@@ -284,11 +297,6 @@ def distance_matrix_with_counts():
     dfob['y'] = dfob['split'].apply(lambda x: x[2]).astype('float').round().\
         astype('int')
     dfob = dfob.drop(['split'], axis=1)
-
-    df_afstandn2 = get_dataframe("""
-                                SELECT *
-                                FROM proj_afval_netwerk.afv_rel_nodes_poi
-                                """)
 
     df_afstandn2['split'] = df_afstandn2['bk_afv_rel_nodes_poi'].str.split('~')
     df_afstandn2['x'] = df_afstandn2['split'].apply(lambda x: x[0])\
@@ -301,9 +309,8 @@ def distance_matrix_with_counts():
         .astype('int64')
 
     temp = dfob.set_index(['bag', 'x', 'y'])\
-        .join(verblijfsobjecten.set_index(['bag', 'x', 'y']), how='outer')\
-        .reset_index()
-    df_afstandn = get_distance_matrix()
+        .join(verblijfsobjecten.set_index(['bag', 'x', 'y']), how='outer',
+              lsuffix='_l').reset_index()
     joined = temp.set_index('s1_afv_nodes')\
         .join(df_afstandn.set_index('naar_s1_afv_nodes'), how='outer')
     joined = joined.reset_index()[['van_s1_afv_nodes', 'index', 'afstand', 'count']].\

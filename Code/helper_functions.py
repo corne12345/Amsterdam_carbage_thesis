@@ -8,6 +8,7 @@ the other provided .py docs.
 """
 
 from shapely.geometry import Polygon, Point
+import pandas as pd
 from .loading_data import create_aansluitingen, get_db_afvalcluster_info, \
     get_distance_matrix, distance_matrix_with_counts, create_all_households, \
     load_api_data
@@ -335,7 +336,7 @@ def add_shortest_distances_to_all_households(all_households,
     return all_households
 
 
-def initial_loading(save_intermediate=False):
+def initial_loading():
     """
     Combine all initial loading steps in one function.
 
@@ -349,21 +350,46 @@ def initial_loading(save_intermediate=False):
                            + "of clusters?"))
     subsectie = str(input("What stadsdeel do you want to make as a subsection"
                           + "(optional parameter)?"))
-
     cut_off = int(input("What is the maximum amount of containers in a " +
                         "cluster that is considered to be useful?"))
+    data_source = input("Where to get db files(local/online)?")
+
     if subsectie not in ['T', 'M', 'N', 'A', 'K', 'E', 'F', 'B']:
         subsectie = None
 
+    if data_source == "local":
+        rel_poi_df = pd.read_csv('../Data/postgres_db/info_pois.csv')
+        print('DB relation POIs loaded')
+        if use_count:
+            inpt_dfob = pd.read_csv('../Data/postgres_db/' +
+                                    'addresses_per_cluster.csv')
+            inpt_dis = pd.read_csv('../Data/postgres_db/' +
+                                   'distance_matrix.csv')
+            df_afstandn2 = distance_matrix_with_counts(inpt_dfob=inpt_dfob,
+                                                       inpt_poi=rel_poi_df,
+                                                       inpt_dis=inpt_dis,
+                                                       get_data=False)
+            print('distance matrix loaded')
+
+        else:
+            df_afstandn2 = pd.read_csv('../Data/postgres_db/'
+                                       'distance_matrix.csv')
+            print('distance matrix loaded')
+
+    elif data_source == "online":
+        rel_poi_df = get_db_afvalcluster_info()
+        print('DB relation POIs loaded')
+        if use_count:
+            df_afstandn2 = distance_matrix_with_counts()
+        else:
+            df_afstandn2 = get_distance_matrix()
+
     api_df = load_api_data(subsectie=subsectie)
     print('API data loaded')
-    rel_poi_df = get_db_afvalcluster_info()
-    print('DB relation POIs loaded')
+
     all_households = create_all_households(rel_poi_df, subsectie=subsectie)\
         .rename(columns={'s1_afv_nodes': 'naar_s1_afv_nodes'})
     print('Table all households created')
-    if save_intermediate:
-        all_households.to_csv('households_in_area.csv')
     joined = join_api_db(rel_poi_df, api_df)
     print('API and DB joined')
     joined['rest'], joined['plastic'], joined['papier'], joined['glas'], \
@@ -373,11 +399,7 @@ def initial_loading(save_intermediate=False):
     print('containers per cluster determined')
 
     joined = joined[joined['totaal'] <= cut_off]
-    if use_count:
-        df_afstandn2 = distance_matrix_with_counts()
-    else:
-        df_afstandn2 = get_distance_matrix()
-    print('distance matrix loaded')
+
     return all_households, rel_poi_df, joined, df_afstandn2
 
 
