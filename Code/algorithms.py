@@ -99,7 +99,7 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df,
 def hillclimber(num_iterations, joined, all_households, rel_poi_df,
                 df_afstandn2, mod_max=5, parameter='score', complicated=True,
                 clean=True, use_count=False, save=True, method=False,
-                start_x=1.6, x_gap=2, SA=False, return_all=False):
+                start_x=1.3, x_gap=0.9, SA=False, return_all=False):
     """
     Perform repeated hillclimber to optimize candidate solution.
 
