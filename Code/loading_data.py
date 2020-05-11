@@ -42,10 +42,10 @@ def load_geodata_containers(subsectie=None):
     Returns:
     - List of polygons making up the area of centralized garbage collection
     """
-    if os.path.isfile("data/Inzameling_huisvuil_100220.shp"):
-        source = gpd.read_file('data/Inzameling_huisvuil_100220.shp')
-    elif os.path.isfile("../data/Inzameling_huisvuil_100220.shp"):
-        source = gpd.read_file('../data/Inzameling_huisvuil_100220.shp')
+    if os.path.isfile("data/shp/Inzameling_huisvuil_080520.shp"):
+        source = gpd.read_file('data/shp/Inzameling_huisvuil_080520.shp')
+    elif os.path.isfile("../data/shp/Inzameling_huisvuil_080520.shp"):
+        source = gpd.read_file('../data/shp/Inzameling_huisvuil_080520.shp')
     source = source[source['aanbiedwij'] ==
                     'Breng uw restafval  naar een container voor restafval.']
     if subsectie:
