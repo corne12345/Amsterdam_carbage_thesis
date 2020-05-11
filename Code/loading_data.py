@@ -53,6 +53,21 @@ def load_geodata_containers(subsectie=None):
     return list(source.geometry)
 
 
+def load_shapefile_neighborhood(area):
+    """
+    Return a shapefile consisting of the specified neighborhood.
+
+    Function takes as input a certain specified area and return the shapefile
+    that encloses this neighborhood.
+    """
+    if os.path.isfile("data/shp/Inzameling_huisvuil_080520.shp"):
+        source = gpd.read_file('data/shp/Inzameling_huisvuil_080520.shp')
+    elif os.path.isfile("../data/shp/Inzameling_huisvuil_080520.shp"):
+        source = gpd.read_file('../data/shp/Inzameling_huisvuil_080520.shp')
+    source = source[source['sdcode'].isin(list(area))]
+    return list(source.geometry)
+
+
 def get_dataframe(q):
     """
     Make a request to Postgres database.
@@ -185,6 +200,13 @@ def create_all_households(rel_poi_df, subsectie=None):
         .apply(lambda row: address_in_service_area(row['cluster_x'],
                                                    row['cluster_y'],
                                                    polygon_list=polygon_list),
+               axis=1)
+
+    neighborhood_list = load_shapefile_neighborhood(area=subsectie)
+    all_households['in_neigborhood'] = all_households\
+        .apply(lambda row:
+               address_in_service_area(row['cluster_x'], row['cluster_y'],
+                                       polygon_list=neighborhood_list),
                axis=1)
     return all_households
 
