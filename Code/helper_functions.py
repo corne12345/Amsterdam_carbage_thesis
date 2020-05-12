@@ -65,59 +65,35 @@ def calculate_penalties(good_result, aansluitingen, use_count=False,
     Output:
     The sum of all different penalties as a single float
     """
-    D_REST = 100
-    D_PPG = 150
-    D_TEXT = 300
+    fractions = {'rest': [100, 100, w_rest], 'plastic': [150, 200, w_plas],
+                 'papier': [150, 200, w_papi], 'glas': [150, 200, w_glas],
+                 'textiel': [200, 750, w_text]}
     MAX_PERC = 100
-    P_REST = 100
-    P_PPG = 200
-    P_TEXT = 750
-    NORMAL = 1000
+    NORMAL = 250
+    penalties = []
+    for k, v in fractions.items():
+        dist_pen = good_result[good_result[f'{k}_afstand'] > v[0]]
+        conn_pen = aansluitingen[aansluitingen[f'{k}_perc'] > MAX_PERC]
+        if not use_count:
+            print('a')
+            penalties.append((dist_pen[f'{k}_afstand'] - v[0]).sum() /
+                             good_result.shape[0] * v[2])
+            penalties.append((conn_pen[f'poi_{k}'] - (conn_pen[k] * v[1]))
+                             .sum() / good_result['count'].sum() * v[2] *
+                             NORMAL)
+        else:
+            print('b')
+            penalties.append(((dist_pen[f'{k}_afstand'] - v[0]) *
+                              dist_pen['count']).sum()/good_result['count']
+                             .sum() * v[2])
+            penalties.append((conn_pen[f'poi_{k}'] - (conn_pen[k] * v[1]))
+                             .sum() / good_result['count'].sum() * v[2] *
+                             NORMAL)
 
-    penalty1 = good_result[good_result['rest_afstand'] > D_REST]
-    penalty2 = good_result[good_result['plastic_afstand'] > D_PPG]
-    penalty3 = good_result[good_result['papier_afstand'] > D_PPG]
-    penalty4 = good_result[good_result['glas_afstand'] > D_PPG]
-    penalty5 = good_result[good_result['textiel_afstand'] > D_TEXT]
-    penalty6 = aansluitingen[aansluitingen['rest_perc'] > MAX_PERC]
-    penalty7 = aansluitingen[aansluitingen['plastic_perc'] > MAX_PERC]
-    penalty8 = aansluitingen[aansluitingen['papier_perc'] > MAX_PERC]
-    penalty9 = aansluitingen[aansluitingen['glas_perc'] > MAX_PERC]
-    penalty10 = aansluitingen[aansluitingen['textiel_perc'] > MAX_PERC]
-
-    if not use_count:
-        penalty1_sum = (penalty1['rest_afstand'].sum() - D_REST * penalty1.shape[0]) / good_result.shape[0] * w_rest
-        penalty2_sum = (penalty2['plastic_afstand'].sum() - D_PPG * penalty2.shape[0]) / good_result.shape[0] * w_plas
-        penalty3_sum = (penalty3['papier_afstand'].sum() - D_PPG * penalty3.shape[0]) / good_result.shape[0] * w_papi
-        penalty4_sum = (penalty4['glas_afstand'].sum() - D_PPG * penalty4.shape[0]) / good_result.shape[0] * w_glas
-        penalty5_sum = (penalty5['textiel_afstand'].sum() - D_TEXT * penalty5.shape[0]) / good_result.shape[0] * w_text
-        penalty6_sum = (penalty6['poi_rest'] - (penalty6['rest'] * P_REST)).sum() / good_result.shape[0] * w_rest * NORMAL
-        penalty7_sum = (penalty7['poi_plastic'] - (penalty7['plastic'] * P_PPG)).sum() / good_result.shape[0] * w_plas * NORMAL
-        penalty8_sum = (penalty8['poi_papier'] - (penalty8['papier'] * P_PPG)).sum() / good_result.shape[0] * w_papi * NORMAL
-        penalty9_sum = (penalty9['poi_glas'] - (penalty9['glas'] * P_PPG)).sum() / good_result.shape[0] * w_glas * NORMAL
-        penalty10_sum = (penalty10['poi_textiel'] - (penalty10['textiel'] * P_TEXT)).sum() / good_result.shape[0] * w_text * NORMAL
-
-    else:
-        penalty1_sum = (penalty1['rest_afstand'].sum() - D_REST * penalty1['count'].sum())/good_result['count'].sum() * w_rest
-        penalty2_sum = (penalty2['plastic_afstand'].sum() - D_PPG * penalty2['count'].sum())/good_result['count'].sum() * w_plas
-        penalty3_sum = (penalty3['papier_afstand'].sum() - D_PPG * penalty3['count'].sum())/good_result['count'].sum() * w_papi
-        penalty4_sum = (penalty4['glas_afstand'].sum() - D_PPG * penalty4['count'].sum())/good_result['count'].sum() * w_glas
-        penalty5_sum = (penalty5['textiel_afstand'].sum() - D_TEXT * penalty5['count'].sum())/good_result['count'].sum() * w_text
-        penalty6_sum = (penalty6['poi_rest'] - (penalty6['rest'] * P_REST)).sum() / good_result['count'].sum() * w_rest * NORMAL
-        penalty7_sum = (penalty7['poi_plastic'] - (penalty7['plastic'] * P_PPG)).sum() / good_result['count'].sum() * w_plas * NORMAL
-        penalty8_sum = (penalty8['poi_papier'] - (penalty8['papier'] * P_PPG)).sum() / good_result['count'].sum() * w_papi * NORMAL
-        penalty9_sum = (penalty9['poi_glas'] - (penalty9['glas'] * P_PPG)).sum() / good_result['count'].sum() * w_glas * NORMAL
-        penalty10_sum = (penalty10['poi_textiel'] - (penalty10['textiel'] * P_TEXT)).sum() / good_result['count'].sum() * w_text * NORMAL
-
-    total_penalties = sum([penalty1_sum, penalty2_sum, penalty3_sum,
-                          penalty4_sum, penalty5_sum, penalty6_sum,
-                          penalty7_sum, penalty8_sum, penalty9_sum,
-                          penalty10_sum])
     if return_all:
-        return penalty1_sum, penalty2_sum, penalty3_sum, penalty4_sum,
-        penalty5_sum, penalty6_sum, penalty7_sum, penalty8_sum,
-        penalty9_sum, penalty10_sum
-    return total_penalties
+        return penalties
+    else:
+        return sum(penalties)
 
 
 def calculate_simple_penalties(good_result, aansluitingen):
@@ -354,8 +330,10 @@ def initial_loading():
                         "cluster that is considered to be useful?"))
     data_source = input("Where to get db files(local/online)?")
 
-    if subsectie not in ['T', 'M', 'N', 'A', 'K', 'E', 'F', 'B']:
+    if subsectie not in ['T', 'M', 'N', 'A', 'K', 'E', 'F', 'B', 'C']:
         subsectie = None
+    if subsectie == 'C':
+        subsectie = ['M', 'A', 'K', 'E']
 
     if data_source == "local":
         rel_poi_df = pd.read_csv('../Data/postgres_db/info_pois.csv')
