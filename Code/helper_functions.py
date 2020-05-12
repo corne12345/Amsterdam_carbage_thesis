@@ -144,7 +144,10 @@ def containers_per_cluster(cluster_list):
     papier = 0
     glas = 0
     textiel = 0
-    try:
+
+    if type(cluster_list) != list:
+        pass
+    else:
         for i in cluster_list:
             if i.startswith("Rest:"):
                 rest = int((i.split(':')[1]))
@@ -156,8 +159,6 @@ def containers_per_cluster(cluster_list):
                 glas = int((i.split(':')[1]))
             if i.startswith("Textiel:"):
                 textiel = int(i.split(':')[1])
-    except:
-        pass
     return rest, plastic, papier, glas, textiel, sum([rest, plastic, papier,
                                                       glas, textiel])
 
@@ -225,7 +226,7 @@ def fix_remaining_options(i, db_clusters_open, df_clusters_open, margin=10):
         to_return = df_clusters_open[df_clusters_open['fit']].iloc[0]
         return to_return['aantal_per_fractie'], \
             to_return['volume_per_fractie'], to_return['street_name']
-    except:
+    except NameError:
         return None, None, None
 
 
