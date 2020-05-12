@@ -20,10 +20,10 @@ def visualise_configuration():
     interactive HoverTool that shows the compoisitions of either the houses or
     garbage containers.
     """
-    coordinates_dict = {'T': [123600, 131000, 476500, 482700],
-                        'N': []}
     filename = input("Please provide the requested filename")
     area = input("Provide Code of neighborhood (T/N/F/C)")
+    if area == 'C':
+        area = ['M', 'A', 'K', 'E']
     df_zo = pd.read_csv(filename)
     df_zo = df_zo.drop(['Unnamed: 0', 'Unnamed: 0.1'], axis=1)
 
@@ -34,21 +34,14 @@ def visualise_configuration():
     joined.s1_afv_nodes = joined.s1_afv_nodes.astype('int')
     new = to_join.join(joined.set_index('s1_afv_nodes'), lsuffix='_n')
 
-    households_zo = all_households[(all_households['cluster_x'] >
-                                    coordinates_dict[area][0]) &
-                                   (all_households['cluster_x'] <
-                                    coordinates_dict[area][1]) &
-                                   (all_households['cluster_y'] >
-                                    coordinates_dict[area][2]) &
-                                   (all_households['cluster_y'] <
-                                    coordinates_dict[area][3])]
+    households_zo = all_households[all_households['in_neigborhood']]
     households_zo = households_zo.set_index('naar_s1_afv_nodes')\
         .join(df_afstandn2[['count', 'naar_s1_afv_nodes']]
               .set_index('naar_s1_afv_nodes'), how='left').drop_duplicates()
 
     load = gpd.read_file('../data/Inzameling_huisvuil_100220.shp')
 
-    street_map = load[load['sdcode'] == area]
+    street_map = load[load['sdcode'].isin(list(area))]
     geosource = GeoJSONDataSource(geojson=street_map.to_json())
     street_map_clean = street_map[street_map['aanbiedwij'] ==
                                   "Breng uw restafval  naar een container" +
@@ -70,7 +63,11 @@ def visualise_configuration():
                 ("(x,y)", "($x, $y)"),
                 ("Count", "@count")]
 
-    source = ColumnDataSource(data=new)
+    source1 = ColumnDataSource(data=new
+                               [['cluster_x', 'cluster_y', 'rest', 'papier',
+                                 'plastic', 'textiel', 'glas', 'rest_n',
+                                 'papier_n', 'glas_n', 'plastic_n',
+                                 'textiel_n']])
     source2 = ColumnDataSource(data=households_zo)
 
     p = figure()
@@ -79,7 +76,7 @@ def visualise_configuration():
     p.patches('xs', 'ys', source=geosource2, fill_color='grey', alpha=0.3,
               line_color=None)
     r3 = p.circle(x='cluster_x', y='cluster_y', color='red', line_color=None,
-                  source=source, radius=20)
+                  source=source1, radius=20)
     p.add_tools(HoverTool(renderers=[r3], tooltips=TOOLTIPS))
     r4 = p.circle(x='cluster_x', y='cluster_y', radius=1.5, source=source2)
     p.add_tools(HoverTool(renderers=[r4], tooltips=TOOLTIPS2))

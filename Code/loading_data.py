@@ -64,7 +64,8 @@ def load_shapefile_neighborhood(area):
         source = gpd.read_file('data/shp/Inzameling_huisvuil_080520.shp')
     elif os.path.isfile("../data/shp/Inzameling_huisvuil_080520.shp"):
         source = gpd.read_file('../data/shp/Inzameling_huisvuil_080520.shp')
-    source = source[source['sdcode'].isin(list(area))]
+    if area:
+        source = source[source['sdcode'].isin(list(area))]
     return list(source.geometry)
 
 
