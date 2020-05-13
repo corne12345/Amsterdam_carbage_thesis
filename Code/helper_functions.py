@@ -16,7 +16,7 @@ from .loading_data import create_aansluitingen, get_db_afvalcluster_info, \
 
 def calculate_weighted_distance(good_result, use_count=False, w_rest=0.35,
                                 w_plas=0.25, w_papi=0.2, w_glas=0.15,
-                                w_text=0.05):
+                                w_text=0.05, return_all=False):
     """
     Calculate weighted distance of an input dataframe.
 
@@ -36,7 +36,11 @@ def calculate_weighted_distance(good_result, use_count=False, w_rest=0.35,
     glas_mean = good_result['glas_afstand'].mean()
     plastic_mean = good_result['plastic_afstand'].mean()
     textiel_mean = good_result['textiel_afstand'].mean()
-#     print(rest_mean, papier_mean, glas_mean, plastic_mean, textiel_mean)
+
+    if return_all:  # Return all individual mean distances (for analysis)
+        return rest_mean, papier_mean, glas_mean, plastic_mean, textiel_mean
+
+    # Multiply mean distance per fraction with its relative importance
     score = w_rest * rest_mean + w_plas * plastic_mean + w_papi * papier_mean + \
         w_glas * glas_mean + w_text * textiel_mean
     return score
@@ -65,34 +69,37 @@ def calculate_penalties(good_result, aansluitingen, use_count=False,
     Output:
     The sum of all different penalties as a single float
     """
+
+    # Create dict containing max_dist, max_connection and weight per fraction
     fractions = {'rest': [100, 100, w_rest], 'plastic': [150, 200, w_plas],
                  'papier': [150, 200, w_papi], 'glas': [150, 200, w_glas],
                  'textiel': [200, 750, w_text]}
-    MAX_PERC = 100
-    NORMAL = 250
-    penalties = []
-    for k, v in fractions.items():
+    MAX_PERC = 100  # To prevent magic numbers
+    NORMAL = 250  # Normalization factor to balance both types of penalties
+    penalties = []  # This list will store all penalties
+    for k, v in fractions.items():  # Per fraction
+        # Filter data for all entries that violate maximal walking distance
         dist_pen = good_result[good_result[f'{k}_afstand'] > v[0]]
+        # Filter data for all containers having to many households attached
         conn_pen = aansluitingen[aansluitingen[f'{k}_perc'] > MAX_PERC]
         if not use_count:
-            print('a')
+            # Average amount of meters over maximum limit
             penalties.append((dist_pen[f'{k}_afstand'] - v[0]).sum() /
                              good_result.shape[0] * v[2])
+            # Ratio of amount of households over threshold (with normalization)
             penalties.append((conn_pen[f'poi_{k}'] - (conn_pen[k] * v[1]))
                              .sum() / good_result['count'].sum() * v[2] *
                              NORMAL)
-        else:
-            print('b')
+        else:  # Use count column to weigh according to households
             penalties.append(((dist_pen[f'{k}_afstand'] - v[0]) *
                               dist_pen['count']).sum()/good_result['count']
                              .sum() * v[2])
             penalties.append((conn_pen[f'poi_{k}'] - (conn_pen[k] * v[1]))
                              .sum() / good_result['count'].sum() * v[2] *
                              NORMAL)
-
-    if return_all:
+    if return_all:  # Return all contributing factors
         return penalties
-    else:
+    else:  # Return only the sum of the penalties
         return sum(penalties)
 
 
@@ -145,10 +152,12 @@ def containers_per_cluster(cluster_list):
     glas = 0
     textiel = 0
 
+    # Prevent an error if cluster_list is empty
     if type(cluster_list) != list:
         pass
     else:
         for i in cluster_list:
+            # Divide string in parts and match the numbers with the fraction
             if i.startswith("Rest:"):
                 rest = int((i.split(':')[1]))
             if i.startswith("Plastic:"):
@@ -177,17 +186,21 @@ def join_api_db(db_df, api_df):
     Returns:
     - joined: joined dataframe with all information
     """
+    # Select only objects that are garbage clusters, to exclude houses
     db_clusters = db_df[db_df['type'] == 'afval_cluster']
+    # Join the API and DB data based on the coordinates
     joined = db_clusters.set_index(['cluster_x', 'cluster_y'])\
         .join(api_df.set_index(['cluster_x', 'cluster_y']), how='outer')\
         .reset_index()
     joined = joined.dropna()
 
+    # Isolate unmatched data for further matching
     df_clusters_open = joined[joined['s1_afv_rel_nodes_poi']
                               .isna()].reset_index()
     db_clusters_open = joined[joined['aantal_per_fractie']
                               .isna()].reset_index()
 
+    # Try matching again with less strict norms
     joined_try_2 = fix_remaining_into_frame(db_clusters_open, df_clusters_open)
     joined = joined.append([joined_try_2], ignore_index=True)
 
@@ -212,22 +225,31 @@ def fix_remaining_options(i, db_clusters_open, df_clusters_open, margin=10):
     - volume_per_fractie: dict-like information on volume of fractions
     - street_name: street_name of the cluster
     """
+    # Select a certain test option and retrieve coordinates
     test_option = db_clusters_open.iloc[i]
     x = float(test_option['cluster_x'])
     y = float(test_option['cluster_y'])
-    #     print(x,y)
+
+    # Create square around point where a match could be made in
     square = Polygon([(x-margin, y-margin), (x-margin, y+margin),
                       (x+margin, y+margin), (x+margin, y-margin)])
+
+    # Transform coordinates into column containing Point classes
     df_clusters_open['point'] = df_clusters_open\
         .apply(lambda row: Point(row['cluster_x'], row['cluster_y']), axis=1)
+
+    # Create match if one of other points falls within square
     df_clusters_open['fit'] = df_clusters_open['point']\
         .apply(lambda point: point.within(square))
-    try:
-        to_return = df_clusters_open[df_clusters_open['fit']].iloc[0]
+
+    # Filter on points having a match
+    to_return = df_clusters_open[df_clusters_open['fit']]
+    if to_return.shape[0] > 0:  # Return match if it's there
+        to_return = to_return.iloc[0]
         return to_return['aantal_per_fractie'], \
             to_return['volume_per_fractie'], to_return['street_name']
-    except NameError:
-        return None, None, None
+    else:
+        return None, None, None  # Return None if there is no match
 
 
 def fix_remaining_into_frame(db_clusters_open, df_clusters_open, margin=10):
@@ -245,17 +267,21 @@ def fix_remaining_into_frame(db_clusters_open, df_clusters_open, margin=10):
     - dataframe of matches clusters from database filled with additional
     information from API
     """
+    # Initialize lists to hold variables
     apf_list = []
     vpf_list = []
     str_list = []
 
+    # Loop through all unmatched container clusters
     for i in range(db_clusters_open.shape[0]):
+        # Try to match using function above
         tmp = fix_remaining_options(i, db_clusters_open, df_clusters_open,
                                     margin=margin)
         apf_list.append(tmp[0])
         vpf_list.append(tmp[1])
         str_list.append(tmp[2])
 
+    # Fill in missing parameters for matched containers
     db_clusters_open['aantal_per_fractie'] = apf_list
     db_clusters_open['volume_per_fractie'] = vpf_list
     db_clusters_open['street_name'] = str_list
@@ -274,6 +300,7 @@ def add_shortest_distances_to_all_households(all_households,
     cluster_distance_matrix = cluster_distance_matrix.sort_values(by='afstand')
 
     if use_count:
+        # Group by household and keep information on first container
         shortest_rest = cluster_distance_matrix[cluster_distance_matrix['rest'] > 0].\
             groupby('naar_s1_afv_nodes').first()[['count', 'van_s1_afv_nodes',
                                                   'afstand']].\
@@ -286,6 +313,8 @@ def add_shortest_distances_to_all_households(all_households,
                 .first()[['van_s1_afv_nodes', 'afstand']]\
                 .rename(columns={'van_s1_afv_nodes': 'poi_rest',
                                  'afstand': 'rest_afstand'})
+
+    # Repeat process for all other fractions
     shortest_plastic = cluster_distance_matrix[cluster_distance_matrix
                                                ['plastic'] > 0].\
         groupby('naar_s1_afv_nodes').first()[['van_s1_afv_nodes', 'afstand']].\
@@ -307,6 +336,7 @@ def add_shortest_distances_to_all_households(all_households,
         rename(columns={'van_s1_afv_nodes': 'poi_textiel',
                         'afstand': 'textiel_afstand'})
 
+    # Join all_households with shortest distances to get overview
     all_households = all_households.set_index('naar_s1_afv_nodes').\
         join([shortest_rest, shortest_plastic, shortest_papier,
               shortest_glas, shortest_textiel], how='left')
@@ -333,7 +363,7 @@ def initial_loading():
 
     if subsectie not in ['T', 'M', 'N', 'A', 'K', 'E', 'F', 'B', 'C']:
         subsectie = None
-    if subsectie == 'C':
+    if subsectie == 'C': # "Centrum consisting of 4 central areas"
         subsectie = ['M', 'A', 'K', 'E']
 
     if data_source == "local":
