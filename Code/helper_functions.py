@@ -69,7 +69,6 @@ def calculate_penalties(good_result, aansluitingen, use_count=False,
     Output:
     The sum of all different penalties as a single float
     """
-
     # Create dict containing max_dist, max_connection and weight per fraction
     fractions = {'rest': [100, 100, w_rest], 'plastic': [150, 200, w_plas],
                  'papier': [150, 200, w_papi], 'glas': [150, 200, w_glas],
@@ -363,10 +362,10 @@ def initial_loading():
 
     if subsectie not in ['T', 'M', 'N', 'A', 'K', 'E', 'F', 'B', 'C']:
         subsectie = None
-    if subsectie == 'C': # "Centrum consisting of 4 central areas"
+    if subsectie == 'C':  # "Centrum consisting of 4 central areas"
         subsectie = ['M', 'A', 'K', 'E']
 
-    if data_source == "local":
+    if data_source == "local":  # Get data from local files instead of online
         rel_poi_df = pd.read_csv('../Data/postgres_db/info_pois.csv')
         print('DB relation POIs loaded')
         if use_count:
@@ -385,7 +384,7 @@ def initial_loading():
                                        'distance_matrix.csv')
             print('distance matrix loaded')
 
-    elif data_source == "online":
+    elif data_source == "online":  # Make connection with PostgreSQL
         rel_poi_df = get_db_afvalcluster_info()
         print('DB relation POIs loaded')
         if use_count:
@@ -426,15 +425,18 @@ def analyze_candidate_solution(joined, all_households, rel_poi_df,
     it. Returns not only score but also other dataframes for future use in the
     pipeline.
     """
+    # Join distance matrix with cluster information to get rich dataframe
     joined_cluster_distance = joined.set_index('s1_afv_nodes')\
         .join(df_afstandn2.set_index('van_s1_afv_nodes')).reset_index()\
         .rename(columns={'index': 'van_s1_afv_nodes'})
 
+    # Add shortest distances to it
     good_result_rich = \
         add_shortest_distances_to_all_households(all_households,
                                                  joined_cluster_distance,
                                                  use_count)
-    if clean:
+
+    if clean:  # Only include houses that use rest container
         good_result_rich = good_result_rich[good_result_rich['uses_container']]
 
     aansluitingen = create_aansluitingen(good_result_rich,
