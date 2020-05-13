@@ -105,31 +105,49 @@ def load_api_data(prnt=False, subsectie=None):
 
     link = 'https://api.data.amsterdam.nl/vsd/afvalclusters'
 
-    while link is not None:  # This is the case on the last page of the API
-        if prnt:  # Can be used for some kind of monitoring of progres
-            print(link)
-        response = requests.get(link)
-        output = response.json()
-        for result in output['results']:
-            # Als het cluster nog actief is
-            if result['cluster_datum_einde_cluster'] is None:
-                x_coordinates.append(str(result['cluster_geometrie']
-                                         ['coordinates'][0]))
-                y_coordinates.append(str(result['cluster_geometrie']
-                                         ['coordinates'][1]))
-                aantal.append(result['cluster_fractie_aantal'])
-                volumes.append(result['cluster_fractie_volume'])
-                adresses.append(result['bag_adres_openbare_ruimte_naam'])
-                buurt.append(result['gbd_buurt_code'])
+    try:  # Online scraping is preferred
+        while link is not None:  # This is the case on the last page of the API
+            if prnt:  # Can be used for some kind of monitoring of progres
+                print(link)
+            response = requests.get(link)
+            output = response.json()
+            for result in output['results']:
+                # Als het cluster nog actief is
+                if result['cluster_datum_einde_cluster'] is None:
+                    x_coordinates.append(str(result['cluster_geometrie']
+                                             ['coordinates'][0]))
+                    y_coordinates.append(str(result['cluster_geometrie']
+                                             ['coordinates'][1]))
+                    aantal.append(result['cluster_fractie_aantal'])
+                    volumes.append(result['cluster_fractie_volume'])
+                    adresses.append(result['bag_adres_openbare_ruimte_naam'])
+                    buurt.append(result['gbd_buurt_code'])
 
-        link = output['_links']['next']['href']  # Link for next page
+            link = output['_links']['next']['href']  # Link for next page
 
-    df_clusters = pd.DataFrame([x_coordinates, y_coordinates, aantal, volumes,
-                                adresses, buurt]).T
-    df_clusters = df_clusters.rename(columns={0: 'cluster_x', 1: 'cluster_y',
-                                              2: 'aantal_per_fractie',
-                                              3: 'volume_per_fractie',
-                                              4: 'street_name', 5: 'buurt'})
+        df_clusters = pd.DataFrame([x_coordinates, y_coordinates, aantal,
+                                    volumes, adresses, buurt]).T
+        df_clusters = df_clusters.rename(columns={0: 'cluster_x',
+                                                  1: 'cluster_y',
+                                                  2: 'aantal_per_fractie',
+                                                  3: 'volume_per_fractie',
+                                                  4: 'street_name',
+                                                  5: 'buurt'})
+    except OSError:  # backup is online scraping is not working
+        df_api = pd.read_csv('../Data/afval_cluster.csv', delimiter=';')
+        df_api = df_api[df_api['cluster_datum_einde_cluster'].isna()]
+        df_api = df_api[['cluster_geometrie', 'cluster_fractie_aantal',
+                         'cluster_fractie_volume',
+                         'bag_adres_openbare_ruimte_naam', 'gbd_buurt_code']]
+        df_api['cluster_x'] = df_api['cluster_geometrie'] \
+            .apply(lambda x: x.split('(')[1].split(' ')[0])
+        df_api['cluster_y'] = df_api['cluster_geometrie'] \
+            .apply(lambda x: x.split()[1][:-1])
+        df_clusters = df_api.drop(['cluster_geometrie'], axis=1) \
+            .rename(columns={'cluster_fractie_aantal': 'aantal_per_fractie',
+                             'cluster_fractie_volume': 'volume_per_fractie',
+                             'bag_adres_openbare_ruimte_naam': 'street_name',
+                             'gbd_buurt_code': 'buurt'})
 
     # Transform coordinates of clusters to ints, as this helps easing join
     df_clusters['cluster_x'] = df_clusters['cluster_x'].astype('float')\
