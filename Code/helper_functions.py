@@ -431,24 +431,27 @@ def analyze_candidate_solution(joined, all_households, rel_poi_df,
         .rename(columns={'index': 'van_s1_afv_nodes'})
 
     # Add shortest distances to it
-    good_result_rich = \
+    good_result = \
         add_shortest_distances_to_all_households(all_households,
                                                  joined_cluster_distance,
                                                  use_count)
 
     if clean:  # Only include houses that use rest container
-        good_result_rich = good_result_rich[good_result_rich['uses_container']]
+        good_result_rich = good_result[good_result['uses_container']]
+    else:  # Set distance to and poi to 0 to esclude rest for calculation
+        good_result[~good_result['uses_container']]['rest_afstand'] = 0
+        good_result[~good_result['uses_container']]['poi_rest'] = 0
 
-    aansluitingen = create_aansluitingen(good_result_rich,
+    aansluitingen = create_aansluitingen(good_result,
                                          joined_cluster_distance,
                                          use_count=use_count)
 
-    avg_distance = calculate_weighted_distance(good_result_rich,
+    avg_distance = calculate_weighted_distance(good_result,
                                                use_count=use_count)
     penalties = calculate_penalties(good_result_rich, aansluitingen,
                                     use_count=use_count, return_all=return_all)
 
     print("Average distance is : " + str(avg_distance))
     print("Penalties are: " + str(penalties))
-    return joined_cluster_distance, good_result_rich, aansluitingen,\
+    return joined_cluster_distance, good_result, aansluitingen,\
         avg_distance, penalties
