@@ -9,6 +9,7 @@ the other provided .py docs.
 
 from shapely.geometry import Polygon, Point
 import pandas as pd
+import numpy as np
 from .loading_data import create_aansluitingen, get_db_afvalcluster_info, \
     get_distance_matrix, distance_matrix_with_counts, create_all_households, \
     load_api_data
@@ -437,10 +438,11 @@ def analyze_candidate_solution(joined, all_households, rel_poi_df,
                                                  use_count)
 
     if clean:  # Only include houses that use rest container
-        good_result_rich = good_result[good_result['uses_container']]
+        good_result = good_result[good_result['uses_container']]
     else:  # Set distance to and poi to 0 to esclude rest for calculation
-        good_result[~good_result['uses_container']]['rest_afstand'] = 0
-        good_result[~good_result['uses_container']]['poi_rest'] = 0
+        good_result.loc[~good_result['uses_container'],
+                        'rest_afstand'] = np.nan
+        good_result.loc[~good_result['uses_container'], 'poi_rest'] = np.nan
 
     aansluitingen = create_aansluitingen(good_result,
                                          joined_cluster_distance,
@@ -448,7 +450,7 @@ def analyze_candidate_solution(joined, all_households, rel_poi_df,
 
     avg_distance = calculate_weighted_distance(good_result,
                                                use_count=use_count)
-    penalties = calculate_penalties(good_result_rich, aansluitingen,
+    penalties = calculate_penalties(good_result, aansluitingen,
                                     use_count=use_count, return_all=return_all)
 
     print("Average distance is : " + str(avg_distance))
