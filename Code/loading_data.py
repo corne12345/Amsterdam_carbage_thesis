@@ -305,7 +305,8 @@ def address_in_service_area(x, y, polygon_list=None, subsectie=None):
 
 
 def distance_matrix_with_counts(get_data=True, inpt_dfob=None,
-                                inpt_poi=None, inpt_dis=None):
+                                inpt_poi=None, inpt_dis=None,
+                                use_old=False):
     """
     Retrieve distance matrix including the counts per address POI.
 
@@ -331,14 +332,6 @@ def distance_matrix_with_counts(get_data=True, inpt_dfob=None,
         df_afstandn2 = inpt_poi
         df_afstandn = inpt_dis
 
-    dfob['split'] = dfob['bk_votpand_cluster'].str.split('~')
-    dfob['bag'] = dfob['split'].apply(lambda x: x[0]).astype('int64')
-    dfob['x'] = dfob['split'].apply(lambda x: x[1]).astype('float').round()\
-        .astype('int')
-    dfob['y'] = dfob['split'].apply(lambda x: x[2]).astype('float').round().\
-        astype('int')
-    dfob = dfob.drop(['split'], axis=1)
-
     df_afstandn2['split'] = df_afstandn2['bk_afv_rel_nodes_poi'].str.split('~')
     df_afstandn2['x'] = df_afstandn2['split'].apply(lambda x: x[0])\
         .astype('float').round().astype('int')
@@ -349,9 +342,35 @@ def distance_matrix_with_counts(get_data=True, inpt_dfob=None,
     verblijfsobjecten['bag'] = verblijfsobjecten['split'].apply(lambda x: x[3])\
         .astype('int64')
 
-    temp = dfob.set_index(['bag', 'x', 'y'])\
-        .join(verblijfsobjecten.set_index(['bag', 'x', 'y']), how='outer',
-              lsuffix='_l').reset_index()
+    if use_old:
+        dfob['split'] = dfob['bk_votpand_cluster'].str.split('~')
+        dfob['bag'] = dfob['split'].apply(lambda x: x[0]).astype('int64')
+        dfob['x'] = dfob['split'].apply(lambda x: x[1]).astype('float').round()\
+            .astype('int')
+        dfob['y'] = dfob['split'].apply(lambda x: x[2]).astype('float').round().\
+            astype('int')
+        dfob = dfob.drop(['split'], axis=1)
+
+        temp = dfob.set_index(['bag', 'x', 'y'])\
+            .join(verblijfsobjecten.set_index(['bag', 'x', 'y']), how='outer',
+                  lsuffix='_l').reset_index()
+    else:
+        df = pd.read_csv('../Data/households_per_cluster.csv')
+        df1 = df[df['ligtin_bag_pnd_identificatie'].str.len() == 16]
+        df2 = df[df['ligtin_bag_pnd_identificatie'].str.len() != 16]
+        df2['ligtin_bag_pnd_identificatie'] = \
+            df2['ligtin_bag_pnd_identificatie']\
+            .str.split('|').map(lambda x: x[0])
+        df = df1.append([df2])
+        df['bag'] = df['ligtin_bag_pnd_identificatie'].astype('int64')
+        df = df.drop(['ligtin_bag_pnd_identificatie'], axis=1)
+        verblijfsobjecten = \
+            df_afstandn2[df_afstandn2['type'] != 'afval_cluster']
+        verblijfsobjecten['bag'] = verblijfsobjecten['bag'].astype('int64')
+        temp = verblijfsobjecten.set_index('bag')\
+            .join(df.set_index('bag'), how='left')
+        temp['count'] = temp['aantal_woonfunctie']
+
     joined = temp.set_index('s1_afv_nodes')\
         .join(df_afstandn.set_index('naar_s1_afv_nodes'), how='outer')
     joined = joined.reset_index()[['van_s1_afv_nodes', 'index', 'afstand', 'count']].\
