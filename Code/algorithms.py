@@ -249,8 +249,8 @@ def hillclimber_2_opt(r, mod_max):
             if int(r.at[location_a, fraction_b]) > 0 and \
                     int(r.at[location_b, fraction_a]) > 0 and \
                     fraction_a != fraction_b and not (fraction_a == 'rest' and
-                                                      not ~r.at[location_a,
-                                                               'move_rest']:
+                                                      ~r.at[location_a,
+                                                            'move_rest']):
                 r.at[location_a, fraction_a] = \
                     int(r.at[location_a, fraction_a]) + 1
                 r.at[location_a, fraction_b] = \
@@ -281,29 +281,55 @@ def hillclimber_variable_mutations(df, x=1.9):
         return df, df_to_change.shape[0]
     df = df[df['p'] < x]
 
+    print("Amount of clusters to change: " + str(df_to_change.shape[0]))
+
+    # Create upper threshold for grey area clusters
+    df_to_change['rest_threshold'] = df_to_change['rest']
+    df_to_change.loc[df_to_change['move_rest'], 'rest_threshold'] = 999
+    print(df_to_change['rest_threshold'].value_counts())
+
+    # Extract all fractions
     rest = int(df_to_change['rest'].sum()) * ['rest']
     plastic = int(df_to_change['plastic'].sum()) * ['plastic']
     papier = int(df_to_change['papier'].sum()) * ['papier']
     glas = int(df_to_change['glas'].sum()) * ['glas']
     textiel = int(df_to_change['textiel'].sum()) * ['textiel']
     fracties = rest + plastic + papier + glas + textiel
-    random.shuffle(fracties)
 
+    # lose the old configurations
     df_to_change = df_to_change.drop(['rest', 'plastic', 'papier',
                                       'glas', 'textiel'], axis=1)
-    print("Amount of clusters to change: " + str(df_to_change.shape[0]))
 
-    fractions_per_cluster = []
-    start_pnt = 0
-    for i in range(df_to_change.shape[0]):
-        length = df_to_change['totaal'].iloc[i]
-        fractions_per_cluster.append(fracties[start_pnt:start_pnt + length])
-        start_pnt += length
-    df_to_change['new_containers'] = fractions_per_cluster
+    df_to_change = df_to_change.sort_values(by='rest_threshold')
 
-    df_to_change['rest'], df_to_change['plastic'], df_to_change['papier'], \
-        df_to_change['glas'], df_to_change['textiel'] = \
-        zip(*df_to_change['new_containers'].apply(lambda x: count(x)))
+    # Check if the new solution is valid. If not, repeat
+    valid = False
+    while not valid:
+        fracties = plastic + papier + glas + textiel
+        random.shuffle(fracties)
+        fractions_per_cluster = []
+        start_pnt = 0
+        to_change = True
+        for i in range(df_to_change.shape[0]):
+            if df_to_change.iloc[i]['rest_threshold'] > 0 and to_change:
+                to_change = False
+                fracties = fracties + rest
+                random.shuffle(fracties)
+            length = df_to_change['totaal'].iloc[i]
+            fractions_per_cluster.\
+                append(fracties[start_pnt:start_pnt + length])
+            start_pnt += length
+        df_to_change['new_containers'] = fractions_per_cluster
+        print(df_to_change[['rest_threshold', 'new_containers']].head())
+
+        df_to_change['rest'], df_to_change['plastic'], df_to_change['papier'], \
+            df_to_change['glas'], df_to_change['textiel'] = \
+            zip(*df_to_change['new_containers'].apply(lambda x: count(x)))
+        if df_to_change[(df_to_change['rest'] > df_to_change['rest_threshold'])
+                        & (df_to_change['rest_threshold'] < 999)]\
+                .shape[0] == 0:
+
+            valid = True
 
     df = df.append(df_to_change, ignore_index=True)
     df = df.drop(['p', 'new_containers'], axis=1)
