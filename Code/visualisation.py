@@ -83,3 +83,23 @@ def visualise_configuration():
 
     show(p)
     return p
+
+
+def plot_optimization(filename):
+    """
+    Plot penalty score vs. iterations combined with best average distance.
+
+    This function takes a filename as input. This filename is a save of an
+    optimization procedure. It plots the best column to see the penalty score
+    in the amount of iterations. It then finds the avg_distance belonging to
+    the current best score and also plots this. This plot is helpful for
+    determining the best stopping strategy.
+    """
+    df_plot1 = pd.read_csv(filename)
+    df_plot1['diff'] = df_plot1['penalties'] - df_plot1['best']
+    # df_plot1['total'] = df_plot1['avg_distance'] + df_plot1['penalties']
+    df_plot1['best_dist'] = df_plot1[df_plot1['diff'] < 0]['avg_distance']
+    df_plot1['best_dist'] = df_plot1['best_dist'].fillna(method='ffill')
+    ax = df_plot1['best_dist'].plot()
+    ax = df_plot1['best'].plot(secondary_y=True)
+    return ax
