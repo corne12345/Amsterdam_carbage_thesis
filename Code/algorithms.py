@@ -248,7 +248,9 @@ def hillclimber_2_opt(r, mod_max):
 
             if int(r.at[location_a, fraction_b]) > 0 and \
                     int(r.at[location_b, fraction_a]) > 0 and \
-                    fraction_a != fraction_b:
+                    fraction_a != fraction_b and not (fraction_a == 'rest' and
+                                                      not ~r.at[location_a,
+                                                               'move_rest']:
                 r.at[location_a, fraction_a] = \
                     int(r.at[location_a, fraction_a]) + 1
                 r.at[location_a, fraction_b] = \
