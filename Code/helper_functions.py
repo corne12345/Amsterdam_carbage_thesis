@@ -15,9 +15,9 @@ from .loading_data import create_aansluitingen, get_db_afvalcluster_info, \
     load_api_data
 
 
-def calculate_weighted_distance(good_result, use_count=False, w_rest=0.35,
-                                w_plas=0.25, w_papi=0.2, w_glas=0.15,
-                                w_text=0.05, return_all=False):
+def calculate_weighted_distance(good_result, use_count=False, w_rest=0.61,
+                                w_plas=0.089, w_papi=0.16, w_glas=0.11,
+                                w_text=0.025, return_all=False):
     """
     Calculate weighted distance of an input dataframe.
 
@@ -48,8 +48,8 @@ def calculate_weighted_distance(good_result, use_count=False, w_rest=0.35,
 
 
 def calculate_penalties(good_result, aansluitingen, use_count=False,
-                        w_rest=0.35, w_plas=0.25, w_papi=0.2, w_glas=0.15,
-                        w_text=0.05, return_all=False):
+                        w_rest=0.61, w_plas=0.089, w_papi=0.16, w_glas=0.11,
+                        w_text=0.025, return_all=False):
     """
     Calculate the amount of penalties based on described policies.
 
@@ -75,7 +75,7 @@ def calculate_penalties(good_result, aansluitingen, use_count=False,
                  'papier': [150, 200, w_papi], 'glas': [150, 200, w_glas],
                  'textiel': [200, 750, w_text]}
     MAX_PERC = 100  # To prevent magic numbers
-    NORMAL = 250  # Normalization factor to balance both types of penalties
+    NORMAL = 100  # Normalization factor to balance both types of penalties
     penalties = []  # This list will store all penalties
     for k, v in fractions.items():  # Per fraction
         # Filter data for all entries that violate maximal walking distance
