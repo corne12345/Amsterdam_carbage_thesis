@@ -413,6 +413,7 @@ def initial_loading():
                                        axis=1)
 
     joined = joined[joined['totaal'] <= cut_off].reset_index()
+    joined = joined.drop(['index', 'Unnamed: 0'], axis=1)
 
     return all_households, rel_poi_df, joined, df_afstandn2
 
