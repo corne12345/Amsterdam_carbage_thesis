@@ -319,7 +319,7 @@ def hillclimber_variable_mutations(df, x=1.9):
                 append(fracties[start_pnt:start_pnt + length])
             start_pnt += length
         df_to_change['new_containers'] = fractions_per_cluster
-        print(df_to_change[['rest_threshold', 'new_containers']].head())
+        # print(df_to_change[['rest_threshold', 'new_containers']].head())
 
         df_to_change['rest'], df_to_change['plastic'], df_to_change['papier'], \
             df_to_change['glas'], df_to_change['textiel'] = \
