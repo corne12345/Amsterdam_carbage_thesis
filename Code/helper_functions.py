@@ -12,7 +12,7 @@ import pandas as pd
 import numpy as np
 from .loading_data import create_aansluitingen, get_db_afvalcluster_info, \
     get_distance_matrix, distance_matrix_with_counts, create_all_households, \
-    load_api_data, address_in_service_area
+    load_api_data, address_in_service_area, load_geodata_containers
 
 
 def calculate_weighted_distance(good_result, use_count=False, w_rest=0.61,
@@ -408,10 +408,14 @@ def initial_loading():
     print('containers per cluster determined')
 
     # Add column to determine whether rest containers can be placed there
+    polygon_list = load_geodata_containers()
     joined['move_rest'] = joined.apply(lambda row: address_in_service_area
-                                       (row['cluster_x'], row['cluster_y']),
+                                       (row['cluster_x'], row['cluster_y'],
+                                        polygon_list=polygon_list),
                                        axis=1)
 
+    print('move_rest determined')
+    
     joined = joined[joined['totaal'] <= cut_off].reset_index()
     joined = joined.drop(['index', 'Unnamed: 0'], axis=1)
 
