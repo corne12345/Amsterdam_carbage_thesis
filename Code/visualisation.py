@@ -25,7 +25,6 @@ def visualise_configuration():
     if area == 'C':
         area = ['M', 'A', 'K', 'E']
     df_zo = pd.read_csv(filename)
-    df_zo = df_zo.drop(['Unnamed: 0', 'Unnamed: 0.1'], axis=1)
 
     all_households, rel_poi_df, joined, df_afstandn2 = initial_loading()
 
