@@ -415,7 +415,7 @@ def initial_loading():
                                        axis=1)
 
     print('move_rest determined')
-    
+
     joined = joined[joined['totaal'] <= cut_off].reset_index()
     joined = joined.drop(['index', 'Unnamed: 0'], axis=1)
 
@@ -449,7 +449,7 @@ def analyze_candidate_solution(joined, all_households, rel_poi_df,
 
     if clean:  # Only include houses that use rest container
         good_result = good_result[good_result['uses_container']]
-    else:  # Set distance to and poi to 0 to esclude rest for calculation
+    else:  # Set distance to and poi to NanN to esclude rest for calculation
         good_result.loc[~good_result['uses_container'],
                         'rest_afstand'] = np.nan
         good_result.loc[~good_result['uses_container'], 'poi_rest'] = np.nan

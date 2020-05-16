@@ -286,7 +286,6 @@ def hillclimber_variable_mutations(df, x=1.9):
     # Create upper threshold for grey area clusters
     df_to_change['rest_threshold'] = df_to_change['rest']
     df_to_change.loc[df_to_change['move_rest'], 'rest_threshold'] = 999
-    print(df_to_change['rest_threshold'].value_counts())
 
     # Extract all fractions
     rest = int(df_to_change['rest'].sum()) * ['rest']
