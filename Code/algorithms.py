@@ -197,12 +197,16 @@ def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2,
         to_save = input("Do you want the results saved(True/False)?")
         if to_save == 'False':
             to_save = False
-        clean = bool(input("Do you want to only use a subset of data?"))
+        clean = input("Do you want to only use a subset of data?")
         if clean == 'False':
             clean = False
-        use_count = bool(input("Do you want to use addresses over clusters?"))
+        else:
+            clean = True
+        use_count = input("Do you want to use addresses over clusters?")
         if use_count == 'False':
             use_count = False
+        else:
+            use_count = True
         SA = input("Do you want to apply simulated annealing? (True/False)")
         if SA == "False":
             SA = False
