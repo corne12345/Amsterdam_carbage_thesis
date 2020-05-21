@@ -99,6 +99,9 @@ def plot_optimization(filename):
     # df_plot1['total'] = df_plot1['avg_distance'] + df_plot1['penalties']
     df_plot1['best_dist'] = df_plot1[df_plot1['diff'] < 0]['avg_distance']
     df_plot1['best_dist'] = df_plot1['best_dist'].fillna(method='ffill')
-    ax = df_plot1['best_dist'].plot()
-    ax = df_plot1['best'].plot(secondary_y=True)
+    ax = df_plot1['best_dist'].plot(color='orange')
+    ax.set_ylabel('penalty_score', color='orange')
+    ax = df_plot1['best'].plot(color='blue', secondary_y=True)
+    ax.set_ylabel('average walking distance(meters)', color='blue')
+
     return ax
