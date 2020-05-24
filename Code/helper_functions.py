@@ -340,6 +340,8 @@ def add_shortest_distances_to_all_households(all_households,
     all_households = all_households.set_index('naar_s1_afv_nodes').\
         join([shortest_rest, shortest_plastic, shortest_papier,
               shortest_glas, shortest_textiel], how='left')
+    # leave out for first analysis
+    # all_households = all_households.fillna(2000)
     return all_households
 
 
