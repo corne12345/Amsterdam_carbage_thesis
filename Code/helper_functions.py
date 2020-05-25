@@ -369,7 +369,10 @@ def initial_loading():
         subsectie = ['M', 'A', 'K', 'E']
 
     if data_source == "local":  # Get data from local files instead of online
-        rel_poi_df = pd.read_csv('../Data/postgres_db/info_pois.csv')
+        rel_poi_df = pd.read_csv('../Data/postgres_db/info_pois.csv',
+                                 index_col='Unnamed: 0')
+        rel_poi_df = rel_poi_df[['s1_afv_nodes', 's1_afv_poi', 'cluster_x',
+                                 'cluster_y', 'type', 'bag']]
         print('DB relation POIs loaded')
         if use_count:
             inpt_dfob = pd.read_csv('../Data/postgres_db/' +
