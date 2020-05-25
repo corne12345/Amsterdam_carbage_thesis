@@ -339,9 +339,8 @@ def distance_matrix_with_counts(get_data=True, inpt_dfob=None,
         df_afstandn2 = inpt_poi
         df_afstandn = inpt_dis
 
-    verblijfsobjecten = df_afstandn2[df_afstandn2['type'] != 'afval_cluster']
-    verblijfsobjecten['bag'] = verblijfsobjecten['split'].apply(lambda x: x[3])\
-        .astype('int64')
+    verblijfsobjecten = df_afstandn2.loc[df_afstandn2
+                                         ['type'] != 'afvalcluster']
 
     if use_old:
         dfob['split'] = dfob['bk_votpand_cluster'].str.split('~')
@@ -360,14 +359,15 @@ def distance_matrix_with_counts(get_data=True, inpt_dfob=None,
         df1 = df[df['ligtin_bag_pnd_identificatie'].str.len() == 16]
         df2 = df[df['ligtin_bag_pnd_identificatie'].str.len() != 16]
         df2['ligtin_bag_pnd_identificatie'] = \
-            df2['ligtin_bag_pnd_identificatie']\
+            df2.loc[:, 'ligtin_bag_pnd_identificatie']\
             .str.split('|').map(lambda x: x[0])
         df = df1.append([df2])
         df['bag'] = df['ligtin_bag_pnd_identificatie'].astype('int64')
         df = df.drop(['ligtin_bag_pnd_identificatie'], axis=1)
         verblijfsobjecten = \
             df_afstandn2[df_afstandn2['type'] != 'afval_cluster']
-        verblijfsobjecten['bag'] = verblijfsobjecten['bag'].astype('int64')
+        verblijfsobjecten['bag'] = verblijfsobjecten.loc[:, 'bag']\
+            .astype('int64')
         temp = verblijfsobjecten.set_index('bag')\
             .join(df.set_index('bag'), how='left')
         temp['count'] = temp['aantal_woonfunctie']
@@ -376,6 +376,6 @@ def distance_matrix_with_counts(get_data=True, inpt_dfob=None,
         .join(df_afstandn.set_index('naar_s1_afv_nodes'), how='outer')
     joined = joined.reset_index()[['van_s1_afv_nodes', 'index', 'afstand', 'count']].\
         rename(columns={'index': 'naar_s1_afv_nodes'}).sort_values(by='afstand').\
-        reset_index().drop(['index'], axis=1).dropna()
+        reset_index().drop(['index'], axis=1).dropna().drop_duplicates()
 
     return joined
