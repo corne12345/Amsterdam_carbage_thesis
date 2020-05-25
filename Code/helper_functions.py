@@ -195,7 +195,7 @@ def join_api_db(db_df, api_df):
     joined = joined.dropna()
 
     # Isolate unmatched data for further matching
-    df_clusters_open = joined[joined['s1_afv_rel_nodes_poi']
+    df_clusters_open = joined[joined['s1_afv_nodes']
                               .isna()].reset_index()
     db_clusters_open = joined[joined['aantal_per_fractie']
                               .isna()].reset_index()
@@ -422,7 +422,8 @@ def initial_loading():
     print('move_rest determined')
 
     joined = joined[joined['totaal'] <= cut_off].reset_index()
-    joined = joined.drop(['index', 'Unnamed: 0'], axis=1)
+    # joined = joined.drop(['index', 'Unnamed: 0'], axis=1)
+    joined = joined.drop(['index'], axis=1)
 
     return all_households, rel_poi_df, joined, df_afstandn2
 
