@@ -326,18 +326,19 @@ def distance_matrix_with_counts(get_data=True, inpt_dfob=None,
                                     FROM proj_afval_netwerk.afv_rel_nodes_poi
                                     """)
         df_afstandn = get_distance_matrix()
+        df_afstandn2['split'] = df_afstandn2['bk_afv_rel_nodes_poi']\
+            .str.split('~')
+        df_afstandn2['x'] = df_afstandn2['split'].apply(lambda x: x[0])\
+            .astype('float').round().astype('int')
+        df_afstandn2['y'] = df_afstandn2['split'].apply(lambda x: x[1])\
+            .astype('float').round().astype('int')
+        df_afstandn2['type'] = df_afstandn2['split'].apply(lambda x: x[2])
 
     if not get_data:
         dfob = inpt_dfob
         df_afstandn2 = inpt_poi
         df_afstandn = inpt_dis
 
-    df_afstandn2['split'] = df_afstandn2['bk_afv_rel_nodes_poi'].str.split('~')
-    df_afstandn2['x'] = df_afstandn2['split'].apply(lambda x: x[0])\
-        .astype('float').round().astype('int')
-    df_afstandn2['y'] = df_afstandn2['split'].apply(lambda x: x[1])\
-        .astype('float').round().astype('int')
-    df_afstandn2['type'] = df_afstandn2['split'].apply(lambda x: x[2])
     verblijfsobjecten = df_afstandn2[df_afstandn2['type'] != 'afval_cluster']
     verblijfsobjecten['bag'] = verblijfsobjecten['split'].apply(lambda x: x[3])\
         .astype('int64')
