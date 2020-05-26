@@ -55,7 +55,7 @@ def calculate_weighted_distance(good_result, use_count=False, w_rest=0.61,
         w_glas * glas_mean + w_text * textiel_mean
 
     if return_all:  # Return all individual mean distances (for analysis)
-        return rest_mean, papier_mean, glas_mean, plastic_mean, textiel_mean,\
+        return rest_mean, plastic_mean, papier_mean, glas_mean, textiel_mean,\
             score
 
     return score
@@ -117,18 +117,33 @@ def calculate_penalties(good_result, aansluitingen, use_count=False,
         return sum(penalties)
 
 
-def calculate_simple_penalties(good_result, aansluitingen):
+def calculate_simple_penalties(good_result, aansluitingen, use_count=True,
+                               w_rest=0.61, w_plas=0.089, w_papi=0.16, w_glas=0.11,
+                               w_text=0.025, use_weight=True, return_all=True):
     """
     Return simplified version of penalties.
 
     Simplified version of penalty function that gives total amount of
     penalties.
     """
-    penalty1 = good_result[good_result['rest_afstand'] > 100].shape[0]
-    penalty2 = good_result[good_result['plastic_afstand'] > 150].shape[0]
-    penalty3 = good_result[good_result['papier_afstand'] > 150].shape[0]
-    penalty4 = good_result[good_result['glas_afstand'] > 150].shape[0]
-    penalty5 = good_result[good_result['textiel_afstand'] > 300].shape[0]
+    if use_count:
+        penalty1 = good_result[good_result
+                               ['rest_afstand'] > 100]['count'].sum()
+        penalty2 = good_result[good_result
+                               ['plastic_afstand'] > 150]['count'].sum()
+        penalty3 = good_result[good_result
+                               ['papier_afstand'] > 150]['count'].sum()
+        penalty4 = good_result[good_result
+                               ['glas_afstand'] > 150]['count'].sum()
+        penalty5 = good_result[good_result
+                               ['textiel_afstand'] > 150]['count'].sum()
+
+    else:
+        penalty1 = good_result[good_result['rest_afstand'] > 100].shape[0]
+        penalty2 = good_result[good_result['plastic_afstand'] > 150].shape[0]
+        penalty3 = good_result[good_result['papier_afstand'] > 150].shape[0]
+        penalty4 = good_result[good_result['glas_afstand'] > 150].shape[0]
+        penalty5 = good_result[good_result['textiel_afstand'] > 300].shape[0]
 
     temp = (aansluitingen['poi_rest'] - aansluitingen['rest'] * 100)
     penalty6 = temp[temp > 0].sum()
@@ -141,11 +156,18 @@ def calculate_simple_penalties(good_result, aansluitingen):
     temp = (aansluitingen['poi_textiel'] - aansluitingen['textiel'] * 750)
     penalty10 = temp[temp > 0].sum()
 
-    print(penalty1, penalty2, penalty3, penalty4, penalty5, penalty6, penalty7,
-          penalty8, penalty9, penalty10)
+    if use_weight:
+        total = w_rest * (penalty1 + penalty6) + w_plas * (penalty2 + penalty7) +\
+            w_papi * (penalty3 + penalty8) + w_glas * (penalty4 + penalty9) +\
+            w_text * (penalty5 + penalty10)
+        if return_all:
+            return total, penalty1, penalty2, penalty3, penalty4, penalty5,\
+                penalty6, penalty7, penalty8, penalty9, penalty10
+        else:
+            return total
+
     return penalty1+penalty2+penalty3+penalty4+penalty5+penalty6+penalty7 + \
         penalty8+penalty9+penalty10
-
 
 def containers_per_cluster(cluster_list):
     """
@@ -444,7 +466,7 @@ def initial_loading():
 
 def analyze_candidate_solution(joined, all_households, rel_poi_df,
                                df_afstandn2, clean=True, use_count=False,
-                               return_all=False):
+                               return_all=False, exclude_outliers=True):
     """
     Analyze the score and penalties of a provided solution.
 
@@ -477,6 +499,14 @@ def analyze_candidate_solution(joined, all_households, rel_poi_df,
                  'glas_afstand', 'textiel_afstand']] = \
         good_result[['rest_afstand', 'plastic_afstand', 'papier_afstand',
                      'glas_afstand', 'textiel_afstand']].fillna(2000)
+
+    # Exclude households that have more than 1 fraction more than 1000 away
+    if exclude_outliers:
+        good_result = good_result[(((good_result[['poi_rest', 'poi_plastic',
+                                                  'poi_papier', 'poi_glas',
+                                                  'poi_textiel']] == 999.0)
+                                  .sum(axis=1) < 2) & (good_result['count']
+                                                       > 0))]
 
     if clean:  # Only include houses that use rest container
         good_result = good_result[good_result['uses_container']]
