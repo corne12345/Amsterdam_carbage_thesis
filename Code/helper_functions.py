@@ -50,12 +50,14 @@ def calculate_weighted_distance(good_result, use_count=False, w_rest=0.61,
         textiel_mean = (good_result['textiel_afstand'] * good_result['count'])\
             .sum() / good_result['count'].sum()
 
-    if return_all:  # Return all individual mean distances (for analysis)
-        return rest_mean, papier_mean, glas_mean, plastic_mean, textiel_mean
-
     # Multiply mean distance per fraction with its relative importance
     score = w_rest * rest_mean + w_plas * plastic_mean + w_papi * papier_mean + \
         w_glas * glas_mean + w_text * textiel_mean
+
+    if return_all:  # Return all individual mean distances (for analysis)
+        return rest_mean, papier_mean, glas_mean, plastic_mean, textiel_mean,\
+            score
+
     return score
 
 
@@ -488,7 +490,8 @@ def analyze_candidate_solution(joined, all_households, rel_poi_df,
                                          use_count=use_count)
 
     avg_distance = calculate_weighted_distance(good_result,
-                                               use_count=use_count)
+                                               use_count=use_count,
+                                               return_all=return_all)
     penalties = calculate_penalties(good_result, aansluitingen,
                                     use_count=use_count, return_all=return_all)
 
