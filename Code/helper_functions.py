@@ -32,11 +32,23 @@ def calculate_weighted_distance(good_result, use_count=False, w_rest=0.61,
     Output:
     float representing weighted average distance
     """
-    rest_mean = good_result['rest_afstand'].mean()
-    papier_mean = good_result['papier_afstand'].mean()
-    glas_mean = good_result['glas_afstand'].mean()
-    plastic_mean = good_result['plastic_afstand'].mean()
-    textiel_mean = good_result['textiel_afstand'].mean()
+    if not use_count:
+        rest_mean = good_result['rest_afstand'].mean()
+        papier_mean = good_result['papier_afstand'].mean()
+        glas_mean = good_result['glas_afstand'].mean()
+        plastic_mean = good_result['plastic_afstand'].mean()
+        textiel_mean = good_result['textiel_afstand'].mean()
+    else:
+        rest_mean = (good_result['rest_afstand'] * good_result['count'])\
+            .sum() / good_result['count'].sum()
+        papier_mean = (good_result['papier_afstand'] * good_result['count'])\
+            .sum() / good_result['count'].sum()
+        plastic_mean = (good_result['plastic_afstand'] * good_result['count'])\
+            .sum() / good_result['count'].sum()
+        glas_mean = (good_result['glas_afstand'] * good_result['count'])\
+            .sum() / good_result['count'].sum()
+        textiel_mean = (good_result['textiel_afstand'] * good_result['count'])\
+            .sum() / good_result['count'].sum()
 
     if return_all:  # Return all individual mean distances (for analysis)
         return rest_mean, papier_mean, glas_mean, plastic_mean, textiel_mean
@@ -452,6 +464,17 @@ def analyze_candidate_solution(joined, all_households, rel_poi_df,
         add_shortest_distances_to_all_households(all_households,
                                                  joined_cluster_distance,
                                                  use_count)
+
+    # Cleaning step to deal with missing data
+    good_result['count'] = good_result['count'].fillna(0)
+    good_result[['poi_rest', 'poi_plastic', 'poi_papier', 'poi_glas',
+                 'poi_textiel']] = good_result[['poi_rest', 'poi_plastic',
+                                                'poi_papier', 'poi_glas',
+                                                'poi_textiel']].fillna(999)
+    good_result[['rest_afstand', 'plastic_afstand', 'papier_afstand',
+                 'glas_afstand', 'textiel_afstand']] = \
+        good_result[['rest_afstand', 'plastic_afstand', 'papier_afstand',
+                     'glas_afstand', 'textiel_afstand']].fillna(2000)
 
     if clean:  # Only include houses that use rest container
         good_result = good_result[good_result['uses_container']]
