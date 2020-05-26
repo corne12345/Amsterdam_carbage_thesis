@@ -356,7 +356,6 @@ def distance_matrix_with_counts(get_data=True, inpt_dfob=None,
                   lsuffix='_l').reset_index()
     else:
         df = pd.read_csv('../Data/households_per_cluster.csv')
-        print(df['aantal_woonfunctie'].sum())
         df1 = df[df['ligtin_bag_pnd_identificatie'].str.len() == 16]
         df2 = df[df['ligtin_bag_pnd_identificatie'].str.len() != 16]
         df2['ligtin_bag_pnd_identificatie'] = \
@@ -365,7 +364,6 @@ def distance_matrix_with_counts(get_data=True, inpt_dfob=None,
         df = df1.append([df2])
         df['bag'] = df['ligtin_bag_pnd_identificatie'].astype('int64')
         df = df.drop(['ligtin_bag_pnd_identificatie'], axis=1)
-        print(df['aantal_woonfunctie'].sum())
         verblijfsobjecten = \
             df_afstandn2[df_afstandn2['type'] != 'afval_cluster']
         verblijfsobjecten['bag'] = verblijfsobjecten.loc[:, 'bag']\
@@ -374,13 +372,11 @@ def distance_matrix_with_counts(get_data=True, inpt_dfob=None,
         temp = verblijfsobjecten.set_index('bag')\
             .join(df.set_index('bag'), how='left')
         temp['count'] = temp['aantal_woonfunctie']
-        print(temp['count'].sum())
 
     joined = temp.set_index('s1_afv_nodes')\
         .join(df_afstandn.set_index('naar_s1_afv_nodes'), how='outer')
     joined = joined.reset_index()[['van_s1_afv_nodes', 'index', 'afstand', 'count']].\
         rename(columns={'index': 'naar_s1_afv_nodes'}).sort_values(by='afstand').\
         reset_index().drop(['index'], axis=1).dropna().drop_duplicates()
-    print(joined.columns)
 
     return joined
