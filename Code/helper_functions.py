@@ -118,8 +118,9 @@ def calculate_penalties(good_result, aansluitingen, use_count=False,
 
 
 def calculate_simple_penalties(good_result, aansluitingen, use_count=True,
-                               w_rest=0.61, w_plas=0.089, w_papi=0.16, w_glas=0.11,
-                               w_text=0.025, use_weight=True, return_all=True):
+                               w_rest=0.61, w_plas=0.089, w_papi=0.16,
+                               w_glas=0.11, w_text=0.025, use_weight=True,
+                               return_all=True):
     """
     Return simplified version of penalties.
 
@@ -168,6 +169,7 @@ def calculate_simple_penalties(good_result, aansluitingen, use_count=True,
 
     return penalty1+penalty2+penalty3+penalty4+penalty5+penalty6+penalty7 + \
         penalty8+penalty9+penalty10
+
 
 def containers_per_cluster(cluster_list):
     """
