@@ -69,7 +69,7 @@ def visualise_configuration():
                                  'textiel_n']])
     source2 = ColumnDataSource(data=households_zo)
 
-    p = figure()
+    p = figure(match_aspect=True)
     p.patches('xs', 'ys', source=geosource, fill_color='grey', alpha=0.1,
               line_color=None)
     p.patches('xs', 'ys', source=geosource2, fill_color='grey', alpha=0.3,
