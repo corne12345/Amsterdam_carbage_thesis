@@ -512,10 +512,15 @@ def analyze_candidate_solution(joined, all_households, rel_poi_df,
 
     if clean:  # Only include houses that use rest container
         good_result = good_result[good_result['uses_container']]
-    else:  # Set distance to and poi to NanN to esclude rest for calculation
+    else:
+        # Set distance to and poi to NanN to esclude rest for calculation
         good_result.loc[~good_result['uses_container'],
                         'rest_afstand'] = np.nan
         good_result.loc[~good_result['uses_container'], 'poi_rest'] = np.nan
+
+        # Set distance of cardboard to nan is cardboard is collected there
+        good_result.loc[good_result['collect_cardboard'],
+                        'papier_afstand'] = np.nan
 
     aansluitingen = create_aansluitingen(good_result,
                                          joined_cluster_distance,

@@ -221,6 +221,14 @@ def create_all_households(rel_poi_df, subsectie=None):
                                                    polygon_list=polygon_list),
                axis=1)
 
+    wijken = gpd.read_file('../data/brtk2010_ind2005_region.shp')
+    polygons_list = list(wijken.iloc[[49, 185, 307, 311, 328]]['geometry'])
+    all_households['collect_cardboard'] = all_households.\
+        apply(lambda row: address_in_service_area(row['cluster_x'],
+                                                  row['cluster_y'],
+                                                  polygon_list=polygons_list),
+              axis=1)
+
     neighborhood_list = load_shapefile_neighborhood(area=subsectie)
     all_households['in_neigborhood'] = all_households\
         .apply(lambda row:
