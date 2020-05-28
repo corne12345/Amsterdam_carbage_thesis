@@ -527,7 +527,12 @@ def analyze_candidate_solution(joined, all_households, rel_poi_df,
     penalties = calculate_penalties(good_result, aansluitingen,
                                     use_count=use_count, return_all=return_all)
 
+    simple_penalties = calculate_simple_penalties(good_result, aansluitingen,
+                                                  use_count=use_count,
+                                                  return_all=return_all)
+
     print("Average distance is : " + str(avg_distance))
     print("Penalties are: " + str(penalties))
+    print("Simple penalties are" + str(simple_penalties))
     return joined_cluster_distance, good_result, aansluitingen,\
-        avg_distance, penalties
+        avg_distance, penalties, simple_penalties
