@@ -1,0 +1,682 @@
+,cluster_x,cluster_y,s1_afv_nodes,s1_afv_poi,type,bag,aantal_per_fractie,volume_per_fractie,street_name,buurt,wijk,stadsdeel,rest,plastic,papier,glas,textiel,totaal,move_rest,rest_threshold
+0,120281,492256,934079.0,17420.0,afval_cluster,120280.531|492255.814,['Rest:1'],['Rest:5 m3'],Weegschaalhof,N65a,N65,N,1,0,0,0,0,1,True,0.0
+1,120305,492122,661343.0,45115.0,afval_cluster,120304.678|492121.716,['Rest:1'],['Rest:5 m3'],Perseusstraat,N65a,N65,N,1,0,0,0,0,1,True,0.0
+2,120350,492209,734632.0,192.0,afval_cluster,120349.634|492208.592,['Rest:1'],['Rest:5 m3'],Weegschaalhof,N65a,N65,N,1,0,0,0,0,1,True,0.0
+3,120383,492406,659554.0,136420.0,afval_cluster,120383.060|492405.854,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Schutterweg,N65a,N65,N,1,0,1,1,0,3,True,0.0
+4,120388,492056,942328.0,673.0,afval_cluster,120387.663|492056.466,['Rest:1'],['Rest:5 m3'],Noorderkroonstraat,N65a,N65,N,1,0,0,0,0,1,True,0.0
+5,120407,492303,908954.0,159170.0,afval_cluster,120406.779|492303.482,['Rest:1'],['Rest:5 m3'],Eclipshof,N65a,N65,N,1,0,0,0,0,1,True,0.0
+6,120430,492113,887110.0,113987.0,afval_cluster,120429.501|492112.647,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Eenhoornhof,N65a,N65,N,1,0,1,1,0,3,True,0.0
+7,120444,492199,795129.0,15342.0,afval_cluster,120443.547|492199.150,['Rest:1'],['Rest:5 m3'],Nadirstraat,N65a,N65,N,1,0,0,0,0,1,True,0.0
+8,120466,491913,753563.0,124170.0,afval_cluster,120465.814|491913.247,['Rest:1'],['Rest:5 m3'],Kometensingel,N65b,N65,N,1,0,0,0,0,1,True,0.0
+9,120470,492255,702745.0,133088.0,afval_cluster,120469.945|492255.348,['Rest:1'],['Rest:5 m3'],Telescoophof,N65a,N65,N,1,0,0,0,0,1,True,0.0
+10,120474,492376,944277.0,41545.0,afval_cluster,120473.891|492375.820,['Rest:1'],['Rest:5 m3'],Stierstraat,N65a,N65,N,1,0,0,0,0,1,True,0.0
+11,120532,492335,725750.0,93517.0,afval_cluster,120531.941|492334.880,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3', 'Plastic:4 m3']",Virgohof,N65a,N65,N,1,1,1,1,0,4,True,0.0
+12,120547,492202,966114.0,58833.0,afval_cluster,120546.673|492202.296,['Rest:1'],['Rest:5 m3'],Dolfijnhof,N65a,N65,N,1,0,0,0,0,1,True,0.0
+13,120571,491831,699816.0,9811.0,afval_cluster,120570.816|491831.383,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Kometensingel,N65b,N65,N,1,0,1,1,0,3,True,0.0
+14,120571,492056,729052.0,45339.0,afval_cluster,120571.022|492055.925,['Rest:1'],['Rest:5 m3'],Kometensingel,N65b,N65,N,1,0,0,0,0,1,True,0.0
+15,120583,491990,528839.0,767.0,afval_cluster,120582.898|491990.427,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:4 m3']",Meteorenweg,N65b,N65,N,1,0,1,0,0,2,True,0.0
+16,120598,492277,564472.0,103177.0,afval_cluster,120597.563|492277.482,['Rest:1'],['Rest:5 m3'],Dierenriem,N65a,N65,N,1,0,0,0,0,1,True,0.0
+17,120608,492516,739366.0,4564.0,afval_cluster,120608.131|492515.995,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Reizigersweg,N66g,N66,N,1,0,1,1,0,3,True,0.0
+18,120619,491877,823247.0,526.0,afval_cluster,120618.541|491876.661,['Rest:1'],['Rest:5 m3'],Andromedastraat,N65b,N65,N,1,0,0,0,0,1,True,0.0
+19,120652,492608,513438.0,41730.0,afval_cluster,120651.968|492608.378,['Rest:1'],['Rest:5 m3'],Marskramerstraat,N66g,N66,N,1,0,0,0,0,1,True,0.0
+20,120659,492360,573800.0,69380.0,afval_cluster,120658.996|492359.966,['Rest:1'],['Rest:5 m3'],Mandenmakerspad,N66g,N66,N,1,0,0,0,0,1,True,0.0
+21,120675,491853,759418.0,148928.0,afval_cluster,120675.268|491853.486,['Rest:1'],['Rest:5 m3'],Vegastraat,N65b,N65,N,1,0,0,0,0,1,True,0.0
+22,120696,491928,709854.0,156027.0,afval_cluster,120696.356|491928.249,['Rest:1'],['Rest:5 m3'],Meteorenweg,N65b,N65,N,1,0,0,0,0,1,True,0.0
+23,120698,491729,856168.0,104608.0,afval_cluster,120698.037|491729.310,['Rest:1'],['Rest:5 m3'],Plejadenweg,N65b,N65,N,1,0,0,0,0,1,True,0.0
+24,120700,492299,807393.0,127543.0,afval_cluster,120699.535|492298.614,['Rest:1'],['Rest:5 m3'],Reizigersweg,N66g,N66,N,1,0,0,0,0,1,True,0.0
+25,120732,492955,494538.0,15827.0,afval_cluster,120731.964|492954.532,"['Rest:1', 'Textiel:1']","['Rest:5 m3', 'Textiel:3 m3']",Bruinvisstraat,N66c,N66,N,1,0,0,0,1,2,True,0.0
+26,120736,491979,936150.0,12264.0,afval_cluster,120736.351|491979.288,['Rest:1'],['Rest:5 m3'],Mercuriusplein,N65b,N65,N,1,0,0,0,0,1,True,0.0
+27,120739,492544,570014.0,59137.0,afval_cluster,120739.467|492543.518,['Rest:1'],['Rest:5 m3'],Marskramerstraat,N66g,N66,N,1,0,0,0,0,1,True,0.0
+28,120740,492832,688726.0,102496.0,afval_cluster,120740.487|492831.761,['Rest:1'],['Rest:5 m3'],Dwergvinvisstraat,N66c,N66,N,1,0,0,0,0,1,True,0.0
+29,120741,492608,513065.0,51981.0,afval_cluster,120740.736|492607.942,['Rest:1'],['Rest:5 m3'],Marskramerstraat,N66g,N66,N,1,0,0,0,0,1,True,0.0
+30,120745,492168,605317.0,115755.0,afval_cluster,120745.381|492167.782,"['Rest:2', 'Papier:1', 'Plastic:1']","['Rest:10 m3', 'Papier:5 m3', 'Plastic:5 m3']",Kometensingel,N65b,N65,N,2,1,1,0,0,4,True,0.0
+31,120750,491995,857761.0,164314.0,afval_cluster,120749.614|491995.296,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Mercuriusplein,N65b,N65,N,0,0,1,1,0,2,True,0.0
+32,120781,491678,820941.0,45960.0,afval_cluster,120781.269|491678.305,['Rest:1'],['Rest:5 m3'],Kometensingel,N65b,N65,N,1,0,0,0,0,1,True,0.0
+33,120783,492260,736851.0,257.0,afval_cluster,120782.936|492260.219,"['Rest:1', 'Textiel:1']","['Rest:5 m3', 'Textiel:3 m3']",Kermispad,N66g,N66,N,1,0,0,0,1,2,True,0.0
+34,120795,491863,709716.0,128338.0,afval_cluster,120794.565|491862.796,['Rest:1'],['Rest:5 m3'],Meteorenweg,N65b,N65,N,1,0,0,0,0,1,True,0.0
+35,120798,492452,532087.0,50774.0,afval_cluster,120797.636|492452.287,['Rest:1'],['Rest:5 m3'],Reizigersweg,N66g,N66,N,1,0,0,0,0,1,True,0.0
+36,120800,492046,847695.0,19032.0,afval_cluster,120799.869|492046.006,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Kometensingel,N65b,N65,N,1,1,1,1,0,4,True,0.0
+37,120822,492181,831382.0,128599.0,afval_cluster,120821.988|492181.358,['Rest:1'],['Rest:5 m3'],Platenwagenweg,N66g,N66,N,1,0,0,0,0,1,True,0.0
+38,120827,492429,678009.0,103635.0,afval_cluster,120827.470|492429.237,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Reizigersweg,N66g,N66,N,0,0,1,1,0,2,True,0.0
+39,120830,492010,936711.0,85193.0,afval_cluster,120829.924|492009.920,['Textiel:1'],['Textiel:3 m3'],Kometensingel,N65b,N65,N,0,0,0,0,1,1,True,0.0
+40,120835,492395,922159.0,9017.0,afval_cluster,120835.013|492395.329,['Rest:1'],['Rest:5 m3'],Reizigersweg,N66g,N66,N,1,0,0,0,0,1,True,0.0
+41,120841,492301,489328.0,39009.0,afval_cluster,120841.405|492300.564,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:4 m3']",Circusplein,N66g,N66,N,1,1,0,0,0,2,True,0.0
+42,120862,492797,582832.0,348.0,afval_cluster,120862.264|492797.279,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:3 m3']",Dwergvinvisstraat,N66c,N66,N,1,0,1,0,0,2,True,0.0
+43,120864,492992,907831.0,137272.0,afval_cluster,120863.528|492991.992,['Rest:1'],['Rest:5 m3'],Bruinvisstraat,N66c,N66,N,1,0,0,0,0,1,True,0.0
+44,120894,492936,751852.0,22698.0,afval_cluster,120894.414|492936.399,['Rest:1'],['Rest:5 m3'],Potvisstraat,N66c,N66,N,1,0,0,0,0,1,True,0.0
+45,120908,492245,960452.0,45979.0,afval_cluster,120907.651|492245.339,['Rest:1'],['Rest:5 m3'],Huifkarpad,N66g,N66,N,1,0,0,0,0,1,True,0.0
+46,120912,492236,830109.0,28075.0,afval_cluster,120912.035|492236.059,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Huifkarpad,N66g,N66,N,0,0,1,1,0,2,True,0.0
+47,120924,492873,515871.0,45829.0,afval_cluster,120923.524|492872.808,['Rest:1'],['Rest:5 m3'],Dwergvinvisstraat,N66c,N66,N,1,0,0,0,0,1,True,0.0
+48,120925,491675,928265.0,108574.0,afval_cluster,120923.140|491674.860,['Rest:1'],['Rest:5 m3'],Vegastraat,N65b,N65,N,1,0,0,0,0,1,True,0.0
+49,120928,492090,758463.0,125803.0,afval_cluster,120927.565|492090.340,['Rest:1'],['Rest:5 m3'],Markiespad,N66g,N66,N,1,0,0,0,0,1,True,0.0
+50,120933,493028,716910.0,116355.0,afval_cluster,120932.520|493027.666,['Rest:1'],['Rest:5 m3'],Bruinvisstraat,N66c,N66,N,1,0,0,0,0,1,True,0.0
+51,120945,491702,499510.0,88486.0,afval_cluster,120945.083|491702.303,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Meteorenweg,N65b,N65,N,1,0,1,1,0,3,True,0.0
+52,120969,491848,762191.0,80920.0,afval_cluster,120969.483|491848.077,['Rest:1'],['Rest:5 m3'],Orionplantsoen,N65b,N65,N,1,0,0,0,0,1,True,0.0
+53,120975,492612,675929.0,154607.0,afval_cluster,120974.690|492611.963,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:5 m3']",Paltrok,N66f,N66,N,1,0,1,0,0,2,True,0.0
+54,120987,492450,842227.0,123475.0,afval_cluster,120986.757|492450.296,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:5 m3']",Stellingweg,N66f,N66,N,1,0,1,0,0,2,True,0.0
+55,120990,491516,754652.0,67101.0,afval_cluster,120990.396|491516.335,['Rest:1'],['Rest:5 m3'],Kometensingel,N65b,N65,N,1,0,0,0,0,1,True,0.0
+56,121017,493010,791215.0,134465.0,afval_cluster,121016.782|493010.397,"['Glas:1', 'Papier:1', 'Plastic:1']","['Glas:3 m3', 'Papier:3 m3', 'Plastic:4 m3']",Butskopweg,N66c,N66,N,0,1,1,1,0,3,True,0.0
+57,121047,492470,686089.0,78316.0,afval_cluster,121046.855|492470.391,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Torenmolen,N66f,N66,N,1,1,1,1,0,4,True,0.0
+58,121051,492922,873517.0,58894.0,afval_cluster,121050.508|492922.169,['Rest:1'],['Rest:5 m3'],Orcastraat,N66c,N66,N,1,0,0,0,0,1,True,0.0
+59,121054,490838,578365.0,653.0,afval_cluster,121053.925|490838.433,['Rest:3'],['Rest:21 m3'],Kraanspoor,N71f,N71,N,3,0,0,0,0,3,True,0.0
+60,121061,492623,599549.0,47905.0,afval_cluster,121061.072|492622.789,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Handmolen,N66f,N66,N,1,1,1,1,0,4,True,0.0
+61,121063,491852,683319.0,151873.0,afval_cluster,121062.972|491851.810,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Maanstraat,N65b,N65,N,1,0,1,1,0,3,True,0.0
+62,121084,490899,630631.0,64002.0,afval_cluster,121084.000|490899.420,"['Rest:2', 'Glas:1', 'Papier:1']","['Rest:14 m3', 'Glas:5 m3', 'Papier:5 m3']",Kraanspoor,N71f,N71,N,2,0,1,1,0,4,True,0.0
+63,121089,492823,543658.0,97904.0,afval_cluster,121088.680|492822.843,['Rest:1'],['Rest:5 m3'],Narwalstraat,N66c,N66,N,1,0,0,0,0,1,True,0.0
+64,121095,491513,698487.0,94934.0,afval_cluster,121094.768|491512.931,['Rest:1'],['Rest:5 m3'],Vegastraat,N65b,N65,N,1,0,0,0,0,1,True,0.0
+65,121099,491637,509463.0,67857.0,afval_cluster,121099.271|491636.673,['Rest:1'],['Rest:5 m3'],Zonneweg,N65b,N65,N,1,0,0,0,0,1,True,0.0
+66,121101,490939,779785.0,42985.0,afval_cluster,121100.560|490939.199,"['Rest:2', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:14 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Kraanspoor,N71f,N71,N,2,1,1,1,0,5,True,0.0
+67,121139,490991,591843.0,45624.0,afval_cluster,121139.192|490990.526,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:7 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Kraanspoor,N71f,N71,N,1,1,1,1,0,4,True,0.0
+68,121159,492958,835409.0,1166.0,afval_cluster,121158.758|492957.782,['Plastic:1'],['Plastic:4 m3'],Zuideinde,N66c,N66,N,0,1,0,0,0,1,False,0.0
+69,121176,492435,708344.0,14041.0,afval_cluster,121176.193|492434.932,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Schipmolen,N66f,N66,N,1,1,1,1,0,4,True,0.0
+70,121182,492261,853086.0,44405.0,afval_cluster,121181.577|492261.472,['Rest:1'],['Rest:5 m3'],Standerdmolen,N66f,N66,N,1,0,0,0,0,1,True,0.0
+71,121191,490885,902026.0,150440.0,afval_cluster,121190.761|490885.050,"['Rest:2', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:14 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",mt. Lincolnweg,N71f,N71,N,2,1,1,1,0,5,True,0.0
+72,121206,490905,925036.0,130829.0,afval_cluster,121205.784|490905.130,"['Rest:2', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:14 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",tt. Vasumweg,N71f,N71,N,2,1,1,1,0,5,True,0.0
+73,121211,491819,731078.0,42252.0,afval_cluster,121210.923|491818.916,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:3 m3']",Zonneplein,N65b,N65,N,1,0,1,0,0,2,True,0.0
+74,121222,491346,874557.0,71290.0,afval_cluster,121222.140|491346.241,['Rest:1'],['Rest:5 m3'],Kometensingel,N65b,N65,N,1,0,0,0,0,1,True,0.0
+75,121230,492453,676026.0,50782.0,afval_cluster,121230.060|492452.900,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Watermolen,N66f,N66,N,1,1,0,0,0,2,True,0.0
+76,121234,492239,532213.0,101656.0,afval_cluster,121233.537|492239.151,"['Glas:1', 'Papier:1']","['Glas:5 m3', 'Papier:5 m3']",Stellingweg,N66f,N66,N,0,0,1,1,0,2,True,0.0
+77,121240,492279,727447.0,124848.0,afval_cluster,121239.886|492279.372,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Stellingweg,N66f,N66,N,1,1,0,0,0,2,True,0.0
+78,121241,491796,897639.0,163874.0,afval_cluster,121241.362|491795.742,"['Rest:1', 'Glas:1']","['Rest:5 m3', 'Glas:3 m3']",Zonneplein,N65b,N65,N,1,0,0,1,0,2,True,0.0
+79,121243,491488,550876.0,45838.0,afval_cluster,121243.179|491488.298,['Rest:1'],['Rest:5 m3'],Meteorenweg,N65b,N65,N,1,0,0,0,0,1,True,0.0
+80,121244,492040,890375.0,102673.0,afval_cluster,121243.792|492039.974,"['Rest:2', 'Plastic:1']","['Rest:10 m3', 'Plastic:5 m3']",Kometensingel,N65b,N65,N,2,1,0,0,0,3,True,0.0
+81,121246,491958,797244.0,79975.0,afval_cluster,121246.287|491957.901,['Rest:1'],['Rest:5 m3'],Planetenplein,N65b,N65,N,1,0,0,0,0,1,True,0.0
+82,121252,491382,925039.0,32194.0,afval_cluster,121252.044|491381.591,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Vegastraat,N65b,N65,N,1,0,1,1,0,3,True,0.0
+83,121274,491507,547032.0,100998.0,afval_cluster,121274.278|491506.534,['Rest:1'],['Rest:5 m3'],Meteorensingel,N65b,N65,N,1,0,0,0,0,1,True,0.0
+84,121280,491627,772358.0,82805.0,afval_cluster,121279.719|491627.450,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Aldebaranplein,N65b,N65,N,1,0,1,1,0,3,True,0.0
+85,121292,493064,895112.0,153010.0,afval_cluster,121291.534|493063.967,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Stenen Beer,N66d,N66,N,1,0,1,1,0,3,True,0.0
+86,121324,492995,867559.0,86711.0,afval_cluster,121324.370|492994.896,['Rest:1'],['Rest:5 m3'],Bombraak,N66d,N66,N,1,0,0,0,0,1,True,0.0
+87,121332,491695,581075.0,102951.0,afval_cluster,121332.099|491695.307,['Rest:1'],['Rest:5 m3'],Aldebaranplein,N65b,N65,N,1,0,0,0,0,1,True,0.0
+88,121342,491951,933070.0,122249.0,afval_cluster,121341.513|491950.560,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Kleine Zonneplein,N65b,N65,N,1,0,1,1,0,3,True,0.0
+89,121346,491256,624073.0,73039.0,afval_cluster,121346.108|491255.827,['Rest:1'],['Rest:5 m3'],Boorderstraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+90,121367,492931,861259.0,21920.0,afval_cluster,121367.194|492931.492,['Rest:1'],['Rest:5 m3'],Klaas Wannen,N66d,N66,N,1,0,0,0,0,1,True,0.0
+91,121370,492852,578287.0,67547.0,afval_cluster,121370.161|492851.803,['Rest:1'],['Rest:5 m3'],Schelvisch Hoofd,N66d,N66,N,1,0,0,0,0,1,True,0.0
+92,121393,490646,520878.0,71478.0,afval_cluster,121392.807|490645.962,"['Glas:1', 'Papier:1', 'Plastic:1']","['Glas:4 m3', 'Papier:4 m3', 'Plastic:4 m3']",ms. Oslofjordweg,N71f,N71,N,0,1,1,1,0,3,True,0.0
+93,121394,491231,680420.0,97623.0,afval_cluster,121393.878|491230.731,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Klinkerweg,N65c,N65,N,1,0,1,1,0,3,True,0.0
+94,121403,491108,484026.0,126946.0,afval_cluster,121402.549|491108.106,['Rest:1'],['Rest:5 m3'],Gutserstraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+95,121417,491839,555337.0,150158.0,afval_cluster,121416.549|491839.065,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Kometensingel,N65b,N65,N,1,0,1,1,0,3,True,0.0
+96,121429,492283,818388.0,43999.0,afval_cluster,121429.203|492282.681,"['Glas:1', 'Papier:1', 'Textiel:1']","['Glas:5 m3', 'Papier:5 m3', 'Textiel:3 m3']",Stellingweg,N66f,N66,N,0,0,1,1,1,3,True,0.0
+97,121430,493056,962381.0,62972.0,afval_cluster,121429.690|493056.466,['Rest:1'],['Rest:5 m3'],Lange Vonder,N66d,N66,N,1,0,0,0,0,1,True,0.0
+98,121446,491484,879414.0,100894.0,afval_cluster,121445.730|491484.468,['Rest:1'],['Rest:3 m3'],Frambozenstraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+99,121453,492276,850641.0,164827.0,afval_cluster,121453.416|492276.483,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Stellingweg,N66f,N66,N,1,1,0,0,0,2,True,0.0
+100,121472,491003,695137.0,29735.0,afval_cluster,121472.015|491002.943,['Rest:1'],['Rest:5 m3'],Kabelgaststraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+101,121487,492727,742915.0,164869.0,afval_cluster,121486.779|492727.043,['Rest:1'],['Rest:5 m3'],Lange Vonder,N66d,N66,N,1,0,0,0,0,1,True,0.0
+102,121493,491302,646409.0,13491.0,afval_cluster,121492.666|491302.028,['Rest:1'],['Rest:5 m3'],IJzerwerkerstraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+103,121508,492840,892854.0,164777.0,afval_cluster,121507.646|492839.517,['Rest:1'],['Rest:5 m3'],Schelvisch Hoofd,N66d,N66,N,1,0,0,0,0,1,True,0.0
+104,121542,491459,579579.0,104548.0,afval_cluster,121541.936|491459.365,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1', 'Textiel:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3', 'Plastic:4 m3', 'Textiel:3 m3']",Pomonastraat,N65c,N65,N,1,1,1,1,1,5,True,0.0
+105,121560,493027,948392.0,116252.0,afval_cluster,121559.623|493026.675,['Rest:1'],['Rest:5 m3'],Lange Vonder,N66d,N66,N,1,0,0,0,0,1,True,0.0
+106,121562,492758,877561.0,145655.0,afval_cluster,121562.469|492758.402,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Lange Vonder,N66d,N66,N,0,0,1,1,0,2,True,0.0
+107,121565,493014,821781.0,83305.0,afval_cluster,121565.306|493013.579,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Lange Vonder,N66d,N66,N,0,0,1,1,0,2,True,0.0
+108,121570,491007,671028.0,46369.0,afval_cluster,121568.507|491006.726,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:3 m3']",Krasseurstraat,N65c,N65,N,1,0,1,0,0,2,True,0.0
+109,121577,492689,577303.0,12251.0,afval_cluster,121577.372|492688.930,['Rest:1'],['Rest:5 m3'],Sandwijk,N66d,N66,N,1,0,0,0,0,1,True,0.0
+110,121602,492889,724355.0,146625.0,afval_cluster,121602.459|492889.121,"['Plastic:1', 'Textiel:1']","['Plastic:4 m3', 'Textiel:3 m3']",Couhornerhoek,N66d,N66,N,0,1,0,0,1,2,True,0.0
+111,121608,491586,700166.0,147194.0,afval_cluster,121608.022|491585.707,['Rest:1'],['Rest:5 m3'],Pomonastraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+112,121617,491431,702106.0,52273.0,afval_cluster,121616.646|491430.813,['Rest:1'],['Rest:5 m3'],Mandarijnenstraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+113,121621,492869,570364.0,136036.0,afval_cluster,121621.094|492868.768,['Rest:1'],['Rest:5 m3'],Couhornerhoek,N66d,N66,N,1,0,0,0,0,1,True,0.0
+114,121636,490955,715006.0,96641.0,afval_cluster,121635.730|490953.765,"['Rest:1', 'Glas:1']","['Rest:5 m3', 'Glas:3 m3']",Krasseurstraat,N65c,N65,N,1,0,0,1,0,2,True,0.0
+115,121655,491287,688080.0,63210.0,afval_cluster,121654.913|491287.001,['Rest:1'],['Rest:5 m3'],Kraandrijverstraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+116,121656,491054,507812.0,59795.0,afval_cluster,121656.439|491053.855,['Rest:1'],['Rest:5 m3'],Tuigerstraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+117,121671,492726,917928.0,95655.0,afval_cluster,121670.674|492726.286,['Rest:1'],['Rest:5 m3'],Sandwijk,N66d,N66,N,1,0,0,0,0,1,True,0.0
+118,121679,491151,738899.0,24485.0,afval_cluster,121679.271|491150.743,['Rest:1'],['Rest:5 m3'],Klinkerweg,N65c,N65,N,1,0,0,0,0,1,True,0.0
+119,121680,490921,488733.0,15689.0,afval_cluster,121679.900|490920.509,['Rest:1'],['Rest:5 m3'],Krasseurstraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+120,121684,491412,579883.0,96346.0,afval_cluster,121683.775|491412.153,['Rest:1'],['Rest:5 m3'],Mandarijnenstraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+121,121694,492987,801171.0,19770.0,afval_cluster,121694.175|492986.720,['Rest:1'],['Rest:5 m3'],Nesserhoek,N66d,N66,N,1,0,0,0,0,1,True,0.0
+122,121706,491717,579618.0,73130.0,afval_cluster,121706.136|491716.619,['Rest:1'],['Rest:5 m3'],Pomonastraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+123,121717,492557,525851.0,53981.0,afval_cluster,121716.611|492557.102,"['Glas:1', 'Papier:1', 'Plastic:1']","['Glas:3 m3', 'Papier:3 m3', 'Plastic:4 m3']",Roseboom,N66d,N66,N,0,1,1,1,0,3,True,0.0
+124,121720,490960,569108.0,121944.0,afval_cluster,121720.418|490959.687,"['Glas:1', 'Papier:1', 'Plastic:1']","['Glas:3 m3', 'Papier:3 m3', 'Plastic:4 m3']",Nageljongenstraat,N65c,N65,N,0,1,1,1,0,3,True,0.0
+125,121723,490885,673644.0,144624.0,afval_cluster,121723.470|490884.530,['Rest:1'],['Rest:5 m3'],Krasseurstraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+126,121729,491044,684525.0,67619.0,afval_cluster,121728.651|491043.627,['Rest:1'],['Rest:5 m3'],Tuigerstraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+127,121748,491508,588319.0,78918.0,afval_cluster,121747.571|491507.893,['Papier:1'],['Papier:3 m3'],Pruimenstraat,N65c,N65,N,0,0,1,0,0,1,True,0.0
+128,121750,491516,722924.0,28981.0,afval_cluster,121749.679|491516.071,['Glas:1'],['Glas:3 m3'],Pruimenstraat,N65c,N65,N,0,0,0,1,0,1,True,0.0
+129,121753,491771,734108.0,52547.0,afval_cluster,121753.315|491771.073,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Druivenstraat,N65c,N65,N,0,0,1,1,0,2,True,0.0
+130,121754,491115,788280.0,139498.0,afval_cluster,121753.771|491114.783,['Rest:1'],['Rest:5 m3'],Nageljongenstraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+131,121761,490856,865662.0,120679.0,afval_cluster,121760.584|490856.217,['Rest:1'],['Rest:5 m3'],Krasseurstraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+132,121764,491567,644029.0,12570.0,afval_cluster,121764.077|491567.176,['Rest:1'],['Rest:5 m3'],Abrikozenstraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+133,121770,490947,602118.0,28457.0,afval_cluster,121770.436|490946.938,['Rest:1'],['Rest:5 m3'],Scheepsbouwweg,N65c,N65,N,1,0,0,0,0,1,True,0.0
+134,121780,491810,941815.0,137149.0,afval_cluster,121780.357|491809.643,['Rest:1'],['Rest:5 m3'],Pomonastraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+135,121790,491660,743438.0,20370.0,afval_cluster,121789.618|491660.486,['Rest:1'],['Rest:5 m3'],Abrikozenstraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+136,121796,490920,673887.0,162059.0,afval_cluster,121795.864|490919.717,"['Rest:1', 'Glas:1', 'Papier:1', 'Textiel:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3', 'Textiel:3 m3']",Vlakkerweg,N65d,N65,N,1,0,1,1,1,4,True,0.0
+137,121799,488938,698165.0,8602.0,afval_cluster,121799.252|488938.154,"['Glas:1', 'Papier:1']","['Glas:5 m3', 'Papier:5 m3']",Overhoeksparklaan,N71h,N71,N,0,0,1,1,0,2,True,0.0
+138,121808,492370,552726.0,103566.0,afval_cluster,121807.672|492369.889,['Rest:1'],['Rest:5 m3'],Hoopende Swaen,N67a,N67,N,1,0,0,0,0,1,True,0.0
+139,121815,490815,483494.0,91163.0,afval_cluster,121813.172|490814.873,['Rest:1'],['Rest:5 m3'],Krasseurstraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+140,121827,492634,922016.0,56945.0,afval_cluster,121826.514|492634.312,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Halteriastraat,N67a,N67,N,1,0,1,1,0,3,True,0.0
+141,121832,492429,501766.0,39900.0,afval_cluster,121831.989|492429.344,['Rest:1'],['Rest:5 m3'],Hoopende Swaen,N67a,N67,N,1,0,0,0,0,1,True,0.0
+142,121843,492799,702723.0,124637.0,afval_cluster,121843.480|492799.492,['Rest:1'],['Rest:5 m3'],Pieter A. van Heijningestraat,N67b,N67,N,1,0,0,0,0,1,True,0.0
+143,121854,490784,572749.0,271.0,afval_cluster,121853.571|490782.783,['Rest:1'],['Rest:5 m3'],Ponserstraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+144,121857,488863,701135.0,74536.0,afval_cluster,121857.192|488862.983,"['Papier:1', 'Plastic:1']","['Papier:5 m3', 'Plastic:5 m3']",Spadinalaan,N71h,N71,N,0,1,1,0,0,2,True,0.0
+145,121860,492709,585107.0,148.0,afval_cluster,121860.082|492708.986,['Rest:1'],['Rest:5 m3'],Pieter A. van Heijningestraat,N67b,N67,N,1,0,0,0,0,1,True,0.0
+146,121880,491692,629639.0,23382.0,afval_cluster,121880.120|491691.553,['Rest:1'],['Rest:5 m3'],Sinaasappelstraat,N65c,N65,N,1,0,0,0,0,1,True,0.0
+147,121883,492916,958443.0,54364.0,afval_cluster,121883.402|492916.457,['Rest:1'],['Rest:5 m3'],Gebroeders A. en B. Wolfswinkelweg,N67b,N67,N,1,0,0,0,0,1,True,0.0
+148,121884,490929,812328.0,128037.0,afval_cluster,121884.320|490928.992,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Annabellaweg,N65d,N65,N,1,0,1,1,0,3,True,0.0
+149,121885,488731,852816.0,162698.0,afval_cluster,121885.378|488731.462,"['Papier:1', 'Plastic:1']","['Papier:5 m3', 'Plastic:5 m3']",Overhoeksparklaan,N71h,N71,N,0,1,1,0,0,2,True,0.0
+150,121891,488962,580604.0,104796.0,afval_cluster,121890.725|488962.030,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Spadinalaan,N71h,N71,N,1,1,0,0,0,2,True,0.0
+151,121893,490845,587617.0,50704.0,afval_cluster,121892.643|490845.337,['Rest:1'],['Rest:5 m3'],Vlakkerweg,N65d,N65,N,1,0,0,0,0,1,True,0.0
+152,121896,488866,617491.0,73643.0,afval_cluster,121895.684|488865.776,['Rest:2'],['Rest:10 m3'],Spadinalaan,N71h,N71,N,2,0,0,0,0,2,True,0.0
+153,121910,492499,545907.0,63619.0,afval_cluster,121910.106|492498.655,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Walvisvaart,N67a,N67,N,1,0,1,1,0,3,True,0.0
+154,121918,490990,741967.0,83380.0,afval_cluster,121917.769|490990.359,['Rest:1'],['Rest:5 m3'],Boomgaardlaan,N65d,N65,N,1,0,0,0,0,1,True,0.0
+155,121924,490893,689768.0,119203.0,afval_cluster,121923.855|490892.741,['Rest:1'],['Rest:5 m3'],Tuinderijlaan,N65d,N65,N,1,0,0,0,0,1,True,0.0
+156,121927,492621,525574.0,23146.0,afval_cluster,121926.998|492621.379,['Rest:1'],['Rest:5 m3'],Keratellastraat,N67a,N67,N,1,0,0,0,0,1,True,0.0
+157,121955,488752,867579.0,144999.0,afval_cluster,121954.963|488751.659,['Rest:2'],['Rest:10 m3'],Céramiquelaan,N71h,N71,N,2,0,0,0,0,2,True,0.0
+158,121963,491548,610584.0,86521.0,afval_cluster,121963.290|491547.723,['Rest:1'],['Rest:5 m3'],Moestuinlaan,N65d,N65,N,1,0,0,0,0,1,True,0.0
+159,121973,491092,882407.0,73500.0,afval_cluster,121973.213|491092.377,['Rest:1'],['Rest:5 m3'],Boomgaardlaan,N65d,N65,N,1,0,0,0,0,1,True,0.0
+160,121984,492703,866179.0,155988.0,afval_cluster,121983.988|492703.336,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Thomas Prinslaan,N67b,N67,N,0,0,1,1,0,2,True,0.0
+161,121984,492708,565087.0,21026.0,afval_cluster,121984.116|492707.775,['Rest:1'],['Rest:5 m3'],Thomas Prinslaan,N67b,N67,N,1,0,0,0,0,1,True,0.0
+162,121986,492863,916728.0,42311.0,afval_cluster,121985.950|492862.761,['Rest:1'],['Rest:5 m3'],Gebroeders A. en B. Wolfswinkelweg,N67b,N67,N,1,0,0,0,0,1,True,0.0
+163,122004,490959,845102.0,40592.0,afval_cluster,122004.383|490958.840,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:5 m3']",Tuinderijlaan,N65d,N65,N,1,0,1,0,0,2,True,0.0
+164,122025,491114,880744.0,77372.0,afval_cluster,122025.292|491113.734,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Tuinderijlaan,N65d,N65,N,1,1,1,1,0,4,True,0.0
+165,122026,491251,739503.0,110369.0,afval_cluster,122026.160|491250.614,['Rest:1'],['Rest:5 m3'],Goudbalpad,N65d,N65,N,1,0,0,0,0,1,True,0.0
+166,122045,488691,879400.0,22039.0,afval_cluster,122045.389|488690.608,"['Rest:3', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:15 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Bercylaan,N71h,N71,N,3,1,1,1,0,6,True,0.0
+167,122057,491363,639414.0,157847.0,afval_cluster,122056.963|491362.667,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:4 m3']",Kampervenuspad,N65d,N65,N,1,0,1,0,0,2,True,0.0
+168,122069,491409,576105.0,95825.0,afval_cluster,122069.311|491408.743,['Rest:1'],['Rest:5 m3'],Juttepeerpad,N65d,N65,N,1,0,0,0,0,1,True,0.0
+169,122073,490237,665913.0,127499.0,afval_cluster,122073.162|490237.129,"['Rest:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Monnikskapstraat,N71c,N71,N,1,1,1,0,0,3,True,0.0
+170,122089,491473,600099.0,26045.0,afval_cluster,122088.501|491472.140,"['Rest:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Winterjanpad,N65d,N65,N,1,1,1,0,0,3,True,0.0
+171,122097,491051,907699.0,68530.0,afval_cluster,122096.855|491050.851,['Rest:1'],['Rest:5 m3'],Tuinderijlaan,N65d,N65,N,1,0,0,0,0,1,True,0.0
+172,122100,492702,552028.0,130629.0,afval_cluster,122099.733|492702.128,['Rest:1'],['Rest:5 m3'],Nathan F. Israëlweg,N67b,N67,N,1,0,0,0,0,1,True,0.0
+173,122101,491202,933169.0,159155.0,afval_cluster,122100.759|491202.370,['Rest:1'],['Rest:5 m3'],Sterappelstraat,N65d,N65,N,1,0,0,0,0,1,True,0.0
+174,122104,492546,728162.0,23376.0,afval_cluster,122104.244|492545.731,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3', 'Plastic:4 m3']",Stentorstraat,N67a,N67,N,1,1,1,1,0,4,True,0.0
+175,122111,491421,585373.0,120673.0,afval_cluster,122111.203|491420.560,['Rest:2'],['Rest:10 m3'],Boomgaardlaan,N65d,N65,N,2,0,0,0,0,2,True,0.0
+176,122132,490677,926573.0,88723.0,afval_cluster,122132.030|490676.745,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Buiksloterbreek,N70e,N70,N,1,1,0,0,0,2,True,0.0
+177,122136,489532,603430.0,90584.0,afval_cluster,122136.385|489532.395,['Textiel:1'],['Textiel:3 m3'],Distelweg,N71g,N71,N,0,0,0,0,1,1,True,0.0
+178,122147,490190,516720.0,153394.0,afval_cluster,122147.240|490190.052,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:5 m3', 'Papier:5 m3']",Monnikskapstraat,N71c,N71,N,1,0,1,1,0,3,True,0.0
+179,122164,491354,637109.0,147235.0,afval_cluster,122163.869|491353.904,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:5 m3']",Notarisappelstraat,N65d,N65,N,1,0,1,0,0,2,True,0.0
+180,122186,491103,782605.0,37137.0,afval_cluster,122186.443|491102.770,['Rest:1'],['Rest:5 m3'],Jonathanhof,N65d,N65,N,1,0,0,0,0,1,True,0.0
+181,122187,491323,578553.0,159206.0,afval_cluster,122187.005|491323.179,['Rest:1'],['Rest:5 m3'],Bellefleurhof,N65d,N65,N,1,0,0,0,0,1,True,0.0
+182,122201,490632,854978.0,130912.0,afval_cluster,122200.691|490632.030,['Rest:1'],['Rest:5 m3'],Buiksloterbreek,N70e,N70,N,1,0,0,0,0,1,True,0.0
+183,122219,492402,501360.0,33016.0,afval_cluster,122219.188|492401.673,['Rest:1'],['Rest:5 m3'],Astasiastraat,N67a,N67,N,1,0,0,0,0,1,True,0.0
+184,122220,491267,615592.0,62236.0,afval_cluster,122220.120|491267.424,['Rest:1'],['Rest:5 m3'],Bellefleurhof,N65d,N65,N,1,0,0,0,0,1,True,0.0
+185,122222,488542,910628.0,118519.0,afval_cluster,122222.281|488541.737,['Plastic:1'],['Plastic:4 m3'],Tolhuisweg,N60a,N60,N,0,1,0,0,0,1,True,0.0
+186,122224,489992,594130.0,23258.0,afval_cluster,122224.249|489992.034,"['Rest:3', 'Glas:2', 'Papier:2', 'Plastic:1']","['Rest:15 m3', 'Glas:8 m3', 'Papier:8 m3', 'Plastic:5 m3']",Ridderspoorweg,N71c,N71,N,3,1,2,2,0,8,True,0.0
+187,122224,491165,871189.0,9728.0,afval_cluster,122223.816|491165.243,['Rest:1'],['Rest:5 m3'],Kaneelappelstraat,N65d,N65,N,1,0,0,0,0,1,True,0.0
+188,122238,492642,876511.0,128893.0,afval_cluster,122238.076|492641.967,['Rest:1'],['Rest:5 m3'],Johannes J. Glasweg,N67b,N67,N,1,0,0,0,0,1,True,0.0
+189,122271,489105,512748.0,48843.0,afval_cluster,122271.043|489104.902,['Rest:1'],['Rest:5 m3'],Ranonkelkade,N60a,N60,N,1,0,0,0,0,1,True,0.0
+190,122278,489274,514440.0,108515.0,afval_cluster,122278.311|489273.860,['Rest:1'],['Rest:5 m3'],Ranonkelkade,N60a,N60,N,1,0,0,0,0,1,True,0.0
+191,122302,492555,665254.0,21255.0,afval_cluster,122301.819|492554.509,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Stentorstraat,N67a,N67,N,1,0,1,1,0,3,True,0.0
+192,122305,488984,895554.0,141334.0,afval_cluster,122305.493|488983.590,"['Rest:2', 'Papier:2']","['Rest:10 m3', 'Papier:10 m3']",Ranonkelkade,N60a,N60,N,2,0,2,0,0,4,True,0.0
+193,122314,490559,665429.0,62670.0,afval_cluster,122314.408|490559.318,['Rest:1'],['Rest:5 m3'],Buiksloterbreek,N70e,N70,N,1,0,0,0,0,1,True,0.0
+194,122327,489407,898753.0,79100.0,afval_cluster,122326.752|489407.328,['Rest:1'],['Rest:5 m3'],Ranonkelkade,N60a,N60,N,1,0,0,0,0,1,True,0.0
+195,122340,488741,705428.0,133379.0,afval_cluster,122339.549|488740.901,['Rest:1'],['Rest:5 m3'],Laanweg,N60a,N60,N,1,0,0,0,0,1,True,0.0
+196,122346,489324,877343.0,14506.0,afval_cluster,122346.089|489323.637,['Rest:1'],['Rest:5 m3'],Lavendelstraat,N60a,N60,N,1,0,0,0,0,1,True,0.0
+197,122347,489078,914972.0,31493.0,afval_cluster,122346.550|489077.519,['Rest:1'],['Rest:5 m3'],Magnoliastraat,N60a,N60,N,1,0,0,0,0,1,True,0.0
+198,122352,489434,484468.0,716.0,afval_cluster,122351.959|489433.965,['Rest:1'],['Rest:5 m3'],Distelweg,N60a,N60,N,1,0,0,0,0,1,True,0.0
+199,122387,489171,586301.0,108069.0,afval_cluster,122387.313|489170.882,['Rest:1'],['Rest:5 m3'],Heimansweg,N60a,N60,N,1,0,0,0,0,1,True,0.0
+200,122394,489983,548221.0,107841.0,afval_cluster,122393.977|489983.292,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:5 m3']",Hulstweg,N71c,N71,N,1,0,1,0,0,2,True,0.0
+201,122404,489243,710411.0,93433.0,afval_cluster,122403.668|489242.531,['Rest:1'],['Rest:5 m3'],Lupineplein,N60a,N60,N,1,0,0,0,0,1,True,0.0
+202,122413,489529,746836.0,17872.0,afval_cluster,122413.179|489528.714,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Distelkade,N60a,N60,N,1,0,1,1,0,3,True,0.0
+203,122420,490494,540901.0,100252.0,afval_cluster,122420.055|490493.582,['Rest:1'],['Rest:5 m3'],Buiksloterbreek,N70e,N70,N,1,0,0,0,0,1,True,0.0
+204,122421,489036,693329.0,159493.0,afval_cluster,122421.058|489036.017,"['Rest:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Jasmijnstraat,N60a,N60,N,1,1,1,0,0,3,True,0.0
+205,122435,489339,918198.0,55823.0,afval_cluster,122434.847|489339.087,"['Rest:1', 'Plastic:1', 'Textiel:1']","['Rest:5 m3', 'Plastic:4 m3', 'Textiel:3 m3']",Distelweg,N60a,N60,N,1,1,0,0,1,3,True,0.0
+206,122439,489349,734758.0,119824.0,afval_cluster,122439.119|489348.758,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Distelweg,N60a,N60,N,1,0,1,1,0,3,True,0.0
+207,122456,490478,501321.0,137567.0,afval_cluster,122455.618|490478.127,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Buiksloterbreek,N70e,N70,N,1,1,0,0,0,2,True,0.0
+208,122465,488372,866022.0,25248.0,afval_cluster,122464.565|488371.755,['Rest:1'],['Rest:5 m3'],IJplein,N61a,N61,N,1,0,0,0,0,1,True,0.0
+209,122469,489145,957865.0,90527.0,afval_cluster,122468.874|489144.919,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:3 m3']",Van der Pekstraat,N60a,N60,N,1,0,1,0,0,2,True,0.0
+210,122472,490888,931337.0,29633.0,afval_cluster,122471.528|490888.350,"['Rest:2', 'Plastic:1']","['Rest:10 m3', 'Plastic:5 m3']",Loodskotterhof,N70a,N70,N,2,1,0,0,0,3,True,0.0
+211,122479,489257,680342.0,111244.0,afval_cluster,122478.757|489257.201,['Rest:1'],['Rest:5 m3'],Bremstraat,N60a,N60,N,1,0,0,0,0,1,True,0.0
+212,122483,488858,922879.0,59924.0,afval_cluster,122482.865|488858.416,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:3 m3']",Laanweg,N60a,N60,N,1,0,1,0,0,2,True,0.0
+213,122484,489010,928066.0,159125.0,afval_cluster,122483.856|489009.829,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:3 m3']",Jasmijnstraat,N60a,N60,N,1,0,1,0,0,2,True,0.0
+214,122512,489477,720759.0,112418.0,afval_cluster,122511.684|489477.229,['Rest:1'],['Rest:5 m3'],Distelkruisstraat,N60a,N60,N,1,0,0,0,0,1,True,0.0
+215,122520,490744,879507.0,160317.0,afval_cluster,122519.902|490744.482,"['Rest:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Schoenerstraat,N70a,N70,N,1,1,1,0,0,3,True,0.0
+216,122520,491034,831951.0,785.0,afval_cluster,122520.389|491034.228,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Loggerhof,N70a,N70,N,1,1,0,0,0,2,True,0.0
+217,122523,488432,652830.0,112973.0,afval_cluster,122522.916|488432.071,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",IJplein,N61a,N61,N,1,0,1,1,0,3,True,0.0
+218,122531,489109,579016.0,145523.0,afval_cluster,122530.597|489108.773,"['Rest:1', 'Glas:1']","['Rest:5 m3', 'Glas:3 m3']",Van der Pekstraat,N60a,N60,N,1,0,0,1,0,2,True,0.0
+219,122534,489356,546848.0,58347.0,afval_cluster,122533.933|489355.611,['Rest:1'],['Rest:5 m3'],Distelweg,N60a,N60,N,1,0,0,0,0,1,True,0.0
+220,122547,489041,909859.0,77883.0,afval_cluster,122546.865|489040.725,['Rest:1'],['Rest:5 m3'],Jac. P. Thijsseplein,N60a,N60,N,1,0,0,0,0,1,True,0.0
+221,122548,490958,629691.0,36202.0,afval_cluster,122548.021|490957.597,"['Rest:2', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:10 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Botterstraat,N70a,N70,N,2,1,1,1,0,5,True,0.0
+222,122557,488973,568456.0,924.0,afval_cluster,122556.934|488973.442,['Rest:1'],['Rest:5 m3'],Meidoornplein,N60a,N60,N,1,0,0,0,0,1,True,0.0
+223,122560,490603,708868.0,36344.0,afval_cluster,122559.995|490603.005,['Papier:1'],['Papier:5 m3'],Buiksloterbreek,N70e,N70,N,0,0,1,0,0,1,True,0.0
+224,122570,490198,539480.0,94794.0,afval_cluster,122569.561|490197.957,['Rest:1'],['Rest:5 m3'],Heggerankweg,N60b,N60,N,1,0,0,0,0,1,True,0.0
+225,122570,490592,729971.0,45028.0,afval_cluster,122570.635|490591.986,"['Rest:1', 'Glas:1', 'Plastic:1']","['Rest:5 m3', 'Glas:5 m3', 'Plastic:5 m3']",Buiksloterbreek,N70e,N70,N,1,1,0,1,0,3,True,0.0
+226,122579,491075,881166.0,102972.0,afval_cluster,122579.466|491075.266,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Loggerhof,N70a,N70,N,1,1,0,0,0,2,True,0.0
+227,122590,488923,858795.0,158301.0,afval_cluster,122590.121|488923.362,"['Rest:1', 'Glas:1', 'Plastic:1']","['Rest:5 m3', 'Glas:3 m3', 'Plastic:4 m3']",Laanweg,N60a,N60,N,1,1,0,1,0,3,True,0.0
+228,122592,489413,528250.0,94738.0,afval_cluster,122591.853|489413.012,['Rest:1'],['Rest:5 m3'],Distelkade,N60a,N60,N,1,0,0,0,0,1,True,0.0
+229,122608,489092,588598.0,148530.0,afval_cluster,122607.553|489091.866,['Rest:1'],['Rest:5 m3'],Jac. P. Thijsseplein,N60a,N60,N,1,0,0,0,0,1,True,0.0
+230,122615,490427,610965.0,142725.0,afval_cluster,122614.523|490426.953,['Rest:1'],['Rest:5 m3'],Marjoleinstraat,N60c,N60,N,1,0,0,0,0,1,True,0.0
+231,122622,489187,622524.0,21791.0,afval_cluster,122622.465|489186.747,['Rest:1'],['Rest:5 m3'],Malvastraat,N60a,N60,N,1,0,0,0,0,1,True,0.0
+232,122632,489030,562110.0,36295.0,afval_cluster,122632.014|489029.859,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Meidoornplein,N60a,N60,N,1,0,1,1,0,3,True,0.0
+233,122638,490797,678590.0,104354.0,afval_cluster,122638.020|490796.736,['Rest:1'],['Rest:5 m3'],Viermasterstraat,N70a,N70,N,1,0,0,0,0,1,True,0.0
+234,122639,491066,954021.0,10560.0,afval_cluster,122639.366|491066.196,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Botterstraat,N70a,N70,N,1,1,1,1,0,4,True,0.0
+235,122644,489332,908663.0,10038.0,afval_cluster,122644.469|489331.615,"['Rest:2', 'Papier:1']","['Rest:10 m3', 'Papier:5 m3']",Gentiaanstraat,N60a,N60,N,2,0,1,0,0,3,True,0.0
+236,122646,490539,555633.0,136601.0,afval_cluster,122645.564|490538.834,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Marjoleinstraat,N70f,N70,N,1,0,1,1,0,3,True,0.0
+237,122647,488446,719062.0,92702.0,afval_cluster,122646.652|488446.212,"['Rest:1', 'Glas:2', 'Papier:1']","['Rest:5 m3', 'Glas:6 m3', 'Papier:3 m3']",IJplein,N61a,N61,N,1,0,1,2,0,4,True,0.0
+238,122648,491127,783516.0,832.0,afval_cluster,122647.958|491126.643,"['Rest:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Treilerhof,N70a,N70,N,1,1,1,0,0,3,True,0.0
+239,122659,488538,614863.0,87345.0,afval_cluster,122658.626|488538.300,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Ooievaarsweg,N61b,N61,N,1,1,0,0,0,2,True,0.0
+240,122661,490338,580904.0,40447.0,afval_cluster,122661.120|490338.300,['Rest:1'],['Rest:5 m3'],Floraweg,N60c,N60,N,1,0,0,0,0,1,True,0.0
+241,122662,488369,683623.0,137289.0,afval_cluster,122661.718|488369.196,['Rest:1'],['Rest:5 m3'],IJplein,N61a,N61,N,1,0,0,0,0,1,True,0.0
+242,122668,491038,868293.0,159596.0,afval_cluster,122667.806|491038.380,['Rest:1'],['Rest:5 m3'],Dekschuitstraat,N70a,N70,N,1,0,0,0,0,1,True,0.0
+243,122677,488665,543718.0,166167.0,afval_cluster,122676.698|488664.687,['Rest:1'],['Rest:5 m3'],Reigerweg,N61b,N61,N,1,0,0,0,0,1,True,0.0
+244,122682,490139,602632.0,106.0,afval_cluster,122681.510|490138.901,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Kamperfoelieweg,N60b,N60,N,1,1,1,1,0,4,True,0.0
+245,122697,491180,796800.0,46068.0,afval_cluster,122696.686|491180.454,"['Rest:2', 'Plastic:2']","['Rest:10 m3', 'Plastic:10 m3']",Aakstraat,N70a,N70,N,2,2,0,0,0,4,True,0.0
+246,122701,488437,734268.0,60074.0,afval_cluster,122701.195|488437.028,['Rest:1'],['Rest:5 m3'],IJplein,N61a,N61,N,1,0,0,0,0,1,True,0.0
+247,122713,490552,610538.0,766.0,afval_cluster,122712.671|490551.653,['Rest:1'],['Rest:5 m3'],Marjoleinstraat,N70f,N70,N,1,0,0,0,0,1,True,0.0
+248,122720,489044,544773.0,127659.0,afval_cluster,122720.464|489043.647,['Rest:1'],['Rest:5 m3'],Heimansweg,N60a,N60,N,1,0,0,0,0,1,True,0.0
+249,122720,491044,792914.0,19551.0,afval_cluster,122720.298|491044.204,['Rest:2'],['Rest:10 m3'],Dekschuitstraat,N70a,N70,N,2,0,0,0,0,2,True,0.0
+250,122722,489926,848698.0,33177.0,afval_cluster,122722.250|489925.908,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Heggerankweg,N60b,N60,N,1,0,1,1,0,3,True,0.0
+251,122730,488472,714417.0,74399.0,afval_cluster,122729.597|488471.994,['Plastic:1'],['Plastic:4 m3'],Meeuwenlaan,N61b,N61,N,0,1,0,0,0,1,True,0.0
+252,122730,488547,692204.0,6043.0,afval_cluster,122730.199|488547.194,"['Rest:1', 'Glas:1']","['Rest:5 m3', 'Glas:3 m3']",Spreeuwenpark,N61b,N61,N,1,0,0,1,0,2,True,0.0
+253,122730,490148,911093.0,69484.0,afval_cluster,122730.292|490148.278,['Rest:1'],['Rest:5 m3'],Dotterbloemstraat,N60c,N60,N,1,0,0,0,0,1,True,0.0
+254,122730,490826,849112.0,55645.0,afval_cluster,122730.044|490826.158,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Klipperstraat,N70a,N70,N,1,0,1,1,0,3,True,0.0
+255,122733,489463,882831.0,103268.0,afval_cluster,122733.466|489463.473,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Mosplein,N60b,N60,N,0,0,1,1,0,2,True,0.0
+256,122736,491148,857481.0,113659.0,afval_cluster,122735.883|491148.336,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Banne Buikslootlaan,N70a,N70,N,0,0,1,1,0,2,True,0.0
+257,122741,489251,664968.0,21622.0,afval_cluster,122740.637|489251.042,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Gentiaanplein,N60a,N60,N,1,0,1,1,0,3,True,0.0
+258,122747,489712,700963.0,95600.0,afval_cluster,122746.762|489711.887,['Rest:1'],['Rest:5 m3'],Heggerankweg,N60b,N60,N,1,0,0,0,0,1,True,0.0
+259,122749,491217,725793.0,122444.0,afval_cluster,122748.909|491217.170,['Rest:1'],['Rest:5 m3'],Banne Buikslootlaan,N70a,N70,N,1,0,0,0,0,1,True,0.0
+260,122750,490644,782941.0,78998.0,afval_cluster,122750.021|490644.252,['Rest:1'],['Rest:5 m3'],Pinasstraat,N70b,N70,N,1,0,0,0,0,1,True,0.0
+261,122756,489192,923799.0,43060.0,afval_cluster,122756.417|489191.744,['Rest:1'],['Rest:5 m3'],Resedastraat,N60a,N60,N,1,0,0,0,0,1,True,0.0
+262,122764,490246,753587.0,85908.0,afval_cluster,122764.153|490246.151,['Rest:1'],['Rest:5 m3'],Pinksterbloemstraat,N60c,N60,N,1,0,0,0,0,1,True,0.0
+263,122767,491165,856316.0,72330.0,afval_cluster,122766.763|491164.791,['Rest:1'],['Rest:5 m3'],Statenjachtstraat,N70a,N70,N,1,0,0,0,0,1,True,0.0
+264,122772,489319,631129.0,106949.0,afval_cluster,122772.017|489319.456,['Rest:2'],['Rest:9 m3'],Mosveld,N60a,N60,N,2,0,0,0,0,2,True,0.0
+265,122775,488338,556394.0,137833.0,afval_cluster,122775.141|488337.527,"['Rest:1', 'Glas:1']","['Rest:5 m3', 'Glas:3 m3']",Gieterij,N61a,N61,N,1,0,0,1,0,2,True,0.0
+266,122776,490141,596695.0,65038.0,afval_cluster,122776.383|490140.734,['Rest:1'],['Rest:5 m3'],Dotterbloemstraat,N60c,N60,N,1,0,0,0,0,1,True,0.0
+267,122788,490396,913935.0,115075.0,afval_cluster,122788.224|490395.689,"['Rest:1', 'Glas:1']","['Rest:5 m3', 'Glas:3 m3']",Wederikpad,N60c,N60,N,1,0,0,1,0,2,True,0.0
+268,122791,488792,838438.0,63109.0,afval_cluster,122790.989|488791.809,['Rest:1'],['Rest:5 m3'],Kraaienplein,N61b,N61,N,1,0,0,0,0,1,True,0.0
+269,122793,490936,541642.0,73245.0,afval_cluster,122793.323|490935.648,['Rest:1'],['Rest:5 m3'],Lichterstraat,N70a,N70,N,1,0,0,0,0,1,True,0.0
+270,122793,491327,785667.0,166098.0,afval_cluster,122792.552|491327.097,['Rest:1'],['Rest:5 m3'],Crabschuytstraat,N70a,N70,N,1,0,0,0,0,1,True,0.0
+271,122794,488690,611467.0,122816.0,afval_cluster,122794.403|488689.700,"['Rest:2', 'Plastic:1']","['Rest:10 m3', 'Plastic:5 m3']",Nachtegaalstraat,N61b,N61,N,2,1,0,0,0,3,True,0.0
+272,122796,489225,722884.0,70146.0,afval_cluster,122795.859|489224.867,['Rest:1'],['Rest:5 m3'],Zilverschoonstraat,N60a,N60,N,1,0,0,0,0,1,True,0.0
+273,122802,489851,820903.0,23371.0,afval_cluster,122801.658|489851.393,['Rest:1'],['Rest:5 m3'],Kamperfoelieweg,N60b,N60,N,1,0,0,0,0,1,True,0.0
+274,122804,490620,775225.0,106455.0,afval_cluster,122803.812|490620.189,['Rest:1'],['Rest:5 m3'],Pinasstraat,N70b,N70,N,1,0,0,0,0,1,True,0.0
+275,122806,490981,641909.0,58215.0,afval_cluster,122805.607|490981.492,['Rest:1'],['Rest:5 m3'],Dekschuitstraat,N70a,N70,N,1,0,0,0,0,1,True,0.0
+276,122809,489148,750919.0,164336.0,afval_cluster,122809.013|489147.895,['Rest:1'],['Rest:5 m3'],Wingerdweg,N60a,N60,N,1,0,0,0,0,1,True,0.0
+277,122810,488623,538878.0,2518.0,afval_cluster,122810.055|488623.180,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:3 m3']",Spreeuwenpark,N61b,N61,N,1,0,1,0,0,2,True,0.0
+278,122813,489983,751600.0,19703.0,afval_cluster,122813.274|489983.437,['Rest:1'],['Rest:5 m3'],Kamperfoelieweg,N60c,N60,N,1,0,0,0,0,1,True,0.0
+279,122813,491402,914407.0,134334.0,afval_cluster,122812.792|491402.213,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:4 m3']",IJdoornlaan,N70a,N70,N,1,0,1,0,0,2,True,0.0
+280,122818,491293,966980.0,67456.0,afval_cluster,122817.573|491292.651,['Plastic:1'],['Plastic:4 m3'],Banne Buikslootlaan,N70a,N70,N,0,1,0,0,0,1,True,0.0
+281,122819,490149,489945.0,23374.0,afval_cluster,122818.544|490148.503,['Rest:1'],['Rest:5 m3'],Korenbloemstraat,N60c,N60,N,1,0,0,0,0,1,True,0.0
+282,122821,491125,913244.0,46088.0,afval_cluster,122820.575|491125.094,['Rest:1'],['Rest:5 m3'],Statenjachtstraat,N70a,N70,N,1,0,0,0,0,1,True,0.0
+283,122825,489546,901460.0,141356.0,afval_cluster,122825.421|489545.772,['Rest:1'],['Rest:5 m3'],Berberisstraat,N60b,N60,N,1,0,0,0,0,1,True,0.0
+284,122829,489904,915555.0,80404.0,afval_cluster,122828.611|489904.260,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1', 'Textiel:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3', 'Plastic:4 m3', 'Textiel:3 m3']",Kamperfoelieweg,N60c,N60,N,1,1,1,1,1,5,True,0.0
+285,122836,489719,844245.0,81020.0,afval_cluster,122835.923|489719.438,"['Rest:1', 'Glas:1']","['Rest:5 m3', 'Glas:3 m3']",Hortensiastraat,N60b,N60,N,1,0,0,1,0,2,True,0.0
+286,122840,488827,948410.0,137067.0,afval_cluster,122840.207|488827.005,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Adelaarsweg,N61b,N61,N,0,0,1,1,0,2,True,0.0
+287,122843,491252,657246.0,47876.0,afval_cluster,122842.875|491252.278,['Textiel:1'],['Textiel:3 m3'],Bezaanjachtplein,N70b,N70,N,0,0,0,0,1,1,True,0.0
+288,122845,489393,930734.0,109749.0,afval_cluster,122844.869|489393.286,['Rest:1'],['Rest:5 m3'],Mosveld,N60b,N60,N,1,0,0,0,0,1,True,0.0
+289,122846,488275,885972.0,146034.0,afval_cluster,122845.647|488274.997,['Rest:1'],['Rest:5 m3'],Smederij,N61a,N61,N,1,0,0,0,0,1,True,0.0
+290,122847,491179,810383.0,123.0,afval_cluster,122846.651|491179.246,['Rest:1'],['Rest:5 m3'],Bezaanjachtplein,N70b,N70,N,1,0,0,0,0,1,True,0.0
+291,122851,490803,906141.0,102176.0,afval_cluster,122851.462|490803.427,"['Rest:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Fluitschipstraat,N70b,N70,N,1,1,1,0,0,3,True,0.0
+292,122853,488583,502767.0,50685.0,afval_cluster,122853.076|488583.221,['Rest:1'],['Rest:5 m3'],Spreeuwenpark,N61b,N61,N,1,0,0,0,0,1,True,0.0
+293,122853,488843,633446.0,74958.0,afval_cluster,122853.011|488842.900,['Rest:1'],['Rest:5 m3'],Adelaarsweg,N61b,N61,N,1,0,0,0,0,1,True,0.0
+294,122854,489267,942986.0,37098.0,afval_cluster,122854.178|489266.750,"['Rest:2', 'Glas:1', 'Papier:1', 'Plastic:1', 'Textiel:1']","['Rest:9 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:4 m3', 'Textiel:3 m3']",Mosveld,N60a,N60,N,2,1,1,1,1,6,True,0.0
+295,122859,490340,694165.0,23532.0,afval_cluster,122859.331|490339.804,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Floraweg,N60c,N60,N,1,0,1,1,0,3,True,0.0
+296,122864,489039,695649.0,27830.0,afval_cluster,122864.136|489038.661,['Rest:1'],['Rest:5 m3'],Buiksloterweg,N60a,N60,N,1,0,0,0,0,1,True,0.0
+297,122867,489632,675963.0,68214.0,afval_cluster,122867.141|489632.334,['Rest:1'],['Rest:5 m3'],Ribesstraat,N60b,N60,N,1,0,0,0,0,1,True,0.0
+298,122881,491080,522536.0,145694.0,afval_cluster,122880.651|491079.866,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Statenjachtstraat,N70a,N70,N,1,1,0,0,0,2,True,0.0
+299,122883,489874,503420.0,116942.0,afval_cluster,122883.362|489874.047,['Rest:1'],['Rest:5 m3'],Latherusstraat,N60b,N60,N,1,0,0,0,0,1,True,0.0
+300,122890,490700,890491.0,163976.0,afval_cluster,122889.745|490700.376,['Rest:1'],['Rest:5 m3'],Schepenlaan,N70b,N70,N,1,0,0,0,0,1,True,0.0
+301,122893,491098,758548.0,133188.0,afval_cluster,122893.069|491098.006,['Rest:1'],['Rest:5 m3'],Statenjachtstraat,N70b,N70,N,1,0,0,0,0,1,True,0.0
+302,122897,488372,598705.0,132587.0,afval_cluster,122896.731|488372.216,['Rest:1'],['Rest:5 m3'],Het Dok,N61a,N61,N,1,0,0,0,0,1,True,0.0
+303,122899,490885,721864.0,146142.0,afval_cluster,122899.243|490884.997,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Fregatstraat,N70b,N70,N,1,1,0,0,0,2,True,0.0
+304,122903,490094,559904.0,96307.0,afval_cluster,122903.039|490094.276,['Rest:1'],['Rest:5 m3'],Sneeuwbalstraat,N60c,N60,N,1,0,0,0,0,1,True,0.0
+305,122909,489941,554454.0,32623.0,afval_cluster,122909.129|489940.987,['Rest:1'],['Rest:5 m3'],Nigellestraat,N60c,N60,N,1,0,0,0,0,1,True,0.0
+306,122916,490614,544997.0,45063.0,afval_cluster,122916.439|490614.053,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Spyridon Louisweg,N70b,N70,N,0,0,1,1,0,2,True,0.0
+307,122918,491463,597379.0,51151.0,afval_cluster,122917.923|491462.953,"['Rest:2', 'Plastic:1']","['Rest:10 m3', 'Plastic:5 m3']",Voorsteven,N70c,N70,N,2,1,0,0,0,3,True,0.0
+308,122920,488505,826373.0,58497.0,afval_cluster,122919.592|488505.346,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:3 m3']",Gedempte Insteekhaven,N61a,N61,N,1,0,1,0,0,2,True,0.0
+309,122926,491641,645347.0,147716.0,afval_cluster,122926.370|491641.449,['Rest:1'],['Rest:5 m3'],Voordek,N70c,N70,N,1,0,0,0,0,1,True,0.0
+310,122927,488821,850513.0,67543.0,afval_cluster,122926.770|488820.934,['Rest:1'],['Rest:5 m3'],Eksterstraat,N61b,N61,N,1,0,0,0,0,1,True,0.0
+311,122930,489449,706429.0,90730.0,afval_cluster,122929.984|489448.948,['Rest:1'],['Rest:5 m3'],Andoornstraat,N60b,N60,N,1,0,0,0,0,1,True,0.0
+312,122932,489736,543098.0,95381.0,afval_cluster,122931.951|489735.570,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:3 m3']",Duindoornplein,N60b,N60,N,1,0,1,0,0,2,True,0.0
+313,122932,490200,735177.0,49840.0,afval_cluster,122932.353|490199.517,['Rest:1'],['Rest:5 m3'],Ereprijsstraat,N60c,N60,N,1,0,0,0,0,1,True,0.0
+314,122933,490800,813320.0,201.0,afval_cluster,122933.221|490800.124,['Rest:1'],['Rest:5 m3'],Schepenlaan,N70b,N70,N,1,0,0,0,0,1,True,0.0
+315,122948,489135,494371.0,42419.0,afval_cluster,122948.028|489134.969,['Rest:1'],['Rest:5 m3'],Buiksloterweg,N60a,N60,N,1,0,0,0,0,1,True,0.0
+316,122949,490118,745583.0,57291.0,afval_cluster,122948.591|490117.958,['Rest:1'],['Rest:5 m3'],Aurikelstraat,N60c,N60,N,1,0,0,0,0,1,True,0.0
+317,122959,490374,884542.0,130789.0,afval_cluster,122958.887|490374.276,['Rest:1'],['Rest:5 m3'],Floraweg,N60c,N60,N,1,0,0,0,0,1,True,0.0
+318,122963,488298,787368.0,38586.0,afval_cluster,122962.768|488297.644,['Rest:1'],['Rest:5 m3'],Buitenzagerij,N61a,N61,N,1,0,0,0,0,1,True,0.0
+319,122966,488923,635423.0,128048.0,afval_cluster,122965.887|488923.169,['Rest:1'],['Rest:5 m3'],Adelaarsweg,N61b,N61,N,1,0,0,0,0,1,True,0.0
+320,122966,491015,516662.0,115667.0,afval_cluster,122965.767|491015.270,['Plastic:2'],['Plastic:10 m3'],Statenjachtstraat,N70b,N70,N,0,2,0,0,0,2,True,0.0
+321,122973,491457,516207.0,36953.0,afval_cluster,122972.293|491456.662,"['Rest:2', 'Papier:1']","['Rest:10 m3', 'Papier:5 m3']",Overslaghof,N70c,N70,N,2,0,1,0,0,3,True,0.0
+322,122979,490904,559817.0,79776.0,afval_cluster,122979.054|490904.074,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Schepenlaan,N70b,N70,N,1,1,0,0,0,2,True,0.0
+323,122981,490063,614135.0,36779.0,afval_cluster,122980.685|490062.728,['Rest:1'],['Rest:5 m3'],Aurikelstraat,N60c,N60,N,1,0,0,0,0,1,True,0.0
+324,122986,488580,643730.0,40178.0,afval_cluster,122985.871|488579.521,['Rest:1'],['Rest:5 m3'],Bankwerkerij,N61a,N61,N,1,0,0,0,0,1,True,0.0
+325,122987,488407,920079.0,120636.0,afval_cluster,122987.270|488406.894,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Het Dok,N61a,N61,N,1,0,1,1,0,3,True,0.0
+326,122992,488482,859412.0,112631.0,afval_cluster,122992.177|488481.533,['Rest:1'],['Rest:5 m3'],Het Dok,N61a,N61,N,1,0,0,0,0,1,True,0.0
+327,122998,489445,607009.0,55382.0,afval_cluster,122997.666|489445.308,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Andoornstraat,N60b,N60,N,1,0,1,1,0,3,True,0.0
+328,123001,490622,875004.0,77102.0,afval_cluster,123000.554|490622.166,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Spyridon Louisweg,N70b,N70,N,1,1,0,0,0,2,True,0.0
+329,123010,491008,902099.0,97164.0,afval_cluster,123009.603|491007.616,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:5 m3']",Statenjachtstraat,N70b,N70,N,1,0,1,0,0,2,True,0.0
+330,123015,489569,862564.0,5478.0,afval_cluster,123015.163|489568.850,['Rest:1'],['Rest:5 m3'],Wingerdweg,N60b,N60,N,1,0,0,0,0,1,True,0.0
+331,123015,489904,851871.0,92186.0,afval_cluster,123014.992|489903.658,['Rest:1'],['Rest:5 m3'],Aurikelstraat,N60c,N60,N,1,0,0,0,0,1,True,0.0
+332,123015,491587,500599.0,10412.0,afval_cluster,123015.058|491587.226,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Voordek,N70c,N70,N,1,1,1,1,0,4,True,0.0
+333,123018,488620,604282.0,117846.0,afval_cluster,123018.271|488620.246,['Rest:1'],['Rest:5 m3'],Motorwal,N61a,N61,N,1,0,0,0,0,1,True,0.0
+334,123018,490143,604497.0,63911.0,afval_cluster,123018.233|490143.020,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Wingerdweg,N60c,N60,N,0,0,1,1,0,2,True,0.0
+335,123026,490874,819976.0,133657.0,afval_cluster,123026.409|490874.088,['Textiel:1'],['Textiel:3 m3'],Lucien Gaudinstraat,N70b,N70,N,0,0,0,0,1,1,True,0.0
+336,123028,490321,913553.0,94599.0,afval_cluster,123027.778|490320.843,['Rest:1'],['Rest:5 m3'],Bitterzoetstraat,N60c,N60,N,1,0,0,0,0,1,True,0.0
+337,123034,490732,567663.0,71369.0,afval_cluster,123033.005|490731.301,['Rest:1'],['Rest:5 m3'],John Kellypad,N70b,N70,N,1,0,0,0,0,1,True,0.0
+338,123034,490909,582662.0,659.0,afval_cluster,123034.070|490909.462,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Lucien Gaudinstraat,N70b,N70,N,1,0,1,1,0,3,True,0.0
+339,123042,491536,965110.0,53452.0,afval_cluster,123042.270|491536.395,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Overslag,N70c,N70,N,1,1,1,1,0,4,True,0.0
+340,123046,489817,526272.0,57779.0,afval_cluster,123045.640|489817.115,['Rest:1'],['Rest:5 m3'],Wingerdweg,N60b,N60,N,1,0,0,0,0,1,True,0.0
+341,123047,489675,532520.0,106824.0,afval_cluster,123047.195|489675.327,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Wingerdweg,N60b,N60,N,1,0,1,1,0,3,True,0.0
+342,123047,491155,958258.0,12679.0,afval_cluster,123046.879|491155.065,"['Rest:4', 'Papier:2', 'Plastic:2']","['Rest:20 m3', 'Papier:10 m3', 'Plastic:10 m3']",Banneplein,N70b,N70,N,4,2,2,0,0,8,True,0.0
+343,123048,490081,734836.0,126879.0,afval_cluster,123047.937|490081.318,['Rest:1'],['Rest:5 m3'],Wingerdweg,N60c,N60,N,1,0,0,0,0,1,True,0.0
+344,123050,490200,572675.0,131624.0,afval_cluster,123049.992|490199.884,['Rest:1'],['Rest:5 m3'],Bitterzoetstraat,N60c,N60,N,1,0,0,0,0,1,True,0.0
+345,123053,491396,790227.0,115652.0,afval_cluster,123052.816|491396.274,['Rest:2'],['Rest:10 m3'],Binnenvaart,N70c,N70,N,2,0,0,0,0,2,True,0.0
+346,123055,491220,678379.0,529.0,afval_cluster,123055.445|491219.587,"['Rest:2', 'Plastic:2']","['Rest:10 m3', 'Plastic:10 m3']",IJdoornlaan,N70b,N70,N,2,2,0,0,0,4,True,0.0
+347,123061,491772,617110.0,119747.0,afval_cluster,123061.097|491772.018,"['Rest:2', 'Plastic:1']","['Rest:10 m3', 'Plastic:5 m3']",Midscheeps,N70c,N70,N,2,1,0,0,0,3,True,0.0
+348,123080,488875,944586.0,86107.0,afval_cluster,123080.478|488874.625,['Rest:1'],['Rest:5 m3'],Zwanenplein,N61b,N61,N,1,0,0,0,0,1,True,0.0
+349,123080,491378,556650.0,64167.0,afval_cluster,123079.643|491378.476,['Plastic:1'],['Plastic:5 m3'],Binnenvaart,N70c,N70,N,0,1,0,0,0,1,True,0.0
+350,123081,489937,871158.0,165199.0,afval_cluster,123080.829|489936.635,['Rest:1'],['Rest:5 m3'],Wingerdweg,N60c,N60,N,1,0,0,0,0,1,True,0.0
+351,123082,488582,545048.0,64581.0,afval_cluster,123081.544|488581.694,['Rest:1'],['Rest:5 m3'],Motorwal,N61a,N61,N,1,0,0,0,0,1,True,0.0
+352,123082,488781,916678.0,9867.0,afval_cluster,123081.896|488781.345,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:3 m3']",Ganzenweg,N61b,N61,N,1,0,1,0,0,2,True,0.0
+353,123082,488939,849746.0,154650.0,afval_cluster,123082.122|488938.935,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Zwanenplein,N61b,N61,N,1,0,1,1,0,3,True,0.0
+354,123082,490846,835424.0,41068.0,afval_cluster,123081.500|490845.828,['Rest:1'],['Rest:5 m3'],Sonja Heniepad,N70b,N70,N,1,0,0,0,0,1,True,0.0
+355,123082,491038,556497.0,22054.0,afval_cluster,123082.166|491037.516,"['Rest:1', 'Glas:1', 'Plastic:1']","['Rest:5 m3', 'Glas:5 m3', 'Plastic:5 m3']",Ankerplaats,N70b,N70,N,1,1,0,1,0,3,True,0.0
+356,123088,488684,809557.0,89855.0,afval_cluster,123087.959|488684.261,"['Glas:2', 'Papier:2']","['Glas:6 m3', 'Papier:8 m3']",Meeuwenlaan,N61a,N61,N,0,0,2,2,0,4,True,0.0
+357,123096,490211,735435.0,78260.0,afval_cluster,123095.772|490211.158,"['Plastic:1', 'Textiel:1']","['Plastic:4 m3', 'Textiel:3 m3']",Kalmoesstraat,N60c,N60,N,0,1,0,0,1,2,True,0.0
+358,123097,491699,785062.0,108943.0,afval_cluster,123096.690|491698.954,"['Rest:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Midscheeps,N70c,N70,N,1,1,1,0,0,3,True,0.0
+359,123100,488699,733623.0,39933.0,afval_cluster,123099.749|488699.367,"['Plastic:3', 'Textiel:1']","['Plastic:12 m3', 'Textiel:3 m3']",Motorkade,N61a,N61,N,0,3,0,0,1,4,True,0.0
+360,123110,488430,681659.0,45125.0,afval_cluster,123109.501|488430.210,['Rest:1'],['Rest:5 m3'],Motorwal,N61a,N61,N,1,0,0,0,0,1,True,0.0
+361,123113,490278,605915.0,38046.0,afval_cluster,123113.331|490277.818,['Rest:1'],['Rest:5 m3'],Kalmoesstraat,N60c,N60,N,1,0,0,0,0,1,True,0.0
+362,123128,488333,502012.0,113081.0,afval_cluster,123127.535|488332.901,['Rest:1'],['Rest:5 m3'],Motorwal,N61a,N61,N,1,0,0,0,0,1,True,0.0
+363,123133,490994,818298.0,68385.0,afval_cluster,123133.062|490994.310,"['Rest:2', 'Plastic:1']","['Rest:10 m3', 'Plastic:5 m3']",Statenjachtstraat,N70b,N70,N,2,1,0,0,0,3,True,0.0
+364,123137,491472,515990.0,94091.0,afval_cluster,123136.525|491472.466,"['Rest:2', 'Plastic:1']","['Rest:10 m3', 'Plastic:5 m3']",Overslag,N70c,N70,N,2,1,0,0,0,3,True,0.0
+365,123149,489058,505839.0,33063.0,afval_cluster,123149.466|489057.983,"['Rest:1', 'Glas:1']","['Rest:5 m3', 'Glas:3 m3']",Adelaarsweg,N61b,N61,N,1,0,0,1,0,2,True,0.0
+366,123154,491062,742271.0,923.0,afval_cluster,123154.005|491061.910,['Glas:1'],['Glas:3 m3'],Statenjachtstraat,N70b,N70,N,0,0,0,1,0,1,True,0.0
+367,123156,490902,575423.0,31058.0,afval_cluster,123156.164|490901.902,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Lucien Gaudinstraat,N70b,N70,N,1,1,0,0,0,2,True,0.0
+368,123177,491978,897296.0,1247.0,afval_cluster,123177.458|491978.424,['Rest:1'],['Rest:5 m3'],Achtersteven,N70c,N70,N,1,0,0,0,0,1,True,0.0
+369,123179,491806,874156.0,157071.0,afval_cluster,123178.928|491805.860,"['Rest:2', 'Papier:2', 'Plastic:1']","['Rest:10 m3', 'Papier:10 m3', 'Plastic:5 m3']",Tussendek,N70c,N70,N,2,1,2,0,0,5,True,0.0
+370,123186,491695,568532.0,112240.0,afval_cluster,123185.991|491694.899,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Fokkemast,N70c,N70,N,1,1,0,0,0,2,True,0.0
+371,123187,490562,858055.0,21017.0,afval_cluster,123187.155|490561.667,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:5 m3']",Spyridon Louisweg,N70b,N70,N,1,0,1,0,0,2,True,0.0
+372,123207,490692,532910.0,110441.0,afval_cluster,123207.312|490692.205,['Rest:1'],['Rest:5 m3'],Fanny Durackstraat,N70b,N70,N,1,0,0,0,0,1,True,0.0
+373,123223,491092,888443.0,114259.0,afval_cluster,123223.315|491091.790,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",IJdoornlaan,N70b,N70,N,1,1,1,1,0,4,True,0.0
+374,123223,491572,715000.0,100482.0,afval_cluster,123222.555|491572.055,"['Rest:2', 'Glas:1', 'Plastic:1']","['Rest:10 m3', 'Glas:5 m3', 'Plastic:5 m3']",Zeevaarthof,N70c,N70,N,2,1,0,1,0,4,True,0.0
+375,123235,490809,914948.0,95512.0,afval_cluster,123235.172|490809.012,['Rest:1'],['Rest:5 m3'],Jesse Owenshof,N70b,N70,N,1,0,0,0,0,1,True,0.0
+376,123237,491820,872579.0,9336.0,afval_cluster,123237.351|491820.155,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Westerlengte,N70d,N70,N,1,1,0,0,0,2,True,0.0
+377,123244,488782,677097.0,103710.0,afval_cluster,123243.607|488781.798,['Rest:1'],['Rest:5 m3'],Kievitstraat,N61b,N61,N,1,0,0,0,0,1,True,0.0
+378,123253,491738,840976.0,73401.0,afval_cluster,123253.497|491737.848,"['Rest:2', 'Plastic:1']","['Rest:10 m3', 'Plastic:5 m3']",Vlaggemast,N70d,N70,N,2,1,0,0,0,3,True,0.0
+379,123266,491284,919330.0,118171.0,afval_cluster,123266.066|491284.150,['Rest:3'],['Rest:9 m3'],Bramzeilhof,N70d,N70,N,3,0,0,0,0,3,True,0.0
+380,123272,490664,900327.0,104471.0,afval_cluster,123271.519|490663.717,"['Rest:1', 'Glas:1', 'Plastic:1']","['Rest:5 m3', 'Glas:5 m3', 'Plastic:5 m3']",Fanny Durackstraat,N70b,N70,N,1,1,0,1,0,3,True,0.0
+381,123273,491923,638451.0,3183.0,afval_cluster,123273.074|491922.737,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Achtersteven,N70c,N70,N,1,1,1,1,0,4,True,0.0
+382,123279,491613,493027.0,107713.0,afval_cluster,123278.534|491612.951,"['Rest:2', 'Papier:1', 'Plastic:1']","['Rest:10 m3', 'Papier:5 m3', 'Plastic:5 m3']",Zeevaart,N70c,N70,N,2,1,1,0,0,4,True,0.0
+383,123286,489001,571241.0,79094.0,afval_cluster,123286.173|489001.129,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:3 m3']",Kievitstraat,N61b,N61,N,1,0,1,0,0,2,True,0.0
+384,123299,491628,939688.0,126581.0,afval_cluster,123299.080|491628.407,['Textiel:1'],['Textiel:3 m3'],Zeevaarthof,N70c,N70,N,0,0,0,0,1,1,True,0.0
+385,123302,488851,538723.0,52970.0,afval_cluster,123301.686|488851.424,['Rest:1'],['Rest:5 m3'],Wielewaalstraat,N61b,N61,N,1,0,0,0,0,1,True,0.0
+386,123313,489100,546086.0,31654.0,afval_cluster,123312.590|489100.094,['Rest:1'],['Rest:5 m3'],Pelikaanstraat,N61c,N61,N,1,0,0,0,0,1,True,0.0
+387,123326,489191,844742.0,72875.0,afval_cluster,123325.881|489190.547,"['Rest:1', 'Glas:1']","['Rest:5 m3', 'Glas:3 m3']",Adelaarsweg,N61c,N61,N,1,0,0,1,0,2,True,0.0
+388,123337,491200,657139.0,81917.0,afval_cluster,123337.013|491199.581,"['Rest:2', 'Papier:1', 'Plastic:1']","['Rest:10 m3', 'Papier:5 m3', 'Plastic:5 m3']",Bramzeilhof,N70d,N70,N,2,1,1,0,0,4,True,0.0
+389,123338,491379,860532.0,57511.0,afval_cluster,123338.383|491379.243,"['Rest:2', 'Plastic:1']","['Rest:10 m3', 'Plastic:5 m3']",Grootzeilhof,N70d,N70,N,2,1,0,0,0,3,True,0.0
+390,123360,489070,521902.0,94516.0,afval_cluster,123360.016|489069.936,['Rest:1'],['Rest:5 m3'],Meeuwenplein,N61c,N61,N,1,0,0,0,0,1,True,0.0
+391,123376,491854,608220.0,440.0,afval_cluster,123372.890|491852.764,"['Rest:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Noorderbreedte,N70d,N70,N,1,1,1,0,0,3,True,0.0
+392,123385,488877,941912.0,66890.0,afval_cluster,123384.712|488877.250,['Rest:1'],['Rest:5 m3'],Meeuwenlaan,N61b,N61,N,1,0,0,0,0,1,True,0.0
+393,123397,489242,797542.0,87109.0,afval_cluster,123396.831|489242.271,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:3 m3']",Pluvierstraat,N61c,N61,N,1,0,1,0,0,2,True,0.0
+394,123406,491187,912991.0,15408.0,afval_cluster,123406.246|491187.229,"['Rest:2', 'Glas:1', 'Plastic:1']","['Rest:10 m3', 'Glas:5 m3', 'Plastic:5 m3']",Oosterlengte,N70d,N70,N,2,1,0,1,0,4,True,0.0
+395,123411,489124,935564.0,33947.0,afval_cluster,123411.266|489124.281,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:4 m3']",Kolibristraat,N61c,N61,N,1,0,1,0,0,2,True,0.0
+396,123425,488959,850961.0,127200.0,afval_cluster,123424.601|488959.133,['Rest:1'],['Rest:5 m3'],Albatrospad,N61b,N61,N,1,0,0,0,0,1,True,0.0
+397,123429,491501,719813.0,14537.0,afval_cluster,123429.105|491501.104,['Rest:1'],['Rest:5 m3'],Spinaker,N70d,N70,N,1,0,0,0,0,1,True,0.0
+398,123429,491789,570949.0,125894.0,afval_cluster,123429.375|491788.532,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Staghof,N70d,N70,N,1,1,0,0,0,2,True,0.0
+399,123431,489024,892986.0,11093.0,afval_cluster,123431.329|489024.438,['Rest:1'],['Rest:5 m3'],Flamingostraat,N61c,N61,N,1,0,0,0,0,1,True,0.0
+400,123438,491304,713123.0,152786.0,afval_cluster,123438.258|491304.326,"['Rest:2', 'Glas:1', 'Plastic:1']","['Rest:10 m3', 'Glas:5 m3', 'Plastic:5 m3']",Grootzeilhof,N70d,N70,N,2,1,0,1,0,4,True,0.0
+401,123446,489277,754154.0,68703.0,afval_cluster,123445.713|489277.459,['Rest:1'],['Rest:5 m3'],Merelstraat,N61c,N61,N,1,0,0,0,0,1,True,0.0
+402,123478,491275,687393.0,70198.0,afval_cluster,123478.274|491274.770,"['Rest:1', 'Plastic:1', 'Textiel:2']","['Rest:5 m3', 'Plastic:5 m3', 'Textiel:6 m3']",Voordewind,N70d,N70,N,1,1,0,0,2,4,True,0.0
+403,123495,491371,548361.0,112332.0,afval_cluster,123495.418|491371.024,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:4 m3']",Grootzeilhof,N70d,N70,N,1,0,1,0,0,2,True,0.0
+404,123498,489470,513501.0,21603.0,afval_cluster,123497.728|489469.809,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Leeuwarderweg,N61c,N61,N,1,1,0,0,0,2,True,0.0
+405,123510,489070,902598.0,2651.0,afval_cluster,123510.373|489069.556,['Rest:1'],['Rest:5 m3'],Meeuwenlaan,N61c,N61,N,1,0,0,0,0,1,True,0.0
+406,123526,489157,926801.0,77917.0,afval_cluster,123526.357|489156.517,['Rest:1'],['Rest:5 m3'],Pluvierstraat,N61c,N61,N,1,0,0,0,0,1,True,0.0
+407,123529,488974,568497.0,11365.0,afval_cluster,123529.305|488974.176,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:4 m3']",Vogelkade,N61c,N61,N,1,1,0,0,0,2,True,0.0
+408,123534,491705,673425.0,145908.0,afval_cluster,123533.715|491705.474,"['Rest:2', 'Glas:1', 'Plastic:1']","['Rest:10 m3', 'Glas:5 m3', 'Plastic:5 m3']",Stenghof,N70d,N70,N,2,1,0,1,0,4,True,0.0
+409,123545,490076,565298.0,27321.0,afval_cluster,123545.097|490076.384,['Rest:1'],['Rest:5 m3'],Buikslotermeerdijk,N74a,N74,N,1,0,0,0,0,1,True,0.0
+410,123556,491378,666634.0,737.0,afval_cluster,123556.331|491378.093,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Oosterlengte,N70d,N70,N,1,1,0,0,0,2,True,0.0
+411,123578,491691,842972.0,157093.0,afval_cluster,123577.825|491690.551,"['Rest:1', 'Glas:1', 'Plastic:1']","['Rest:5 m3', 'Glas:5 m3', 'Plastic:5 m3']",Noorderbreedte,N70d,N70,N,1,1,0,1,0,3,True,0.0
+412,123583,491462,789870.0,160022.0,afval_cluster,123583.306|491461.740,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Spinakerhof,N70d,N70,N,1,1,1,1,0,4,True,0.0
+413,123611,490420,746710.0,89037.0,afval_cluster,123611.205|490419.532,"['Rest:2', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:10 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",J.H. Hisgenpad,N74b,N74,N,2,1,1,1,0,5,True,0.0
+414,123622,489425,857508.0,10687.0,afval_cluster,123621.735|489424.647,['Papier:1'],['Papier:3 m3'],Waddenweg,N63a,N63,N,0,0,1,0,0,1,True,0.0
+415,123629,489744,592587.0,125131.0,afval_cluster,123628.681|489744.675,"['Rest:1', 'Plastic:1']","['Rest:7 m3', 'Plastic:5 m3']",Waddendijk,N63a,N63,N,1,1,0,0,0,2,True,0.0
+416,123680,491443,534946.0,159429.0,afval_cluster,123679.948|491443.311,"['Glas:1', 'Papier:1', 'Plastic:1']","['Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Reling,N70d,N70,N,0,1,1,1,0,3,True,0.0
+417,123681,491617,566427.0,103887.0,afval_cluster,123680.759|491616.774,"['Rest:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Noorderbreedte,N70d,N70,N,1,1,1,0,0,3,True,0.0
+418,123693,489439,582549.0,15417.0,afval_cluster,123692.661|489438.987,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Hoekschewaardplein,N63a,N63,N,1,1,1,1,0,4,True,0.0
+419,123694,490347,952230.0,2957.0,afval_cluster,123693.981|490346.788,"['Rest:3', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:15 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",J.H. Hisgenpad,N74b,N74,N,3,1,1,1,0,6,True,0.0
+420,123696,489562,726246.0,104403.0,afval_cluster,123695.643|489562.320,['Rest:1'],['Rest:3 m3'],Waddenweg,N63a,N63,N,1,0,0,0,0,1,True,0.0
+421,123697,488858,813355.0,86528.0,afval_cluster,123697.470|488857.623,['Rest:1'],['Rest:5 m3'],Vogelkade,N61c,N61,N,1,0,0,0,0,1,True,0.0
+422,123711,490240,544312.0,57733.0,afval_cluster,123710.854|490240.359,"['Rest:2', 'Papier:1', 'Plastic:1']","['Rest:10 m3', 'Papier:5 m3', 'Plastic:5 m3']",Elzenhagensingel,N74b,N74,N,2,1,1,0,0,4,True,0.0
+423,123715,489039,685649.0,154496.0,afval_cluster,123715.219|489038.774,['Rest:1'],['Rest:5 m3'],Zamenhofstraat,N61d,N61,N,1,0,0,0,0,1,True,0.0
+424,123722,491219,744718.0,54815.0,afval_cluster,123721.581|491219.111,['Rest:1'],['Rest:5 m3'],Berend Boeijingastraat,N74c,N74,N,1,0,0,0,0,1,True,0.0
+425,123748,491550,802811.0,76467.0,afval_cluster,123747.660|491549.562,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Noorderbreedte,N70d,N70,N,1,1,0,0,0,2,True,0.0
+426,123761,489647,935796.0,27227.0,afval_cluster,123761.357|489646.590,['Rest:1'],['Rest:3 m3'],Waddenweg,N63a,N63,N,1,0,0,0,0,1,True,0.0
+427,123771,489274,535295.0,16185.0,afval_cluster,123771.414|489274.077,"['Glas:1', 'Papier:1', 'Plastic:1']","['Glas:4 m3', 'Papier:4 m3', 'Plastic:4 m3']",Meeuwenlaan,N61d,N61,N,0,1,1,1,0,3,True,0.0
+428,123795,490100,644519.0,59790.0,afval_cluster,123794.986|490099.623,['Rest:1'],['Rest:5 m3'],Loenermark,N69c,N69,N,1,0,0,0,0,1,True,0.0
+429,123795,491256,571738.0,41035.0,afval_cluster,123794.919|491255.859,['Rest:1'],['Rest:5 m3'],Diopter,N74c,N74,N,1,0,0,0,0,1,True,0.0
+430,123802,490839,704697.0,98574.0,afval_cluster,123801.568|490838.959,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",G.J. Scheurleerweg,N74c,N74,N,1,0,1,1,0,3,True,0.0
+431,123823,488970,766565.0,47586.0,afval_cluster,123823.210|488969.661,['Rest:1'],['Rest:5 m3'],Vijfde Vogelstraat,N61d,N61,N,1,0,0,0,0,1,True,0.0
+432,123840,491217,907431.0,36993.0,afval_cluster,123839.643|491216.665,['Rest:1'],['Rest:5 m3'],Diopter,N74c,N74,N,1,0,0,0,0,1,True,0.0
+433,123856,490054,689279.0,56560.0,afval_cluster,123856.041|490053.729,['Rest:1'],['Rest:5 m3'],Loenermark,N69c,N69,N,1,0,0,0,0,1,True,0.0
+434,123869,491113,795283.0,49784.0,afval_cluster,123868.843|491113.036,['Rest:1'],['Rest:5 m3'],Berend Boeijingastraat,N74c,N74,N,1,0,0,0,0,1,True,0.0
+435,123885,490183,891719.0,79182.0,afval_cluster,123885.081|490182.863,"['Rest:2', 'Glas:1', 'Papier:1']","['Rest:10 m3', 'Glas:5 m3', 'Papier:5 m3']",Loenermark,N69c,N69,N,2,0,1,1,0,4,True,0.0
+436,123904,491385,681554.0,134502.0,afval_cluster,123904.234|491384.995,['Rest:1'],['Rest:5 m3'],Diopter,N74c,N74,N,1,0,0,0,0,1,True,0.0
+437,123906,491141,494440.0,74619.0,afval_cluster,123906.272|491140.663,"['Rest:1', 'Textiel:1']","['Rest:5 m3', 'Textiel:3 m3']",Willem Noorlanderkade,N74c,N74,N,1,0,0,0,1,2,True,0.0
+438,123908,490119,509950.0,72263.0,afval_cluster,123908.243|490119.092,['Rest:1'],['Rest:5 m3'],Loenermark,N69c,N69,N,1,0,0,0,0,1,True,0.0
+439,123915,490251,671994.0,129826.0,afval_cluster,123914.773|490251.171,['Rest:1'],['Rest:5 m3'],Loenermark,N69c,N69,N,1,0,0,0,0,1,True,0.0
+440,123919,490531,937875.0,46544.0,afval_cluster,123919.240|490531.227,['Rest:1'],['Rest:5 m3'],Gare du Nord,N74b,N74,N,1,0,0,0,0,1,True,0.0
+441,123931,490608,622230.0,3496.0,afval_cluster,123931.381|490608.247,"['Rest:1', 'Glas:1', 'Papier:2', 'Plastic:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:6 m3', 'Plastic:4 m3']",Elzenhagensingel,N74b,N74,N,1,1,2,1,0,5,True,0.0
+442,123932,490834,817398.0,97323.0,afval_cluster,123931.824|490833.709,['Rest:1'],['Rest:5 m3'],B. Merkelbachsingel,N74c,N74,N,1,0,0,0,0,1,True,0.0
+443,123932,491069,766743.0,63148.0,afval_cluster,123931.701|491069.065,['Rest:1'],['Rest:5 m3'],G.J. Scheurleerweg,N74c,N74,N,1,0,0,0,0,1,True,0.0
+444,123933,491181,913379.0,62034.0,afval_cluster,123932.561|491181.091,['Plastic:1'],['Plastic:4 m3'],Daan Roodenburghplein,N74c,N74,N,0,1,0,0,0,1,True,0.0
+445,123945,491191,892115.0,98643.0,afval_cluster,123944.718|491191.392,['Rest:1'],['Rest:5 m3'],Diopter,N74c,N74,N,1,0,0,0,0,1,True,0.0
+446,123989,490912,790952.0,59266.0,afval_cluster,123988.589|490911.908,['Rest:1'],['Rest:5 m3'],B. Merkelbachsingel,N74c,N74,N,1,0,0,0,0,1,True,0.0
+447,123996,491143,709274.0,71445.0,afval_cluster,123995.550|491142.909,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",G.J. Scheurleerweg,N74c,N74,N,1,0,1,1,0,3,True,0.0
+448,124012,490336,611280.0,5871.0,afval_cluster,124011.517|490335.944,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:3 m3']",Loenermark,N69c,N69,N,1,0,1,0,0,2,True,0.0
+449,124027,491183,607185.0,32702.0,afval_cluster,124027.313|491183.015,['Rest:1'],['Rest:5 m3'],G.J. Scheurleerweg,N74c,N74,N,1,0,0,0,0,1,True,0.0
+450,124028,491269,595713.0,94819.0,afval_cluster,124027.615|491269.157,['Rest:1'],['Rest:5 m3'],Diopter,N74c,N74,N,1,0,0,0,0,1,True,0.0
+451,124034,490014,705513.0,63885.0,afval_cluster,124034.244|490014.013,['Rest:1'],['Rest:5 m3'],Benedenlangs,N69k,N69,N,1,0,0,0,0,1,True,0.0
+452,124039,489923,622135.0,86951.0,afval_cluster,124039.078|489922.550,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Bovenover,N69k,N69,N,1,0,1,1,0,3,True,0.0
+453,124074,490990,571857.0,22779.0,afval_cluster,124074.232|490989.870,['Rest:1'],['Rest:5 m3'],J.P. Kloosstraat,N74c,N74,N,1,0,0,0,0,1,True,0.0
+454,124084,490108,550198.0,73997.0,afval_cluster,124084.492|490108.302,['Rest:1'],['Rest:5 m3'],Benedenlangs,N69k,N69,N,1,0,0,0,0,1,True,0.0
+455,124090,489539,576796.0,24273.0,afval_cluster,124090.117|489538.642,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Tiengemetenstraat,N63a,N63,N,1,0,1,1,0,3,True,0.0
+456,124112,489865,887536.0,48685.0,afval_cluster,124111.633|489865.473,['Rest:1'],['Rest:5 m3'],Bovenover,N69k,N69,N,1,0,0,0,0,1,True,0.0
+457,124122,491276,870506.0,107121.0,afval_cluster,124122.353|491275.929,['Rest:1'],['Rest:5 m3'],G.J. Scheurleerweg,N74c,N74,N,1,0,0,0,0,1,True,0.0
+458,124137,490862,642764.0,122102.0,afval_cluster,124137.407|490862.214,"['Rest:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",Gerrit Bronkepad,N74c,N74,N,1,1,1,0,0,3,True,0.0
+459,124155,490214,522328.0,13403.0,afval_cluster,124154.890|490213.753,['Rest:1'],['Rest:5 m3'],Bovenover,N69k,N69,N,1,0,0,0,0,1,True,0.0
+460,124190,489853,916089.0,55900.0,afval_cluster,124190.062|489853.328,['Rest:1'],['Rest:5 m3'],Het Hoogt,N69k,N69,N,1,0,0,0,0,1,True,0.0
+461,124193,491220,700467.0,825.0,afval_cluster,124193.341|491219.594,['Rest:1'],['Rest:5 m3'],H. Stolleplantsoen,N74c,N74,N,1,0,0,0,0,1,True,0.0
+462,124204,491057,803333.0,103340.0,afval_cluster,124203.634|491056.789,['Rest:1'],['Rest:5 m3'],B. Merkelbachsingel,N74c,N74,N,1,0,0,0,0,1,True,0.0
+463,124217,490061,870583.0,1464.0,afval_cluster,124217.193|490061.232,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Bovenover,N69k,N69,N,1,0,1,1,0,3,True,0.0
+464,124227,490199,842891.0,92032.0,afval_cluster,124226.617|490198.982,"['Glas:1', 'Papier:1']","['Glas:4 m3', 'Papier:4 m3']",Buikslotermeerplein,N69j,N69,N,0,0,1,1,0,2,True,0.0
+465,124241,490210,519053.0,101358.0,afval_cluster,124241.195|490210.368,"['Plastic:1', 'Textiel:1']","['Plastic:4 m3', 'Textiel:3 m3']",Buikslotermeerplein,N69j,N69,N,0,1,0,0,1,2,True,0.0
+466,124248,490941,516874.0,24313.0,afval_cluster,124248.257|490941.452,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:5 m3', 'Papier:5 m3']",Jouke Zietsmastraat,N74c,N74,N,1,0,1,1,0,3,True,0.0
+467,124249,490146,848311.0,162000.0,afval_cluster,124249.215|490146.242,['Rest:1'],['Rest:5 m3'],Benedenlangs,N69k,N69,N,1,0,0,0,0,1,True,0.0
+468,124281,489795,723147.0,792.0,afval_cluster,124280.974|489794.945,['Rest:1'],['Rest:5 m3'],Het Hoogt,N69k,N69,N,1,0,0,0,0,1,True,0.0
+469,124293,491140,906965.0,67273.0,afval_cluster,124293.450|491140.032,"['Rest:2', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:10 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",H. Stolleplantsoen,N74c,N74,N,2,1,1,1,0,5,True,0.0
+470,124310,490332,657728.0,54452.0,afval_cluster,124310.433|490331.988,"['Rest:1', 'Textiel:1']","['Rest:5 m3', 'Textiel:3 m3']",Buikslotermeerplein,N69j,N69,N,1,0,0,0,1,2,True,0.0
+471,124333,489760,571444.0,164381.0,afval_cluster,124333.094|489759.926,['Rest:1'],['Rest:5 m3'],Het Laagt,N69k,N69,N,1,0,0,0,0,1,True,0.0
+472,124338,489572,527850.0,23370.0,afval_cluster,124338.431|489572.464,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Grote Diestraat,N62a,N62,N,1,0,1,1,0,3,True,0.0
+473,124343,490569,801543.0,11608.0,afval_cluster,124343.375|490569.183,"['Rest:2', 'Glas:1', 'Papier:1']","['Rest:14 m3', 'Glas:5 m3', 'Papier:5 m3']",H. Cleyndertweg,N69m,N69,N,2,0,1,1,0,4,True,0.0
+474,124345,489977,591505.0,134154.0,afval_cluster,124344.871|489976.608,['Rest:1'],['Rest:5 m3'],Het Laagt,N69k,N69,N,1,0,0,0,0,1,True,0.0
+475,124346,489868,662235.0,155257.0,afval_cluster,124345.727|489868.239,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Het Laagt,N69k,N69,N,1,0,1,1,0,3,True,0.0
+476,124353,490689,789019.0,42837.0,afval_cluster,124353.122|490689.030,['Rest:1'],['Rest:5 m3'],H. Cleyndertweg,N69m,N69,N,1,0,0,0,0,1,True,0.0
+477,124387,490448,621313.0,107332.0,afval_cluster,124386.985|490447.855,['Rest:1'],['Rest:5 m3'],Dijkwater,N69l,N69,N,1,0,0,0,0,1,True,0.0
+478,124389,490568,547051.0,65981.0,afval_cluster,124388.773|490568.154,['Rest:1'],['Rest:5 m3'],H. Cleyndertweg,N69l,N69,N,1,0,0,0,0,1,True,0.0
+479,124416,490769,896652.0,83781.0,afval_cluster,124416.165|490768.727,['Rest:1'],['Rest:5 m3'],H. Cleyndertweg,N69m,N69,N,1,0,0,0,0,1,True,0.0
+480,124424,490066,852000.0,841.0,afval_cluster,124424.157|490065.584,['Rest:1'],['Rest:5 m3'],Buikslotermeerplein,N69j,N69,N,1,0,0,0,0,1,True,0.0
+481,124434,490416,750722.0,13242.0,afval_cluster,124434.475|490415.826,['Rest:1'],['Rest:5 m3'],Dijkwater,N69l,N69,N,1,0,0,0,0,1,True,0.0
+482,124441,489459,794494.0,93908.0,afval_cluster,124440.558|489458.704,['Rest:1'],['Rest:5 m3'],Medemblikstraat,N62a,N62,N,1,0,0,0,0,1,True,0.0
+483,124447,490643,647928.0,136739.0,afval_cluster,124446.650|490642.776,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:4 m3']",H. Cleyndertweg,N69l,N69,N,1,1,0,0,0,2,True,0.0
+484,124469,489432,737126.0,73491.0,afval_cluster,124469.028|489431.579,['Rest:1'],['Rest:5 m3'],Kleine Diestraat,N62a,N62,N,1,0,0,0,0,1,True,0.0
+485,124469,490837,533321.0,128139.0,afval_cluster,124469.041|490836.562,['Rest:1'],['Rest:5 m3'],H. Cleyndertweg,N69m,N69,N,1,0,0,0,0,1,True,0.0
+486,124475,489932,876047.0,45056.0,afval_cluster,124474.624|489931.516,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Het Hoogt,N69k,N69,N,0,0,1,1,0,2,True,0.0
+487,124483,490505,814059.0,91182.0,afval_cluster,124483.064|490505.152,['Rest:1'],['Rest:5 m3'],Bakkerswaal,N69l,N69,N,1,0,0,0,0,1,True,0.0
+488,124490,489564,620374.0,3695.0,afval_cluster,124489.692|489563.537,['Rest:1'],['Rest:5 m3'],Medemblikstraat,N62a,N62,N,1,0,0,0,0,1,True,0.0
+489,124498,490699,702475.0,144828.0,afval_cluster,124498.392|490698.987,['Rest:1'],['Rest:5 m3'],Kampina,N69l,N69,N,1,0,0,0,0,1,True,0.0
+490,124519,489403,633653.0,84832.0,afval_cluster,124518.816|489402.920,['Rest:1'],['Rest:5 m3'],Kleine Diestraat,N62a,N62,N,1,0,0,0,0,1,True,0.0
+491,124519,489619,517714.0,68393.0,afval_cluster,124518.701|489619.178,['Rest:1'],['Rest:5 m3'],Medemblikstraat,N62a,N62,N,1,0,0,0,0,1,True,0.0
+492,124522,489901,736202.0,70808.0,afval_cluster,124521.673|489900.756,['Rest:1'],['Rest:5 m3'],Het Hoogt,N69k,N69,N,1,0,0,0,0,1,True,0.0
+493,124539,490184,575781.0,55941.0,afval_cluster,124538.895|490184.051,['Rest:1'],['Rest:5 m3'],Buikslotermeerplein,N69j,N69,N,1,0,0,0,0,1,True,0.0
+494,124540,490582,881844.0,5325.0,afval_cluster,124539.683|490581.510,['Rest:1'],['Rest:5 m3'],Mastbos,N69l,N69,N,1,0,0,0,0,1,True,0.0
+495,124543,490398,656829.0,79967.0,afval_cluster,124542.953|490397.625,['Rest:1'],['Rest:5 m3'],Hagenau,N69l,N69,N,1,0,0,0,0,1,True,0.0
+496,124561,489725,892603.0,164263.0,afval_cluster,124561.279|489725.204,['Rest:1'],['Rest:5 m3'],Watergangseweg,N62a,N62,N,1,0,0,0,0,1,True,0.0
+497,124580,490293,903816.0,33818.0,afval_cluster,124580.005|490293.238,['Rest:1'],['Rest:5 m3'],Dijkwater,N69l,N69,N,1,0,0,0,0,1,True,0.0
+498,124583,490315,556628.0,88482.0,afval_cluster,124583.061|490315.071,['Glas:1'],['Glas:3 m3'],Dijkwater,N69l,N69,N,0,0,0,1,0,1,True,0.0
+499,124584,490425,951467.0,69281.0,afval_cluster,124583.736|490424.596,['Rest:1'],['Rest:5 m3'],Imbos,N69l,N69,N,1,0,0,0,0,1,True,0.0
+500,124589,490295,800336.0,50025.0,afval_cluster,124589.387|490294.910,['Papier:2'],['Papier:6 m3'],Hildsven,N69l,N69,N,0,0,2,0,0,2,True,0.0
+501,124636,490449,548273.0,93500.0,afval_cluster,124636.136|490449.252,['Rest:1'],['Rest:5 m3'],Mariëndaal,N69l,N69,N,1,0,0,0,0,1,True,0.0
+502,124642,490858,851185.0,65205.0,afval_cluster,124642.022|490858.202,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Amerbos,N69m,N69,N,1,0,1,1,0,3,True,0.0
+503,124652,490780,521159.0,91115.0,afval_cluster,124652.191|490780.377,['Rest:1'],['Rest:5 m3'],Amerbos,N69m,N69,N,1,0,0,0,0,1,True,0.0
+504,124659,489422,585255.0,15913.0,afval_cluster,124658.630|489422.349,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Nieuwendammerstraat,N62a,N62,N,1,0,1,1,0,3,True,0.0
+505,124668,489513,874543.0,144085.0,afval_cluster,124667.523|489512.748,['Rest:1'],['Rest:5 m3'],Enkhuizerplein,N62a,N62,N,1,0,0,0,0,1,True,0.0
+506,124675,490412,838516.0,20744.0,afval_cluster,124675.299|490412.105,['Rest:1'],['Rest:5 m3'],Hildsven,N69l,N69,N,1,0,0,0,0,1,True,0.0
+507,124682,490056,699295.0,33528.0,afval_cluster,124682.054|490055.970,['Rest:1'],['Rest:5 m3'],Olof Palmeplein,N69j,N69,N,1,0,0,0,0,1,True,0.0
+508,124696,489666,734570.0,31043.0,afval_cluster,124696.460|489666.179,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:4 m3']",Watergangseweg,N62a,N62,N,1,1,0,0,0,2,True,0.0
+509,124697,490773,572330.0,72930.0,afval_cluster,124696.868|490773.229,['Rest:1'],['Rest:5 m3'],Amerbos,N69m,N69,N,1,0,0,0,0,1,True,0.0
+510,124715,489992,792584.0,151354.0,afval_cluster,124715.435|489991.937,['Rest:1'],['Rest:5 m3'],Olof Palmeplein,N69j,N69,N,1,0,0,0,0,1,True,0.0
+511,124727,489566,726609.0,112892.0,afval_cluster,124727.245|489566.262,['Rest:1'],['Rest:5 m3'],Enkhuizerstraat,N62a,N62,N,1,0,0,0,0,1,True,0.0
+512,124733,489649,871240.0,1300.0,afval_cluster,124732.688|489648.612,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Watergangseweg,N62a,N62,N,0,0,1,1,0,2,True,0.0
+513,124734,490169,679385.0,3892.0,afval_cluster,124733.918|490169.089,['Rest:1'],['Rest:5 m3'],Slufter,N69j,N69,N,1,0,0,0,0,1,True,0.0
+514,124737,489431,493957.0,693.0,afval_cluster,124736.989|489430.551,['Rest:1'],['Rest:5 m3'],Purmerweg,N62b,N62,N,1,0,0,0,0,1,True,0.0
+515,124739,490532,891602.0,17562.0,afval_cluster,124738.833|490532.258,['Rest:1'],['Rest:5 m3'],Warnsborn,N69l,N69,N,1,0,0,0,0,1,True,0.0
+516,124755,490594,886915.0,92476.0,afval_cluster,124754.545|490593.980,['Rest:1'],['Rest:5 m3'],Mariëndaal,N69l,N69,N,1,0,0,0,0,1,True,0.0
+517,124763,490705,895264.0,135827.0,afval_cluster,124762.958|490704.612,['Rest:1'],['Rest:5 m3'],Amerbos,N69m,N69,N,1,0,0,0,0,1,True,0.0
+518,124770,490224,876308.0,162761.0,afval_cluster,124770.106|490224.177,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Slufter,N69j,N69,N,1,0,1,1,0,3,True,0.0
+519,124781,490411,907583.0,15946.0,afval_cluster,124780.682|490410.730,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Zilverberg,N69l,N69,N,1,0,1,1,0,3,True,0.0
+520,124789,489400,525796.0,141006.0,afval_cluster,124789.465|489399.964,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Purmerplein,N62b,N62,N,1,0,1,1,0,3,True,0.0
+521,124794,489293,745258.0,2075.0,afval_cluster,124794.402|489292.659,['Rest:1'],['Rest:5 m3'],Purmerplein,N62b,N62,N,1,0,0,0,0,1,True,0.0
+522,124808,490705,721599.0,10923.0,afval_cluster,124807.703|490704.542,['Rest:1'],['Rest:5 m3'],Amerbos,N69m,N69,N,1,0,0,0,0,1,True,0.0
+523,124822,489605,940281.0,102038.0,afval_cluster,124821.696|489604.811,['Rest:1'],['Rest:5 m3'],Watergangseweg,N62b,N62,N,1,0,0,0,0,1,True,0.0
+524,124832,489517,952622.0,113765.0,afval_cluster,124831.654|489516.815,['Rest:1'],['Rest:5 m3'],Hensbroekerstraat,N62b,N62,N,1,0,0,0,0,1,True,0.0
+525,124832,490483,825991.0,53828.0,afval_cluster,124832.288|490482.533,"['Rest:1', 'Textiel:1']","['Rest:5 m3', 'Textiel:3 m3']",Warnsborn,N69l,N69,N,1,0,0,0,1,2,True,0.0
+526,124866,489710,931873.0,12836.0,afval_cluster,124865.972|489710.198,['Rest:1'],['Rest:5 m3'],Ilperveldstraat,N68b,N68,N,1,0,0,0,0,1,True,0.0
+527,124876,490630,561983.0,81905.0,afval_cluster,124876.153|490629.652,['Rest:1'],['Rest:5 m3'],Amerbos,N69m,N69,N,1,0,0,0,0,1,True,0.0
+528,124891,490190,637169.0,898.0,afval_cluster,124890.807|490190.082,['Rest:1'],['Rest:5 m3'],Zilverplevierstraat,N69j,N69,N,1,0,0,0,0,1,True,0.0
+529,124893,489315,874906.0,95296.0,afval_cluster,124892.718|489315.112,"['Glas:1', 'Papier:1', 'Plastic:1', 'Textiel:1']","['Glas:3 m3', 'Papier:3 m3', 'Plastic:4 m3', 'Textiel:3 m3']",Purmerplein,N62b,N62,N,0,1,1,1,1,4,True,0.0
+530,124909,489562,899509.0,151876.0,afval_cluster,124909.033|489561.796,['Rest:1'],['Rest:5 m3'],Watergangseweg,N62b,N62,N,1,0,0,0,0,1,True,0.0
+531,124909,490322,549524.0,91360.0,afval_cluster,124908.775|490321.813,['Rest:1'],['Rest:5 m3'],Savelsbos,N69l,N69,N,1,0,0,0,0,1,True,0.0
+532,124925,489191,821987.0,123449.0,afval_cluster,124924.579|489190.867,['Glas:1'],['Glas:3 m3'],Wognumerstraat,N62b,N62,N,0,0,0,1,0,1,True,0.0
+533,124936,490418,696435.0,13728.0,afval_cluster,124936.228|490418.246,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Houdringe,N69l,N69,N,1,0,1,1,0,3,True,0.0
+534,124937,489185,586506.0,38090.0,afval_cluster,124937.056|489185.094,['Rest:1'],['Rest:5 m3'],Wognumerstraat,N62b,N62,N,1,0,0,0,0,1,True,0.0
+535,124937,489733,760697.0,82576.0,afval_cluster,124936.769|489733.259,['Rest:1'],['Rest:5 m3'],Schoorlstraat,N68c,N68,N,1,0,0,0,0,1,True,0.0
+536,124938,489856,837773.0,165628.0,afval_cluster,124938.067|489856.360,['Rest:1'],['Rest:5 m3'],Ilperveldstraat,N68b,N68,N,1,0,0,0,0,1,True,0.0
+537,124944,489648,654888.0,15429.0,afval_cluster,124944.189|489647.573,['Rest:1'],['Rest:5 m3'],Schoorlstraat,N68c,N68,N,1,0,0,0,0,1,True,0.0
+538,124945,490606,718387.0,32573.0,afval_cluster,124944.748|490606.245,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3', 'Plastic:4 m3']",J. Drijverweg,N69m,N69,N,1,1,1,1,0,4,True,0.0
+539,124953,489440,570419.0,42160.0,afval_cluster,124953.241|489440.444,['Rest:1'],['Rest:5 m3'],Ilpendammerstraat,N62b,N62,N,1,0,0,0,0,1,True,0.0
+540,124957,489769,863457.0,117448.0,afval_cluster,124957.270|489768.965,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1', 'Textiel:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3', 'Plastic:4 m3', 'Textiel:3 m3']",Schoorlstraat,N68c,N68,N,1,1,1,1,1,5,True,0.0
+541,124960,489391,723509.0,33022.0,afval_cluster,124960.187|489390.543,['Rest:1'],['Rest:5 m3'],Edammerstraat,N62b,N62,N,1,0,0,0,0,1,True,0.0
+542,124968,490453,696766.0,150025.0,afval_cluster,124968.357|490453.285,['Rest:1'],['Rest:5 m3'],Houdringe,N69l,N69,N,1,0,0,0,0,1,True,0.0
+543,124971,490323,875842.0,76112.0,afval_cluster,124970.849|490322.892,['Rest:1'],['Rest:5 m3'],Spelderholt,N69l,N69,N,1,0,0,0,0,1,True,0.0
+544,125000,489154,965741.0,94178.0,afval_cluster,125000.416|489154.009,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:3 m3']",Wognumerstraat,N62b,N62,N,1,0,1,0,0,2,True,0.0
+545,125016,490539,823350.0,81685.0,afval_cluster,125015.610|490539.034,['Rest:1'],['Rest:5 m3'],Elpermeer,N69m,N69,N,1,0,0,0,0,1,True,0.0
+546,125018,489067,580539.0,48003.0,afval_cluster,125018.068|489066.601,['Rest:1'],['Rest:5 m3'],Stompetorenstraat,N62b,N62,N,1,0,0,0,0,1,True,0.0
+547,125018,489873,630309.0,95514.0,afval_cluster,125018.317|489873.173,['Rest:1'],['Rest:5 m3'],Schoorlstraat,N68c,N68,N,1,0,0,0,0,1,True,0.0
+548,125026,489362,907827.0,137507.0,afval_cluster,125025.586|489361.605,['Rest:1'],['Rest:5 m3'],Beemsterstraat,N62b,N62,N,1,0,0,0,0,1,True,0.0
+549,125028,489489,823537.0,87273.0,afval_cluster,125028.380|489488.700,['Rest:1'],['Rest:5 m3'],Avenhornstraat,N62b,N62,N,1,0,0,0,0,1,True,0.0
+550,125028,489656,745890.0,3969.0,afval_cluster,125027.768|489655.943,['Rest:1'],['Rest:5 m3'],Schoorlstraat,N68c,N68,N,1,0,0,0,0,1,True,0.0
+551,125041,489600,786810.0,70795.0,afval_cluster,125040.896|489600.362,['Rest:1'],['Rest:5 m3'],De Egmondenstraat,N68c,N68,N,1,0,0,0,0,1,True,0.0
+552,125059,490532,705729.0,1134.0,afval_cluster,125058.580|490532.013,['Rest:1'],['Rest:5 m3'],Elpermeer,N69m,N69,N,1,0,0,0,0,1,True,0.0
+553,125066,489733,577621.0,135722.0,afval_cluster,125065.754|489732.793,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Schoorlstraat,N68c,N68,N,0,0,1,1,0,2,True,0.0
+554,125090,489022,848733.0,29226.0,afval_cluster,125089.520|489022.462,['Rest:1'],['Rest:5 m3'],Wognumerstraat,N62b,N62,N,1,0,0,0,0,1,True,0.0
+555,125117,489316,773069.0,93181.0,afval_cluster,125116.632|489316.013,['Rest:1'],['Rest:5 m3'],Edammerstraat,N62b,N62,N,1,0,0,0,0,1,True,0.0
+556,125123,489442,908311.0,113517.0,afval_cluster,125123.471|489441.803,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Watergangseweg,N62b,N62,N,1,0,1,1,0,3,True,0.0
+557,125126,490465,731353.0,6980.0,afval_cluster,125125.966|490465.074,['Rest:1'],['Rest:5 m3'],Elpermeer,N69m,N69,N,1,0,0,0,0,1,True,0.0
+558,125130,488945,814853.0,67193.0,afval_cluster,125129.726|488945.464,['Rest:2'],['Rest:8 m3'],Wognumerstraat,N62b,N62,N,2,0,0,0,0,2,True,0.0
+559,125130,489140,810216.0,129927.0,afval_cluster,125129.505|489139.918,['Rest:1'],['Rest:5 m3'],Monnikendammerweg,N62b,N62,N,1,0,0,0,0,1,True,0.0
+560,125134,488821,896198.0,47648.0,afval_cluster,125134.450|488820.846,['Rest:1'],['Rest:5 m3'],Nieuwendammerdijk,N64d,N64,N,1,0,0,0,0,1,True,0.0
+561,125136,489711,731914.0,141475.0,afval_cluster,125136.371|489711.285,['Rest:1'],['Rest:5 m3'],De Egmondenstraat,N68c,N68,N,1,0,0,0,0,1,True,0.0
+562,125161,489539,837527.0,143008.0,afval_cluster,125160.984|489539.488,['Rest:1'],['Rest:5 m3'],Beemsterstraat,N68c,N68,N,1,0,0,0,0,1,True,0.0
+563,125193,489159,689403.0,209.0,afval_cluster,125192.548|489158.542,['Rest:1'],['Rest:5 m3'],Oosthuizenstraat,N62b,N62,N,1,0,0,0,0,1,True,0.0
+564,125204,490462,919304.0,36353.0,afval_cluster,125204.095|490462.386,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",J.H. van Heekweg,N69m,N69,N,1,0,1,1,0,3,True,0.0
+565,125212,489399,754809.0,109711.0,afval_cluster,125212.439|489398.616,['Rest:1'],['Rest:5 m3'],Blokkerstraat,N62b,N62,N,1,0,0,0,0,1,True,0.0
+566,125212,489671,487398.0,68752.0,afval_cluster,125211.532|489671.129,['Rest:1'],['Rest:5 m3'],Beemsterstraat,N68c,N68,N,1,0,0,0,0,1,True,0.0
+567,125217,490067,719366.0,55924.0,afval_cluster,125216.753|490067.144,['Rest:1'],['Rest:5 m3'],Jisperveldstraat,N68b,N68,N,1,0,0,0,0,1,True,0.0
+568,125218,488879,716944.0,9908.0,afval_cluster,125217.621|488879.041,['Rest:1'],['Rest:5 m3'],Monnikendammerweg,N62b,N62,N,1,0,0,0,0,1,True,0.0
+569,125220,489965,699214.0,71780.0,afval_cluster,125220.059|489964.644,['Rest:1'],['Rest:5 m3'],Jisperveldstraat,N68b,N68,N,1,0,0,0,0,1,True,0.0
+570,125226,488827,775320.0,160004.0,afval_cluster,125226.478|488827.439,['Textiel:1'],['Textiel:3 m3'],Nieuwendammerdijk,N64d,N64,N,0,0,0,0,1,1,True,0.0
+571,125240,489067,596679.0,77707.0,afval_cluster,125239.708|489066.572,['Rest:1'],['Rest:5 m3'],Graftdijkerstraat,N62b,N62,N,1,0,0,0,0,1,True,0.0
+572,125241,489552,545064.0,158975.0,afval_cluster,125241.166|489551.980,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Beemsterstraat,N68c,N68,N,0,0,1,1,0,2,True,0.0
+573,125241,489764,599142.0,132746.0,afval_cluster,125240.930|489764.437,['Rest:1'],['Rest:5 m3'],Alkmaarstraat,N68c,N68,N,1,0,0,0,0,1,True,0.0
+574,125246,489561,561753.0,8047.0,afval_cluster,125245.556|489560.923,['Rest:1'],['Rest:5 m3'],Groetstraat,N68c,N68,N,1,0,0,0,0,1,True,0.0
+575,125251,489008,761631.0,76308.0,afval_cluster,125251.360|489007.508,['Rest:1'],['Rest:5 m3'],Monnikendammerplantsoen,N62b,N62,N,1,0,0,0,0,1,True,0.0
+576,125253,489012,642325.0,91816.0,afval_cluster,125252.773|489011.516,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Monnikendammerplantsoen,N62b,N62,N,0,0,1,1,0,2,True,0.0
+577,125253,490030,917774.0,308.0,afval_cluster,125252.859|490030.096,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Jisperveldstraat,N68b,N68,N,0,0,1,1,0,2,True,0.0
+578,125254,489168,761666.0,132660.0,afval_cluster,125253.964|489168.408,['Rest:1'],['Rest:5 m3'],Monnikendammerplantsoen,N62b,N62,N,1,0,0,0,0,1,True,0.0
+579,125257,489376,780447.0,75729.0,afval_cluster,125257.098|489376.437,['Rest:1'],['Rest:5 m3'],Watergangseweg,N62b,N62,N,1,0,0,0,0,1,True,0.0
+580,125259,489492,787760.0,149208.0,afval_cluster,125259.473|489491.996,['Rest:1'],['Rest:5 m3'],Groetstraat,N68c,N68,N,1,0,0,0,0,1,True,0.0
+581,125286,490157,931603.0,63317.0,afval_cluster,125285.664|490157.097,['Rest:1'],['Rest:5 m3'],Jisperveldstraat,N68a,N68,N,1,0,0,0,0,1,True,0.0
+582,125302,489254,780829.0,9642.0,afval_cluster,125302.414|489254.287,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Volendammerweg,N62b,N62,N,0,0,1,1,0,2,True,0.0
+583,125302,489355,762521.0,38042.0,afval_cluster,125301.700|489355.150,['Rest:1'],['Rest:5 m3'],Westwouderstraat,N62b,N62,N,1,0,0,0,0,1,True,0.0
+584,125331,490221,775936.0,163281.0,afval_cluster,125331.366|490220.511,['Rest:1'],['Rest:5 m3'],Jisperveldstraat,N68a,N68,N,1,0,0,0,0,1,True,0.0
+585,125341,489505,756377.0,95005.0,afval_cluster,125340.940|489505.393,['Rest:1'],['Rest:5 m3'],Katrijpstraat,N68c,N68,N,1,0,0,0,0,1,True,0.0
+586,125344,490244,557036.0,860.0,afval_cluster,125343.782|490243.699,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Jisperveldstraat,N68a,N68,N,0,0,1,1,0,2,True,0.0
+587,125351,489606,714757.0,68249.0,afval_cluster,125350.618|489606.488,['Rest:1'],['Rest:5 m3'],Groetstraat,N68c,N68,N,1,0,0,0,0,1,True,0.0
+588,125354,489304,546667.0,20579.0,afval_cluster,125353.930|489303.708,['Rest:1'],['Rest:5 m3'],Volendammerweg,N62b,N62,N,1,0,0,0,0,1,True,0.0
+589,125360,489908,697053.0,637.0,afval_cluster,125360.295|489908.165,['Rest:4'],['Rest:20 m3'],IJdoornlaan,N68c,N68,N,4,0,0,0,0,4,True,0.0
+590,125367,490325,731940.0,158420.0,afval_cluster,125367.270|490324.682,['Rest:1'],['Rest:5 m3'],Jisperveldstraat,N68a,N68,N,1,0,0,0,0,1,True,0.0
+591,125401,489456,897608.0,73046.0,afval_cluster,125401.031|489455.721,['Rest:1'],['Rest:5 m3'],Katrijpstraat,N68c,N68,N,1,0,0,0,0,1,True,0.0
+592,125405,489975,531806.0,94057.0,afval_cluster,125405.248|489975.266,"['Glas:1', 'Papier:1', 'Plastic:1']","['Glas:3 m3', 'Papier:4 m3', 'Plastic:4 m3']",IJdoornlaan,N68c,N68,N,0,1,1,1,0,3,True,0.0
+593,125407,489626,894952.0,135459.0,afval_cluster,125407.257|489626.093,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Groetstraat,N68c,N68,N,0,0,1,1,0,2,True,0.0
+594,125413,489638,582339.0,106524.0,afval_cluster,125412.826|489638.182,['Rest:1'],['Rest:5 m3'],Alkmaarstraat,N68c,N68,N,1,0,0,0,0,1,True,0.0
+595,125421,490374,716487.0,22431.0,afval_cluster,125420.643|490373.982,['Rest:1'],['Rest:5 m3'],Jisperveldstraat,N68a,N68,N,1,0,0,0,0,1,True,0.0
+596,125457,490151,627660.0,48637.0,afval_cluster,125456.684|490150.971,['Rest:1'],['Rest:5 m3'],Callantsoogstraat,N68d,N68,N,1,0,0,0,0,1,True,0.0
+597,125469,489295,818623.0,52671.0,afval_cluster,125468.906|489295.496,['Rest:1'],['Rest:5 m3'],De Breekstraat,N68f,N68,N,1,0,0,0,0,1,True,0.0
+598,125492,490339,578829.0,70817.0,afval_cluster,125491.552|490339.445,['Rest:1'],['Rest:5 m3'],Valkkoogstraat,N68d,N68,N,1,0,0,0,0,1,True,0.0
+599,125498,488809,697784.0,25566.0,afval_cluster,125497.675|488808.870,"['Glas:1', 'Papier:1']","['Glas:4 m3', 'Papier:3 m3']",Schellingwouderdijk,N73a,N73,N,0,0,1,1,0,2,True,0.0
+600,125501,490080,515056.0,117704.0,afval_cluster,125500.984|490079.686,['Rest:1'],['Rest:5 m3'],Callantsoogstraat,N68d,N68,N,1,0,0,0,0,1,True,0.0
+601,125510,490179,919049.0,147794.0,afval_cluster,125510.364|490179.039,"['Rest:1', 'Papier:1']","['Rest:5 m3', 'Papier:3 m3']",Ganzenveldstraat,N68d,N68,N,1,0,1,0,0,2,True,0.0
+602,125511,489841,702416.0,140371.0,afval_cluster,125510.510|489840.885,['Rest:1'],['Rest:5 m3'],Duinluststraat,N68c,N68,N,1,0,0,0,0,1,True,0.0
+603,125514,489246,593516.0,1929.0,afval_cluster,125513.710|489246.052,['Rest:1'],['Rest:5 m3'],De Breekstraat,N68f,N68,N,1,0,0,0,0,1,True,0.0
+604,125548,489163,638856.0,4311.0,afval_cluster,125548.088|489162.884,['Rest:1'],['Rest:5 m3'],De Breekstraat,N68f,N68,N,1,0,0,0,0,1,True,0.0
+605,125554,489345,511338.0,123857.0,afval_cluster,125553.532|489344.976,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Volendammerweg,N68f,N68,N,1,0,1,1,0,3,True,0.0
+606,125558,489761,524187.0,127657.0,afval_cluster,125558.234|489761.381,['Rest:1'],['Rest:5 m3'],Bakkumstraat,N68c,N68,N,1,0,0,0,0,1,True,0.0
+607,125561,488913,703989.0,1153.0,afval_cluster,125561.272|488912.607,['Rest:1'],['Rest:5 m3'],Zuiderzeepark,N68f,N68,N,1,0,0,0,0,1,True,0.0
+608,125573,489075,795997.0,124864.0,afval_cluster,125573.493|489075.214,['Rest:1'],['Rest:5 m3'],De Breekstraat,N68f,N68,N,1,0,0,0,0,1,True,0.0
+609,125578,489440,643507.0,86415.0,afval_cluster,125578.378|489439.628,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Waterlandplein,N68c,N68,N,1,0,1,1,0,3,True,0.0
+610,125580,489724,553455.0,948.0,afval_cluster,125580.282|489723.551,['Rest:1'],['Rest:5 m3'],Overveenstraat,N68c,N68,N,1,0,0,0,0,1,True,0.0
+611,125580,490146,950492.0,73215.0,afval_cluster,125580.103|490146.433,['Rest:1'],['Rest:5 m3'],Wildrijkstraat,N68d,N68,N,1,0,0,0,0,1,True,0.0
+612,125591,489415,655874.0,135441.0,afval_cluster,125590.744|489415.133,"['Plastic:1', 'Textiel:1']","['Plastic:4 m3', 'Textiel:3 m3']",Waterlandplein,N68c,N68,N,0,1,0,0,1,2,True,0.0
+613,125596,489686,851081.0,109127.0,afval_cluster,125595.943|489686.124,['Rest:1'],['Rest:5 m3'],Zandvoortstraat,N68c,N68,N,1,0,0,0,0,1,True,0.0
+614,125596,489835,647582.0,166110.0,afval_cluster,125595.740|489834.838,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",IJdoornlaan,N68d,N68,N,1,0,1,1,0,3,True,0.0
+615,125613,489235,691017.0,114723.0,afval_cluster,125612.514|489234.534,['Rest:1'],['Rest:5 m3'],Naardermeerstraat,N68f,N68,N,1,0,0,0,0,1,True,0.0
+616,125616,489658,769256.0,41536.0,afval_cluster,125615.947|489657.594,['Textiel:2'],['Textiel:6 m3'],IJdoornlaan,N68c,N68,N,0,0,0,0,2,2,True,0.0
+617,125618,490063,729805.0,32585.0,afval_cluster,125617.543|490063.329,['Rest:1'],['Rest:5 m3'],Wildrijkstraat,N68d,N68,N,1,0,0,0,0,1,True,0.0
+618,125627,489391,655029.0,147773.0,afval_cluster,125626.608|489390.624,['Rest:1'],['Rest:5 m3'],Naardermeerstraat,N68f,N68,N,1,0,0,0,0,1,True,0.0
+619,125655,489116,539158.0,119658.0,afval_cluster,125655.269|489116.483,['Rest:1'],['Rest:5 m3'],Gooiluststraat,N68f,N68,N,1,0,0,0,0,1,True,0.0
+620,125660,489571,818767.0,44229.0,afval_cluster,125659.707|489570.525,['Rest:1'],['Rest:5 m3'],IJdoornlaan,N68c,N68,N,1,0,0,0,0,1,True,0.0
+621,125660,489799,642046.0,12947.0,afval_cluster,125660.322|489798.732,['Rest:1'],['Rest:5 m3'],Wieringerwaardstraat,N68d,N68,N,1,0,0,0,0,1,True,0.0
+622,125665,489560,702993.0,524.0,afval_cluster,125665.264|489559.521,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",IJdoornlaan,N68c,N68,N,0,0,1,1,0,2,True,0.0
+623,125672,489727,545484.0,10694.0,afval_cluster,125672.354|489727.018,"['Rest:2', 'Glas:1', 'Papier:1']","['Rest:10 m3', 'Glas:5 m3', 'Papier:5 m3']",Wieringerwaardstraat,N68d,N68,N,2,0,1,1,0,4,True,0.0
+624,125692,489242,567074.0,50896.0,afval_cluster,125691.714|489242.259,['Rest:1'],['Rest:5 m3'],Bussumstraat,N68f,N68,N,1,0,0,0,0,1,True,0.0
+625,125701,490096,884717.0,35492.0,afval_cluster,125700.611|490095.500,['Rest:1'],['Rest:5 m3'],Aagtdorperpad,N68d,N68,N,1,0,0,0,0,1,True,0.0
+626,125709,488978,930617.0,86495.0,afval_cluster,125709.131|488977.508,['Rest:1'],['Rest:5 m3'],Zuiderzeepark,N68f,N68,N,1,0,0,0,0,1,True,0.0
+627,125710,489428,800663.0,67228.0,afval_cluster,125710.343|489427.557,['Rest:1'],['Rest:5 m3'],Spanderswoudstraat,N68f,N68,N,1,0,0,0,0,1,True,0.0
+628,125725,489342,876914.0,91501.0,afval_cluster,125724.713|489341.598,['Rest:1'],['Rest:5 m3'],Spanderswoudstraat,N68f,N68,N,1,0,0,0,0,1,True,0.0
+629,125757,489104,743934.0,112248.0,afval_cluster,125756.624|489103.541,['Rest:1'],['Rest:5 m3'],Gooiluststraat,N68f,N68,N,1,0,0,0,0,1,True,0.0
+630,125761,489844,628503.0,48927.0,afval_cluster,125760.882|489844.244,['Rest:1'],['Rest:5 m3'],Wieringerwaardstraat,N68d,N68,N,1,0,0,0,0,1,True,0.0
+631,125781,489945,677204.0,12496.0,afval_cluster,125780.537|489944.781,['Rest:1'],['Rest:5 m3'],Dijkmanshuizenstraat,N68d,N68,N,1,0,0,0,0,1,True,0.0
+632,125863,489754,966347.0,778.0,afval_cluster,125863.444|489754.492,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:4 m3']",Eierlandstraat,N68d,N68,N,1,1,0,0,0,2,True,0.0
+633,125868,489891,807023.0,25120.0,afval_cluster,125867.731|489891.392,['Rest:1'],['Rest:5 m3'],Wieringerwaardstraat,N68d,N68,N,1,0,0,0,0,1,True,0.0
+634,125881,489278,493943.0,102617.0,afval_cluster,125880.723|489277.931,['Rest:1'],['Rest:5 m3'],Hilversumstraat,N68e,N68,N,1,0,0,0,0,1,True,0.0
+635,125887,489795,898706.0,12819.0,afval_cluster,125887.243|489794.758,['Rest:1'],['Rest:5 m3'],Den Helderstraat,N68d,N68,N,1,0,0,0,0,1,True,0.0
+636,125889,489654,604404.0,53523.0,afval_cluster,125888.876|489654.187,['Rest:1'],['Rest:5 m3'],Slootdorpstraat,N68d,N68,N,1,0,0,0,0,1,True,0.0
+637,125917,489661,635967.0,34969.0,afval_cluster,125916.723|489660.532,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Den Burgstraat,N68d,N68,N,0,0,1,1,0,2,True,0.0
+638,125918,489299,956117.0,107553.0,afval_cluster,125918.187|489298.928,['Rest:1'],['Rest:5 m3'],Hilversumstraat,N68e,N68,N,1,0,0,0,0,1,True,0.0
+639,125927,489703,725608.0,81186.0,afval_cluster,125927.236|489703.464,['Rest:1'],['Rest:5 m3'],Eierlandstraat,N68d,N68,N,1,0,0,0,0,1,True,0.0
+640,125940,489805,807697.0,33727.0,afval_cluster,125939.792|489804.920,['Rest:1'],['Rest:5 m3'],Waalenburgsingel,N68d,N68,N,1,0,0,0,0,1,True,0.0
+641,125947,489331,830078.0,77626.0,afval_cluster,125947.498|489330.902,['Rest:1'],['Rest:5 m3'],Hilversumstraat,N68e,N68,N,1,0,0,0,0,1,True,0.0
+642,125954,489415,754850.0,12954.0,afval_cluster,125954.201|489414.688,['Rest:1'],['Rest:5 m3'],Corversbosstraat,N68e,N68,N,1,0,0,0,0,1,True,0.0
+643,125967,489614,884322.0,61617.0,afval_cluster,125967.422|489613.807,['Rest:1'],['Rest:5 m3'],Den Burgstraat,N68d,N68,N,1,0,0,0,0,1,True,0.0
+644,125968,489524,790870.0,133237.0,afval_cluster,125967.957|489524.241,"['Rest:2', 'Papier:1', 'Plastic:1']","['Rest:10 m3', 'Papier:5 m3', 'Plastic:4 m3']",Volendammerweg,N68e,N68,N,2,1,1,0,0,4,True,0.0
+645,125970,489278,517413.0,64763.0,afval_cluster,125969.828|489278.134,['Rest:1'],['Rest:5 m3'],Hilversumstraat,N68e,N68,N,1,0,0,0,0,1,True,0.0
+646,125979,489177,901933.0,133818.0,afval_cluster,125978.502|489177.408,['Rest:1'],['Rest:5 m3'],Hilverbeekstraat,N68e,N68,N,1,0,0,0,0,1,True,0.0
+647,125981,489716,567820.0,7129.0,afval_cluster,125980.989|489716.442,['Rest:1'],['Rest:5 m3'],Waalenburgsingel,N68d,N68,N,1,0,0,0,0,1,True,0.0
+648,126029,489477,866540.0,6426.0,afval_cluster,126028.785|489476.763,['Rest:1'],['Rest:5 m3'],Westerduinenstraat,N68e,N68,N,1,0,0,0,0,1,True,0.0
+649,126038,489203,607399.0,137231.0,afval_cluster,126037.674|489202.696,['Rest:1'],['Rest:5 m3'],Hilverbeekstraat,N68e,N68,N,1,0,0,0,0,1,True,0.0
+650,126044,489309,624283.0,94593.0,afval_cluster,126043.961|489309.480,['Rest:1'],['Rest:5 m3'],Markengouw,N68e,N68,N,1,0,0,0,0,1,True,0.0
+651,126044,489624,711338.0,82485.0,afval_cluster,126044.437|489623.827,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Den Burgstraat,N68d,N68,N,0,0,1,1,0,2,True,0.0
+652,126055,489323,499930.0,102829.0,afval_cluster,126054.630|489322.895,"['Glas:1', 'Papier:1']","['Glas:3 m3', 'Papier:3 m3']",Markengouw,N68e,N68,N,0,0,1,1,0,2,True,0.0
+653,126061,489576,529642.0,160102.0,afval_cluster,126061.409|489575.738,['Rest:1'],['Rest:5 m3'],Waalenburgsingel,N68e,N68,N,1,0,0,0,0,1,True,0.0
+654,126072,489119,876277.0,115037.0,afval_cluster,126072.197|489119.291,"['Rest:1', 'Glas:1', 'Papier:1', 'Plastic:1']","['Rest:5 m3', 'Glas:5 m3', 'Papier:5 m3', 'Plastic:5 m3']",IJsselmeerstraat,N68e,N68,N,1,1,1,1,0,4,True,0.0
+655,126072,489382,822869.0,28103.0,afval_cluster,126071.778|489382.442,['Rest:1'],['Rest:5 m3'],Oosterendstraat,N68e,N68,N,1,0,0,0,0,1,True,0.0
+656,126100,489489,513622.0,13123.0,afval_cluster,126099.790|489489.005,['Rest:1'],['Rest:5 m3'],Waalenburgsingel,N68e,N68,N,1,0,0,0,0,1,True,0.0
+657,126125,489315,563420.0,103215.0,afval_cluster,126124.605|489314.654,['Rest:1'],['Rest:5 m3'],Hilversumstraat,N68e,N68,N,1,0,0,0,0,1,True,0.0
+658,126158,489397,630371.0,164271.0,afval_cluster,126158.227|489397.235,['Rest:1'],['Rest:5 m3'],Oosterendstraat,N68e,N68,N,1,0,0,0,0,1,True,0.0
+659,126196,489172,528263.0,12440.0,afval_cluster,126196.303|489171.715,['Rest:1'],['Rest:5 m3'],IJsselmeerstraat,N68e,N68,N,1,0,0,0,0,1,True,0.0
+660,126370,490954,701596.0,52622.0,afval_cluster,126369.752|490953.864,['Plastic:1'],['Plastic:4 m3'],Nieuwe Gouw,N73h,N73,N,0,1,0,0,0,1,True,0.0
+661,121046,491941,803406.0,108874.0,afval_cluster,121045.860|491941.284,['Rest:1'],['Rest:5 m3'],Orionplantsoen,N65b,N65,N,0,1,0,0,0,1,True,999.0
+662,125706,489307,911987.0,46246.0,afval_cluster,125706.159|489307.195,['Rest:1'],['Rest:5 m3'],Bussumstraat,N68f,N68,N,1,0,0,0,0,1,True,999.0
+663,125566,490033,875653.0,73765.0,afval_cluster,125566.156|490033.451,['Rest:1'],['Rest:5 m3'],Ganzenveldstraat,N68d,N68,N,1,0,0,0,0,1,True,999.0
+664,125541,489804,516296.0,122707.0,afval_cluster,125541.347|489804.485,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Kennemerduinstraat,N68c,N68,N,3,0,0,0,0,3,True,999.0
+665,125304,489677,845373.0,16286.0,afval_cluster,125304.227|489677.491,['Rest:1'],['Rest:5 m3'],Groetstraat,N68c,N68,N,1,0,0,0,0,1,True,999.0
+666,125070,490278,680263.0,1874.0,afval_cluster,125070.431|490277.855,['Rest:1'],['Rest:5 m3'],Bosplaat,N69m,N69,N,1,0,0,0,0,1,True,999.0
+667,124685,489857,593771.0,113709.0,afval_cluster,124684.519|489856.716,['Rest:1'],['Rest:5 m3'],Het Laagt,N69k,N69,N,0,0,0,1,0,1,True,999.0
+668,124359,490086,618844.0,83.0,afval_cluster,124359.408|490086.437,['Rest:1'],['Rest:5 m3'],Buikslotermeerplein,N69k,N69,N,0,0,0,1,0,1,True,999.0
+669,124128,490029,853804.0,153045.0,afval_cluster,124128.457|490028.980,['Rest:1'],['Rest:5 m3'],Bovenover,N69k,N69,N,0,1,0,0,0,1,True,999.0
+670,123881,491002,742626.0,153602.0,afval_cluster,123881.062|491001.689,['Rest:1'],['Rest:5 m3'],M.J.E. Lippitsstraat,N74c,N74,N,0,0,1,0,0,1,True,999.0
+671,123775,489446,490296.0,53681.0,afval_cluster,123774.880|489446.624,"['Rest:1', 'Plastic:1']","['Rest:5 m3', 'Plastic:5 m3']",Hoekschewaardweg,N63a,N63,N,0,1,1,0,0,2,True,999.0
+672,123550,489035,598696.0,108486.0,afval_cluster,123549.974|489035.224,"['Glas:1', 'Papier:1', 'Textiel:1']","['Glas:3 m3', 'Papier:3 m3', 'Textiel:3 m3']",Zamenhofstraat,N61c,N61,N,2,0,1,0,0,3,True,999.0
+673,123418,490171,794834.0,283.0,afval_cluster,123418.379|490171.289,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Nieuwe Purmerweg,N74a,N74,N,1,0,0,2,0,3,True,999.0
+674,122962,491290,826722.0,119956.0,afval_cluster,122961.592|491290.156,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",IJdoornlaan,N70b,N70,N,2,0,1,0,0,3,True,999.0
+675,122594,490938,925895.0,149444.0,afval_cluster,122593.584|490937.981,['Rest:1'],['Rest:5 m3'],Tjalkstraat,N70a,N70,N,1,0,0,0,0,1,True,999.0
+676,122328,489795,588870.0,78372.0,afval_cluster,122327.830|489795.441,"['Plastic:2', 'Textiel:1']","['Plastic:8 m3', 'Textiel:3 m3']",Struisgrasstraat,N71c,N71,N,2,0,0,1,0,3,True,999.0
+677,122200,492525,613741.0,152617.0,afval_cluster,122199.937|492525.176,['Rest:1'],['Rest:5 m3'],Arcellastraat,N67a,N67,N,1,0,0,0,0,1,True,999.0
+678,121632,491625,768837.0,453.0,afval_cluster,121632.424|491625.001,['Rest:1'],['Rest:5 m3'],Perzikstraat,N65c,N65,N,0,0,0,0,1,1,True,999.0
+679,125799,489203,632080.0,165800.0,afval_cluster,125798.767|489202.723,"['Rest:1', 'Glas:1', 'Papier:1']","['Rest:5 m3', 'Glas:3 m3', 'Papier:3 m3']",Spanderswoudstraat,N68f,N68,N,1,0,1,0,1,3,True,999.0
+680,125857,489067,647901.0,119035.0,afval_cluster,125856.853|489067.325,['Rest:1'],['Rest:5 m3'],Zuiderzeepark,N68f,N68,N,1,0,0,0,0,1,True,999.0
