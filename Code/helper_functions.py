@@ -521,6 +521,25 @@ def analyze_candidate_solution(joined, all_households, rel_poi_df,
         # Set distance of cardboard to nan is cardboard is collected there
         good_result.loc[good_result['collect_cardboard'],
                         'papier_afstand'] = np.nan
+        good_result.loc[good_result['collect_cardboard'],
+                        'poi_papier'] = np.nan
+
+        #  Set all values of landelijk noord to np.nan
+        good_result.loc[good_result['in_landelijk_noord'],
+                        ['rest_afstand', 'plastic_afstand', 'papier_afstand',
+                         'glas_afstand', 'textiel_afstand'] = np.nan
+        good_result.loc[good_result['in_landelijk_noord'],
+                        'poi_rest', 'poi_plastic', 'poi_papier', 'poi_glas',
+                        'poi_textiel'] = np.nan
+
+        # Set all values of Centrum to np.nan
+        good_result.loc[good_result['in_centrum'],
+                        ['rest_afstand', 'plastic_afstand', 'papier_afstand',
+                         'glas_afstand', 'textiel_afstand'] = np.nan
+        good_result.loc[good_result['in_centrum'],
+                        'poi_rest', 'poi_plastic', 'poi_papier', 'poi_glas',
+                        'poi_textiel'] = np.nan
+
 
     aansluitingen = create_aansluitingen(good_result,
                                          joined_cluster_distance,
