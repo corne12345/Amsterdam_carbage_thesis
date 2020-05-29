@@ -411,6 +411,7 @@ def clusterwise_optimization():
         plt.set_xlabel('Number of iterations')
         plt.set_ylabel('Penalty score')
         plt.figure.savefig('20200505_' + k + '.pdf')
+        plt.clf()
 
     # Optimization of Centrum
     joined_C = joined[joined['stadsdeel'].isin(['M', 'A', 'K', 'E'])]
@@ -430,6 +431,12 @@ def clusterwise_optimization():
         penalties, simple_penalties = \
         analyze_candidate_solution(joined, all_households, rel_poi_df,
                                    df_afstandn2, clean=True, use_count=True)
+
+    plt = hillclimber_df_T['best'].plot(title='hillclimber of ' + k)
+    plt.set_xlabel('Number of iterations')
+    plt.set_ylabel('Penalty score')
+    plt.figure.savefig('20200505_' + k + '.pdf')
+    plt.clf()
 
     return joined
 
