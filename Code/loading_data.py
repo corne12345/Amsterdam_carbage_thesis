@@ -212,6 +212,7 @@ def create_all_households(rel_poi_df, subsectie=None):
     if the entirety of addresses is to be used. If not, a certain stadsdeel can
     be returned.
     """
+    # Identify households that are in areas for centralized rest collection
     polygon_list = load_geodata_containers(subsectie=subsectie)
     all_households = rel_poi_df[rel_poi_df['type'] != 'afval_cluster']
     all_households = all_households[['s1_afv_nodes', 'cluster_x', 'cluster_y']]
@@ -221,6 +222,7 @@ def create_all_households(rel_poi_df, subsectie=None):
                                                    polygon_list=polygon_list),
                axis=1)
 
+    # Identify households that are in areas where cardboard is collected
     wijken = gpd.read_file('../data/brtk2010_ind2005_region.shp')
     polygons_list = list(wijken.iloc[[49, 185, 307, 311, 328]]['geometry'])
     all_households['collect_cardboard'] = all_households.\
@@ -229,12 +231,30 @@ def create_all_households(rel_poi_df, subsectie=None):
                                                   polygon_list=polygons_list),
               axis=1)
 
+    # Identify households that are in Landelijk Noord to exclude
+    polygons_list = list(wijken[wijken['BC'] == '73'])
+    all_households['in_landelijk_noord'] = all_households.\
+        apply(lambda row: address_in_service_area(row['cluster_x'],
+                                                  row['cluster_y'],
+                                                  polygon_list=polygons_list),
+              axis=1)
+
+    # Exclude all households in stadsdeel centrum because of inconsistent data
+    polygons_list = list(wijken[wijken['SD09'] == 'A'])
+    all_households['in_centrum'] = all_households.\
+        apply(lambda row: address_in_service_area(row['cluster_x'],
+                                                  row['cluster_y'],
+                                                  polygon_list=polygons_list),
+              axis=1)
+
+    # Identify all households that are in specified area
     neighborhood_list = load_shapefile_neighborhood(area=subsectie)
     all_households['in_neigborhood'] = all_households\
         .apply(lambda row:
                address_in_service_area(row['cluster_x'], row['cluster_y'],
                                        polygon_list=neighborhood_list),
                axis=1)
+
     return all_households
 
 
