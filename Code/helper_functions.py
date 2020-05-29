@@ -469,7 +469,7 @@ def initial_loading():
 
 def analyze_candidate_solution(joined, all_households, rel_poi_df,
                                df_afstandn2, clean=True, use_count=False,
-                               return_all=False, exclude_outliers=True):
+                               return_all=False, exclude_outliers=False):
     """
     Analyze the score and penalties of a provided solution.
 

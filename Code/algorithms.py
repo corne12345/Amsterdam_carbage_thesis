@@ -380,7 +380,7 @@ def clusterwise_optimization():
         SA = False
     else:
         SA = True
-    parameter = str(input("Optimize on (score/penalties)?"))
+    parameter = str(input("Optimize on (score/penalties/simple)?"))
     method = str(input("What method (2-opt, dim Gaussian, Gaussian)?"))
 
     all_households, rel_poi_df, joined, df_afstandn2 = initial_loading()
@@ -399,13 +399,14 @@ def clusterwise_optimization():
                                      prompt=False, SA=SA)
         joined = joined[joined['stadsdeel'] != k]
         joined = joined.append(best_solution_T, ignore_index=True)
-        print('*************************************************************')
+        print('**************************************************************')
         joined_cluster_distance, good_result_rich, aansluitingen, avg_distance,\
             penalties, simple_penalties = \
             analyze_candidate_solution(joined, all_households, rel_poi_df,
                                        df_afstandn2, clean=True,
                                        use_count=True)
-       print('***************************************************************')
+        print('**************************************************************')
+        print(k + ' finished, moving on')
         plt = hillclimber_df_T['best'].plot(title='hillclimber of ' + k)
         plt.set_xlabel('Number of iterations')
         plt.set_ylabel('Penalty score')
