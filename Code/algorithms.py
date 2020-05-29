@@ -121,7 +121,7 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df,
         best = penalties
 
     hillclimber_dict = {}
-    hillclimber_dict[0] = [avg_distance, penalties, best]
+    hillclimber_dict[0] = [avg_distance, penalties, simple_penalties, best]
 
     r = copy.deepcopy(joined)
     for i in range(1, num_iterations+1):
@@ -168,7 +168,8 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df,
 
     hill_df = pd.DataFrame.from_dict(hillclimber_dict, orient='index')
     hill_df = hill_df.rename(columns={0: 'avg_distance', 1: 'penalties',
-                                      2: 'best', 3: 'amount of modifications'})
+                                      2: 'simple_penalties', 3: 'best',
+                                      4: 'amount of modifications'})
 
     if save:
         today = datetime.now().strftime("%Y%m%d-%H%M")
@@ -398,11 +399,13 @@ def clusterwise_optimization():
                                      prompt=False, SA=SA)
         joined = joined[joined['stadsdeel'] != k]
         joined = joined.append(best_solution_T, ignore_index=True)
+        print('*************************************************************')
         joined_cluster_distance, good_result_rich, aansluitingen, avg_distance,\
             penalties, simple_penalties = \
             analyze_candidate_solution(joined, all_households, rel_poi_df,
                                        df_afstandn2, clean=True,
                                        use_count=True)
+       print('***************************************************************')
         plt = hillclimber_df_T['best'].plot(title='hillclimber of ' + k)
         plt.set_xlabel('Number of iterations')
         plt.set_ylabel('Penalty score')

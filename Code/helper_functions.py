@@ -192,6 +192,7 @@ def containers_per_cluster(cluster_list):
 
     # Prevent an error if cluster_list is empty
     if type(cluster_list) != list:
+        print("Not a list")
         pass
     else:
         for i in cluster_list:
@@ -556,6 +557,6 @@ def analyze_candidate_solution(joined, all_households, rel_poi_df,
 
     print("Average distance is : " + str(avg_distance))
     print("Penalties are: " + str(penalties))
-    print("Simple penalties are" + str(simple_penalties))
+    print("Simple penalties are: " + str(simple_penalties))
     return joined_cluster_distance, good_result, aansluitingen,\
         avg_distance, penalties, simple_penalties
