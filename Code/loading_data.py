@@ -232,7 +232,7 @@ def create_all_households(rel_poi_df, subsectie=None):
               axis=1)
 
     # Identify households that are in Landelijk Noord to exclude
-    polygons_list = list(wijken[wijken['BC'] == '73'])
+    polygons_list = list(wijken[wijken['BC'] == '73']['geometry'])
     all_households['in_landelijk_noord'] = all_households.\
         apply(lambda row: address_in_service_area(row['cluster_x'],
                                                   row['cluster_y'],
@@ -240,7 +240,7 @@ def create_all_households(rel_poi_df, subsectie=None):
               axis=1)
 
     # Exclude all households in stadsdeel centrum because of inconsistent data
-    polygons_list = list(wijken[wijken['SD09'] == 'A'])
+    polygons_list = list(wijken[wijken['SD09'] == 'A']['geometry'])
     all_households['in_centrum'] = all_households.\
         apply(lambda row: address_in_service_area(row['cluster_x'],
                                                   row['cluster_y'],

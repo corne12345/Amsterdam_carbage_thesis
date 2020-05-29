@@ -66,17 +66,16 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df,
     iterative optimization process(hillclimber for example).
     """
     joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, \
-        penalties = analyze_candidate_solution(joined, all_households,
-                                               rel_poi_df, df_afstandn2,
-                                               clean=clean,
-                                               use_count=use_count,
-                                               return_all=return_all)
+        penalties, simple_penalties = \
+        analyze_candidate_solution(joined, all_households, rel_poi_df,
+                                   df_afstandn2, clean=clean,
+                                   use_count=use_count, return_all=return_all)
     best = 0
 
     for i in range(num_iterations):
         joined2 = random_shuffling_clusters(joined)
         joined_cluster_distance2, good_result_rich2, \
-            aansluitingen2, avg_distance2, penalties2 = \
+            aansluitingen2, avg_distance2, penalties2, simple_penalties2 = \
             analyze_candidate_solution(joined2, all_households, rel_poi_df,
                                        df_afstandn2, clean=clean,
                                        use_count=use_count,
@@ -88,12 +87,13 @@ def best_of_random(num_iterations, joined, all_households, rel_poi_df,
             aansluitingen = aansluitingen2
             avg_distance = avg_distance2
             penalties = penalties2
+            simple_penalties = simple_penalties2
             best = i
 
     print('***************************************')
     print(avg_distance, penalties, best)
     return joined, joined_cluster_distance, good_result_rich, aansluitingen, \
-        avg_distance, penalties
+        avg_distance, penalties, simple_penalties
 
 
 def hillclimber(num_iterations, joined, all_households, rel_poi_df,
@@ -108,11 +108,10 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df,
     random algorithm. The results are to be seen.
     """
     joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, \
-        penalties = analyze_candidate_solution(joined, all_households,
-                                               rel_poi_df, df_afstandn2,
-                                               clean=clean,
-                                               use_count=use_count,
-                                               return_all=return_all)
+        penalties, simple_penalties = \
+        analyze_candidate_solution(joined, all_households, rel_poi_df,
+                                   df_afstandn2, clean=clean,
+                                   use_count=use_count, return_all=return_all)
     if not method:
         method = input("2-opt or Gaussian as method?")
 
@@ -139,13 +138,13 @@ def hillclimber(num_iterations, joined, all_households, rel_poi_df,
             r, no_modifications = hillclimber_variable_mutations(r)
 
         joined_cluster_distance2, good_result_rich2,\
-            aansluitingen2, avg_distance2, penalties2 = \
+            aansluitingen2, avg_distance2, penalties2, simple_penalties2 = \
             analyze_candidate_solution(r, all_households, rel_poi_df,
                                        df_afstandn2, clean=clean,
                                        use_count=use_count,
                                        return_all=return_all)
-        hillclimber_dict[i] = [avg_distance2, penalties2, best,
-                               no_modifications]
+        hillclimber_dict[i] = [avg_distance2, penalties2, simple_penalties2,
+                               best, no_modifications]
 
         if parameter == 'score':
             print(avg_distance2+penalties2, best)
@@ -216,10 +215,9 @@ def random_start_hillclimber(joined, all_households, rel_poi_df, df_afstandn2,
         method = str(input("What method (2-opt, dim Gaussian, Gaussian)?"))
 
     joined, joined_cluster_distance, good_result_rich, aansluitingen, \
-        avg_distance, penalties = best_of_random(i, joined, all_households,
-                                                 rel_poi_df, df_afstandn2,
-                                                 clean=clean,
-                                                 use_count=use_count)
+        avg_distance, penalties, simple_penalties = \
+        best_of_random(i, joined, all_households, rel_poi_df, df_afstandn2,
+                       clean=clean, use_count=use_count)
 
     hill_df, best = hillclimber(j, joined, all_households, rel_poi_df,
                                 df_afstandn2, clean=clean, use_count=use_count,
@@ -401,9 +399,10 @@ def clusterwise_optimization():
         joined = joined[joined['stadsdeel'] != k]
         joined = joined.append(best_solution_T, ignore_index=True)
         joined_cluster_distance, good_result_rich, aansluitingen, avg_distance,\
-            penalties = analyze_candidate_solution(joined, all_households,
-                                                   rel_poi_df, df_afstandn2,
-                                                   clean=True, use_count=True)
+            penalties, simple_penalties = \
+            analyze_candidate_solution(joined, all_households, rel_poi_df,
+                                       df_afstandn2, clean=True,
+                                       use_count=True)
         plt = hillclimber_df_T['best'].plot(title='hillclimber of ' + k)
         plt.set_xlabel('Number of iterations')
         plt.set_ylabel('Penalty score')
@@ -424,9 +423,9 @@ def clusterwise_optimization():
     joined = joined[joined['stadsdeel'].isin(['T', 'N', 'F'])]
     joined = joined.append(best_solution_C, ignore_index=True)
     joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, \
-        penalties = analyze_candidate_solution(joined, all_households,
-                                               rel_poi_df, df_afstandn2,
-                                               clean=True, use_count=True)
+        penalties, simple_penalties = \
+        analyze_candidate_solution(joined, all_households, rel_poi_df,
+                                   df_afstandn2, clean=True, use_count=True)
 
     return joined
 
