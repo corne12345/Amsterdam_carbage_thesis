@@ -37,14 +37,15 @@ def visualise_configuration():
     households_zo = households_zo.set_index('naar_s1_afv_nodes')\
         .join(df_afstandn2[['count', 'naar_s1_afv_nodes']]
               .set_index('naar_s1_afv_nodes'), how='left').drop_duplicates()
+    households_zo = households_zo[households_zo['count'] > 0]
 
     load = gpd.read_file('../data/Inzameling_huisvuil_100220.shp')
 
     street_map = load[load['sdcode'].isin(list(area))]
     geosource = GeoJSONDataSource(geojson=street_map.to_json())
-    street_map_clean = street_map[street_map['aanbiedwij'] ==
-                                  "Breng uw restafval  naar een container" +
-                                  "voor restafval."]
+    street_map_clean = \
+        street_map[street_map['aanbiedwij'] ==
+                   'Breng uw restafval  naar een container voor restafval.']
     geosource2 = GeoJSONDataSource(geojson=street_map_clean.to_json())
 
     TOOLTIPS = [
@@ -81,7 +82,9 @@ def visualise_configuration():
     p.add_tools(HoverTool(renderers=[r4], tooltips=TOOLTIPS2))
 
     show(p)
-    return p
+    return p, df_zo, households_zo.reset_index()\
+        .rename(columns={'index': 'naar_s1_afv_nodes'}), joined, rel_poi_df,
+    df_afstandn2
 
 
 def plot_optimization(filename):
