@@ -33,8 +33,9 @@ def random_shuffling_clusters(cluster_join):
     random.shuffle(fractionlist)
 
     cluster_list = list()
+    df['totaal'] = df['totaal'].fillna(0)
     for i in df.index:
-        cluster_list.extend([str(i)] * df.loc[i].totaal.astype('int'))
+        cluster_list.extend([str(i)] * int(df.loc[i].totaal.astype('int')))
 
     df_new = pd.DataFrame([cluster_list, fractionlist])\
         .T.rename(columns={0: 'poi', 1: 'fractie'})
