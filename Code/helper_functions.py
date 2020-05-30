@@ -378,7 +378,7 @@ def add_shortest_distances_to_all_households(all_households,
     # Join all_households with shortest distances to get overview
     all_households = all_households.set_index('naar_s1_afv_nodes').\
         join([shortest_rest, shortest_plastic, shortest_papier,
-              shortest_glas, shortest_textiel], how='left')
+              shortest_glas, shortest_textiel], how='left', rsuffix='_r')
     # leave out for first analysis
     # all_households = all_households.fillna(2000)
     return all_households
@@ -494,6 +494,7 @@ def analyze_candidate_solution(joined, all_households, rel_poi_df,
 
     # Cleaning step to deal with missing data
     good_result['count'] = good_result['count'].fillna(0)
+    good_result = good_result[good_result['count'] > 0]
     good_result[['poi_rest', 'poi_plastic', 'poi_papier', 'poi_glas',
                  'poi_textiel']] = good_result[['poi_rest', 'poi_plastic',
                                                 'poi_papier', 'poi_glas',
@@ -525,21 +526,21 @@ def analyze_candidate_solution(joined, all_households, rel_poi_df,
         good_result.loc[good_result['collect_cardboard'],
                         'poi_papier'] = np.nan
 
-        #  Set all values of landelijk noord to np.nan
-        good_result.loc[good_result['in_landelijk_noord'],
-                        [['rest_afstand', 'plastic_afstand', 'papier_afstand',
-                         'glas_afstand', 'textiel_afstand']]] = np.nan
-        good_result.loc[good_result['in_landelijk_noord'],
-                        [['poi_rest', 'poi_plastic', 'poi_papier', 'poi_glas',
-                         'poi_textiel']]] = np.nan
-
-        # Set all values of Centrum to np.nan
-        good_result.loc[good_result['in_centrum'],
-                        [['rest_afstand', 'plastic_afstand', 'papier_afstand',
-                         'glas_afstand', 'textiel_afstand']]] = np.nan
-        good_result.loc[good_result['in_centrum'],
-                        [['poi_rest', 'poi_plastic', 'poi_papier', 'poi_glas',
-                         'poi_textiel']]] = np.nan
+        # #  Set all values of landelijk noord to np.nan
+        # good_result.loc[good_result['in_landelijk_noord'],
+        #                 [['rest_afstand', 'plastic_afstand', 'papier_afstand',
+        #                  'glas_afstand', 'textiel_afstand']]] = np.nan
+        # good_result.loc[good_result['in_landelijk_noord'],
+        #                 [['poi_rest', 'poi_plastic', 'poi_papier', 'poi_glas',
+        #                  'poi_textiel']]] = np.nan
+        #
+        # # Set all values of Centrum to np.nan
+        # good_result.loc[good_result['in_centrum'],
+        #                 [['rest_afstand', 'plastic_afstand', 'papier_afstand',
+        #                  'glas_afstand', 'textiel_afstand']]] = np.nan
+        # good_result.loc[good_result['in_centrum'],
+        #                 [['poi_rest', 'poi_plastic', 'poi_papier', 'poi_glas',
+        #                  'poi_textiel']]] = np.nan
 
     aansluitingen = create_aansluitingen(good_result,
                                          joined_cluster_distance,
