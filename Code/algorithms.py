@@ -411,7 +411,7 @@ def clusterwise_optimization():
         plt.set_xlabel('Number of iterations')
         plt.set_ylabel('Penalty score')
         plt.figure.savefig('20200505_' + k + '.pdf')
-        plt.clf()
+        plt.figure.clf()
 
     # Optimization of Centrum
     joined_C = joined[joined['stadsdeel'].isin(['M', 'A', 'K', 'E'])]
@@ -436,7 +436,7 @@ def clusterwise_optimization():
     plt.set_xlabel('Number of iterations')
     plt.set_ylabel('Penalty score')
     plt.figure.savefig('20200505_' + k + '.pdf')
-    plt.clf()
+    plt.figure.clf()
 
     return joined
 
