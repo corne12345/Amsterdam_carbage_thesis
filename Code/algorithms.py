@@ -364,6 +364,7 @@ def clusterwise_optimization():
     all concluded by returning the best possible solution and showing graphs
     along the way and saving intermediate results.
     """
+    import matplotlib.pyplot as plt
     i = int(input("How many random iterations?"))
     j = int(input("How many iterations hillclimber?"))
     to_save = input("Do you want the results saved(True/False)?")
@@ -407,11 +408,11 @@ def clusterwise_optimization():
                                        use_count=True)
         print('**************************************************************')
         print(k + ' finished, moving on')
-        plt = hillclimber_df_T['best'].plot(title='hillclimber of ' + k)
-        plt.set_xlabel('Number of iterations')
-        plt.set_ylabel('Penalty score')
-        plt.figure.savefig('20200505_' + k + '.pdf')
-        plt.figure.clf()
+        plot = hillclimber_df_T['best'].plot(title='hillclimber of ' + k)
+        plot.set_xlabel('Number of iterations')
+        plot.set_ylabel('Penalty score')
+        plot.figure.savefig('20200505_' + k + '.pdf')
+        plt.close(plot.figure)
 
     # Optimization of Centrum
     joined_C = joined[joined['stadsdeel'].isin(['M', 'A', 'K', 'E'])]
@@ -436,7 +437,6 @@ def clusterwise_optimization():
     plt.set_xlabel('Number of iterations')
     plt.set_ylabel('Penalty score')
     plt.figure.savefig('20200505_' + k + '.pdf')
-    plt.figure.clf()
 
     return joined
 
