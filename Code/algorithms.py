@@ -21,6 +21,7 @@ def random_shuffling_clusters(cluster_join):
     containing information on both the API data as well as the DB information
     (as for the POIs). Returns another configuration of the same information.
     """
+    cluster_join = cluster_join.drop_duplicates(subset='s1_afv_nodes')
     df = cluster_join.set_index('s1_afv_nodes')[['rest', 'plastic', 'papier',
                                                  'glas', 'textiel', 'totaal']]
     df = df[df['totaal'] < 80]
@@ -33,9 +34,8 @@ def random_shuffling_clusters(cluster_join):
     random.shuffle(fractionlist)
 
     cluster_list = list()
-    df['totaal'] = df['totaal'].fillna(0)
     for i in df.index:
-        cluster_list.extend([str(i)] * int(df.loc[i].totaal.astype('int')))
+        cluster_list.extend([str(i)] * df.loc[i].totaal.astype('int'))
 
     df_new = pd.DataFrame([cluster_list, fractionlist])\
         .T.rename(columns={0: 'poi', 1: 'fractie'})
@@ -417,6 +417,7 @@ def clusterwise_optimization():
 
     # Optimization of Centrum
     joined_C = joined[joined['stadsdeel'].isin(['M', 'A', 'K', 'E'])]
+    joined_C = joined_C.dropna()
     all_households_C = create_all_households(rel_poi_df,
                                              subsectie=['M', 'A', 'K', 'E'])
     all_households_C = all_households_C\
@@ -426,7 +427,7 @@ def clusterwise_optimization():
                                  df_afstandn2, i=i, j=j, to_save=to_save,
                                  clean=clean, use_count=use_count,
                                  parameter=parameter, method=method,
-                                 prompt=False)
+                                 prompt=False, SA=SA)
     joined = joined[joined['stadsdeel'].isin(['T', 'N', 'F'])]
     joined = joined.append(best_solution_C, ignore_index=True)
     joined_cluster_distance, good_result_rich, aansluitingen, avg_distance, \
