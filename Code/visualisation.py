@@ -6,7 +6,8 @@ import geopandas as gpd
 from bokeh.plotting import figure, show
 from bokeh.models import GeoJSONDataSource, ColumnDataSource, HoverTool
 
-from .helper_functions import initial_loading
+from .helper_functions import initial_loading,\
+    add_shortest_distances_to_all_households
 
 
 def visualise_configuration():
@@ -83,8 +84,8 @@ def visualise_configuration():
 
     show(p)
     return p, df_zo, households_zo.reset_index()\
-        .rename(columns={'index': 'naar_s1_afv_nodes'}), joined, rel_poi_df,
-    df_afstandn2
+        .rename(columns={'index': 'naar_s1_afv_nodes'}), all_households,\
+        rel_poi_df, joined, df_afstandn2
 
 
 def plot_optimization(filename):
@@ -108,3 +109,47 @@ def plot_optimization(filename):
     ax.set_ylabel('average walking distance(meters)', color='blue')
 
     return ax
+
+
+def use_cases(indx):
+    """
+    Take index from map and build use case around it.
+
+    This function takes an index from an interactive Bokeh-plot as input. It
+    uses this input to find the matching address cluster POI and finds its
+    distances in both the old and new situation. It does this by prompting an
+    input file to use for the new situation
+    """
+    p, containers, households, all_households, rel_poi_df, joined, \
+        df_afstandn2 = visualise_configuration()
+
+    # Collect New
+    joined_cluster_distance = containers.set_index('s1_afv_nodes')\
+        .join(df_afstandn2.set_index('van_s1_afv_nodes')).reset_index()\
+        .rename(columns={'index': 'van_s1_afv_nodes'})
+
+    # Add shortest distances to it
+    good_result = \
+        add_shortest_distances_to_all_households(households,
+                                                 joined_cluster_distance)
+
+    # good_result = good_result[good_result['count'] > 0]
+    good_result = good_result.reset_index()
+    print(good_result[good_result.index == indx])
+    poi = int(good_result[good_result.index == indx]['naar_s1_afv_nodes'])
+
+    # Collect old data
+    joined_cluster_distance = joined.set_index('s1_afv_nodes')\
+        .join(df_afstandn2.set_index('van_s1_afv_nodes')).reset_index()\
+        .rename(columns={'index': 'van_s1_afv_nodes'})
+
+    # Add shortest distances to it
+    good_result = \
+        add_shortest_distances_to_all_households(all_households,
+                                                 joined_cluster_distance,
+                                                 use_count=True)
+
+    good_result = good_result.reset_index()\
+        .rename(columns={'index': 'naar_s1_afv_nodes'})
+    print(good_result[good_result['naar_s1_afv_nodes'] == poi])
+    return
