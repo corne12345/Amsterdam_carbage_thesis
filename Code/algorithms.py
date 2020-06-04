@@ -416,13 +416,13 @@ def clusterwise_optimization():
         plt.close(plot.figure)
 
     # Optimization of Centrum
-    joined_C = joined[joined['stadsdeel'] == 'T']
-    # joined_C = joined[joined['stadsdeel'].isin(['M', 'A', 'K', 'E'])]
-    joined_C = joined_C.dropna()
-    # all_households_C = create_all_households(rel_poi_df,
-    #                                          subsectie=['M', 'A', 'K', 'E'])
+    # joined_C = joined[joined['stadsdeel'] == 'T']
+    joined_C = joined[joined['stadsdeel'].isin(['M', 'A', 'K'])]
+    # joined_C = joined_C.dropna()
     all_households_C = create_all_households(rel_poi_df,
-                                             subsectie=['T'])
+                                             subsectie=['M', 'A', 'K'])
+    # all_households_C = create_all_households(rel_poi_df,
+    #                                          subsectie=['T'])
     all_households_C = all_households_C\
         .rename(columns={'s1_afv_nodes': 'naar_s1_afv_nodes'})
     hillclimber_df_C, best_solution_C = \
