@@ -417,10 +417,10 @@ def clusterwise_optimization():
 
     # Optimization of Centrum
     # joined_C = joined[joined['stadsdeel'] == 'T']
-    joined_C = joined[joined['stadsdeel'].isin(['M', 'A', 'K'])]
+    joined_C = joined[joined['stadsdeel'].isin(['M', 'A', 'K', 'E'])]
     # joined_C = joined_C.dropna()
     all_households_C = create_all_households(rel_poi_df,
-                                             subsectie=['M', 'A', 'K'])
+                                             subsectie=['M', 'A', 'K', 'E'])
     # all_households_C = create_all_households(rel_poi_df,
     #                                          subsectie=['T'])
     all_households_C = all_households_C\
@@ -441,7 +441,8 @@ def clusterwise_optimization():
     plt = hillclimber_df_T['best'].plot(title='hillclimber of ' + k)
     plt.set_xlabel('Number of iterations')
     plt.set_ylabel('Penalty score')
-    plt.figure.savefig('20200505_' + k + '.pdf')
+    plt.figure.savefig('20200505_' + 'C' + '.pdf')
+    joined.to_csv('total_best_config.csv')
 
     return joined
 
