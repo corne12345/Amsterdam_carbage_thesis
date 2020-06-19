@@ -387,6 +387,13 @@ def clusterwise_optimization():
 
     all_households, rel_poi_df, joined, df_afstandn2 = initial_loading()
 
+    print('Calculating starting point')
+    joined_cluster_distance, good_result_rich, aansluitingen, avg_distance,\
+        penalties, simple_penalties = \
+        analyze_candidate_solution(joined, all_households, rel_poi_df,
+                                   df_afstandn2, clean=clean,
+                                   use_count=True)
+
     # Optimization of Zuidoost, Noord and Nieuw-West
     for k in ['T', 'N', 'F']:
         joined_T = joined[joined['stadsdeel'] == k]
@@ -405,7 +412,7 @@ def clusterwise_optimization():
         joined_cluster_distance, good_result_rich, aansluitingen, avg_distance,\
             penalties, simple_penalties = \
             analyze_candidate_solution(joined, all_households, rel_poi_df,
-                                       df_afstandn2, clean=True,
+                                       df_afstandn2, clean=clean,
                                        use_count=True)
         print('**************************************************************')
         print(k + ' finished, moving on')
