@@ -137,7 +137,7 @@ def calculate_simple_penalties(good_result, aansluitingen, use_count=True,
         penalty4 = good_result[good_result
                                ['glas_afstand'] > 150]['count'].sum()
         penalty5 = good_result[good_result
-                               ['textiel_afstand'] > 150]['count'].sum()
+                               ['textiel_afstand'] > 300]['count'].sum()
 
     else:
         penalty1 = good_result[good_result['rest_afstand'] > 100].shape[0]
