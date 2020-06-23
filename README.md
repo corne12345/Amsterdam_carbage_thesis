@@ -31,3 +31,6 @@ All coding has been initially done in Jupyter Notebooks. All succesfull and reus
 - The Images folder is filled with images that are results of algorithms and optimization attemps. These images are formed as output from code. Some of these images will be actually used in the final thesis.
 - The Notebooks folder is filled with .ipynb files that are used for exploration. The use of these iPython Notebooks allows for easy exploration, but substantial results will be encapsulated in functions in .py files in the Code folder
 - Presentations shows presentations done.
+
+### Figures referred in paper
+The figures reffered to in the paper are in the Bokeh for GIT folder. These are html based visualisations that can be viewed in the browser after downloading these.
