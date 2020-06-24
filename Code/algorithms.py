@@ -268,7 +268,7 @@ def hillclimber_2_opt(r, mod_max):
     return r, no_modifications
 
 
-def hillclimber_variable_mutations(df, x=1.9):
+def hillclimber_variable_mutations(df, x=2.7):
     """
     Hillclimb with variable mutation strategy.
 
